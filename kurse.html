@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mein Veränderungsweg – Kursbereich</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="apple-touch-icon" href="favicon.svg">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --gold: #B8935A;
+      --gold-light: #D4AF7A;
+      --gold-pale: #EDD9B0;
+      --cream: #FAF6EE;
+      --cream-dark: #F0E9D8;
+      --brown: #6B4F2E;
+      --brown-deep: #3E2C18;
+      --text: #2C1F0E;
+      --text-muted: #7A6348;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      min-height: 100vh;
+      background: var(--cream);
+      font-family: 'Jost', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Dezente Hintergrundstruktur */
+    body::before {
+      content: '';
+      position: fixed;
+      top: -200px; right: -200px;
+      width: 600px; height: 600px;
+      border-radius: 50%;
+      border: 80px solid var(--cream-dark);
+      opacity: 0.5;
+      pointer-events: none;
+    }
+    body::after {
+      content: '';
+      position: fixed;
+      bottom: -150px; left: -150px;
+      width: 450px; height: 450px;
+      border-radius: 50%;
+      border: 60px solid var(--cream-dark);
+      opacity: 0.4;
+      pointer-events: none;
+    }
+
+    .card {
+      background: white;
+      border-radius: 24px;
+      padding: 3rem 2.5rem;
+      max-width: 420px;
+      width: 100%;
+      box-shadow: 0 8px 48px rgba(60,35,10,0.10);
+      position: relative;
+      z-index: 1;
+      animation: fadeUp 0.7s ease both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Logo */
+    .logo {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+
+    .logo-svg {
+      width: 64px;
+      height: 64px;
+      margin-bottom: 1rem;
+    }
+
+    .logo-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+
+    /* Überschrift */
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 500;
+      color: var(--brown-deep);
+      text-align: center;
+      line-height: 1.2;
+      margin-bottom: 0.5rem;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      font-weight: 300;
+      margin-bottom: 2rem;
+    }
+
+    /* Trennlinie */
+    .divider {
+      height: 1px;
+      background: var(--cream-dark);
+      margin-bottom: 2rem;
+    }
+
+    /* Formular */
+    .form-group {
+      margin-bottom: 1.25rem;
+    }
+
+    label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+    }
+
+    input[type="password"] {
+      width: 100%;
+      padding: 0.85rem 1.1rem;
+      border: 1.5px solid var(--cream-dark);
+      border-radius: 12px;
+      font-family: 'Jost', sans-serif;
+      font-size: 1rem;
+      color: var(--text);
+      background: var(--cream);
+      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none;
+    }
+
+    input[type="password"]:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(184,147,90,0.15);
+      background: white;
+    }
+
+    input[type="password"].error {
+      border-color: #C0392B;
+      box-shadow: 0 0 0 3px rgba(192,57,43,0.10);
+    }
+
+    .error-msg {
+      display: none;
+      color: #C0392B;
+      font-size: 0.82rem;
+      margin-top: 0.4rem;
+    }
+
+    .error-msg.visible { display: block; }
+
+    /* Button */
+    .btn {
+      width: 100%;
+      padding: 0.95rem;
+      background: var(--gold);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+      margin-top: 0.5rem;
+    }
+
+    .btn:hover { background: var(--brown); }
+    .btn:active { transform: scale(0.98); }
+
+    /* Kursbereich (nach Login) */
+    .kursbereich {
+      display: none;
+      animation: fadeUp 0.5s ease both;
+    }
+
+    .willkommen {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: var(--brown-deep);
+      text-align: center;
+      margin-bottom: 0.4rem;
+    }
+
+    .willkommen-sub {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      margin-bottom: 2rem;
+    }
+
+    .kurs-liste {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .kurs-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 1.1rem;
+      background: var(--cream);
+      border-radius: 14px;
+      border: 1.5px solid var(--cream-dark);
+      text-decoration: none;
+      color: var(--text);
+      transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+      cursor: pointer;
+    }
+
+    .kurs-item:hover {
+      border-color: var(--gold-light);
+      background: white;
+      box-shadow: 0 4px 16px rgba(184,147,90,0.10);
+    }
+
+    .kurs-icon {
+      width: 42px; height: 42px;
+      background: var(--cream-dark);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .kurs-icon svg { width: 22px; height: 22px; }
+
+    .kurs-info { flex: 1; }
+
+    .kurs-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: var(--brown-deep);
+      display: block;
+    }
+
+    .kurs-desc {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-top: 0.1rem;
+    }
+
+    .kurs-arrow {
+      color: var(--gold);
+      font-size: 1.2rem;
+    }
+
+    /* Logout */
+    .logout-link {
+      display: block;
+      text-align: center;
+      margin-top: 1.5rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      cursor: pointer;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .logout-link:hover { color: var(--brown); }
+
+    /* Footer */
+    .footer {
+      margin-top: 2rem;
+      text-align: center;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      opacity: 0.7;
+      z-index: 1;
+    }
+
+    .footer a { color: var(--text-muted); text-decoration: none; }
+    .footer a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+<div class="card" id="login-card">
+  <div class="logo">
+    <!-- Offener Kreis Logo -->
+    <svg class="logo-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <rect width="100" height="100" rx="22" fill="#F5EFE0"/>
+      <path d="M50,12 A38,38 0 1,1 49.9,12" fill="none" stroke="#B8935A" stroke-width="10" stroke-linecap="round"/>
+      <circle cx="50" cy="88" r="6" fill="#B8935A"/>
+    </svg>
+    <span class="logo-name">Mein Veränderungsweg</span>
+  </div>
+
+  <h1>Herzlich willkommen</h1>
+  <p class="subtitle">Bitte gib dein persönliches Zugangswort ein.</p>
+
+  <div class="divider"></div>
+
+  <div class="form-group">
+    <label for="passwort">Zugangswort</label>
+    <input type="password" id="passwort" placeholder="••••••••" autocomplete="current-password">
+    <p class="error-msg" id="error-msg">Das Zugangswort ist leider nicht korrekt.</p>
+  </div>
+
+  <button class="btn" onclick="pruefeLogin()">Zum Kursbereich →</button>
+
+  <p style="text-align:center; font-size:0.78rem; color:var(--text-muted); margin-top:1.25rem;">
+    Noch kein Zugangswort? Schreib mir unter<br>
+    <a href="mailto:info@veraenderungsweg.de" style="color:var(--gold);">info@veraenderungsweg.de</a>
+  </p>
+</div>
+
+<!-- Kursbereich nach Login -->
+<div class="card kursbereich" id="kurs-card">
+  <div class="logo">
+    <svg class="logo-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <rect width="100" height="100" rx="22" fill="#F5EFE0"/>
+      <path d="M50,12 A38,38 0 1,1 49.9,12" fill="none" stroke="#B8935A" stroke-width="10" stroke-linecap="round"/>
+      <circle cx="50" cy="88" r="6" fill="#B8935A"/>
+    </svg>
+    <span class="logo-name">Mein Veränderungsweg</span>
+  </div>
+
+  <p class="willkommen">Dein Kursbereich</p>
+  <p class="willkommen-sub">Schön, dass du da bist. Wo möchtest du heute anfangen?</p>
+
+  <ul class="kurs-liste" id="kurs-liste">
+    <!-- Kurse werden per JS eingefügt -->
+  </ul>
+
+  <span class="logout-link" onclick="abmelden()">Abmelden</span>
+</div>
+
+<p class="footer">
+  © 2025 Tanja Sattelberg · <a href="quellen.html">Quellen &amp; Lektüre</a> · <a href="https://veraenderungsweg.de/datenschutz">Datenschutz</a> · <a href="https://veraenderungsweg.de/impressum">Impressum</a>
+</p>
+
+<script>
+  // =============================================
+  // PASSWÖRTER & KURSE – hier anpassen
+  // =============================================
+  const ZUGAENGE = {
+    // Passwort: [Array mit Kurs-IDs die freigeschaltet werden]
+    "lebensrad2025":      ["lebensrad"],
+    "starter2025":        ["lebensrad", "kurs01"],
+    "veraenderung2025":   ["lebensrad", "kurs01", "kurs02", "kurs03", "kurs04", "kurs05a", "kurs06", "kurs07", "kurs08"],
+    "rauchfrei2025":      ["kurs05b"],
+    "koerper2025":        ["koerper"],
+    "kritiker2025":       ["innerer-kritiker"],
+    // Weitere Passwörter hier ergänzen:
+    // "meinpasswort": ["lebensrad", "kurs01", "kurs02"],
+  };
+
+  const KURSE = {
+    lebensrad: {
+      name: "Lebensrad – Vollversion",
+      desc: "Dein persönlicher Standortcheck in 8 Lebensbereichen",
+      url:  "https://tamjasattelberg-lang.github.io/Selbstcheck-Lebensrad/",
+      icon: `<svg viewBox="0 0 24 24" fill="none" stroke="#B8935A" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 3v9l4 4"/></svg>`
+    },
+    kurs01: {
+      name: "Kurs 01 – Mehr bei mir",
+      desc: "Inneres Erleben · 4 Wochen",
+      url:  "https://veraenderungsweg.de/kurs-01",
+      icon: `<svg viewBox="0 0 24 24" fill="none" stroke="#B8935A" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 3"/></svg>`
+    },
+    kurs02: {
+      name: "Kurs 02 – Mehr ich",
+      desc: "Beziehungen · 4 Wochen",
+      url:  "https://veraenderungsweg.de/kurs-02",
+      icon: `<svg viewBox="0 0 24 24" fill="none" stroke="#B8935A" stroke-width="1.8" stroke-linecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>`
+    },
+    kurs03: {
+      name: "Kurs 03 – Mehr Freiheit",
+      desc: "Arbeit · 4 Wochen",
+      url:  "https://veraenderungsweg.de/kurs-03",
+      icon: `<svg viewBox="0 0 24 24" fill="none" stroke="#B8935A" stroke-width="1.8" stroke-linecap="round"><path d="M20 7H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>`
+    },
+    kurs04: {
+      name: "Kurs 04 – Mehr Klarheit",
+      desc: "Finanzen · 4 Wochen",
+      url:  "https://veraenderungsweg.de/kurs-04",
+      icon: `<svg viewBox="0 0 24 24" fill="none" stroke="#B8935A" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v1m0 8v1m-4-5h1m6 0h1"/><path d="M9.5 9.5a3 3 0 0 1 5 2c0 2-3 3-3 3"/></svg>`
+    },
+    kurs05a: {
+      name: "Kurs 05a – Mehr Heimat",
+      desc: "Körper · 4 Wochen",
+      url:  "https://veraenderungsweg.de/kurs-05a",
+      icon: `<svg viewBox="0 0 24 24" fill="none" stroke="#B8935A" stroke-width="1.8" stroke-linecap="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>`
+    },
+    kurs05b: {
+      name: "Kurs 05b – Endlich Rauchfrei",
+      desc: "6 Wochen · Dein Weg in die Freiheit",
+      url:  "https://veraenderungsweg.de/kurs-05b",
+      icon: `<svg viewBox="0 0 24 24" fill="none" stroke="#B8935A" stroke-width="1.8" stroke-linecap="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/></svg>`
+    },
+    kurs06: {
+      name: "Kurs 06 – Mehr Mut",
+      desc: "Entwicklung · 4 Wochen",
+      url:  "https://veraenderungsweg.de/kurs-06",
+      icon: `<svg viewBox="0 0 24 24" fill="none" stroke="#B8935A" stroke-width="1.8" stroke-linecap="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>`
+    },
+    kurs07: {
+      name: "Kurs 07 – Schritt für Schritt",
+      desc: "Alltag · 6 Wochen",
+      url:  "https://veraenderungsweg.de/kurs-07",
+      icon: `<svg viewBox="0 0 24 24" fill="none" stroke="#B8935A" stroke-width="1.8" stroke-linecap="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>`
+    },
+    kurs08: {
+      name: "Kurs 08 – Mehr Leichtigkeit",
+      desc: "Lebensfreude · 4 Wochen",
+      url:  "https://veraenderungsweg.de/kurs-08",
+      icon: `<svg viewBox="0 0 24 24" fill="none" stroke="#B8935A" stroke-width="1.8" stroke-linecap="round"><path d="M12 2a10 10 0 1 0 0 20"/><path d="M12 6v6l4 2"/><circle cx="18" cy="18" r="4"/><path d="M18 16v2l1 1"/></svg>`
+    },
+    koerper: {
+      name: "Was mein Körper mir sagen will",
+      desc: "Körperkurs · 7 Module",
+      url:  "https://veraenderungsweg.de/koerper-kurs",
+      icon: `<svg viewBox="0 0 24 24" fill="none" stroke="#B8935A" stroke-width="1.8" stroke-linecap="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>`
+    },
+    "innerer-kritiker": {
+      name: "Mein innerer Kritiker",
+      desc: "Vertiefungskurs · 6 Module",
+      url:  "https://veraenderungsweg.de/kurs-innerer-kritiker",
+      icon: `<svg viewBox="0 0 24 24" fill="none" stroke="#B8935A" stroke-width="1.8" stroke-linecap="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>`
+    },
+  };
+  // =============================================
+
+  function pruefeLogin() {
+    const eingabe = document.getElementById('passwort').value.trim();
+    const errorMsg = document.getElementById('error-msg');
+    const input = document.getElementById('passwort');
+
+    if (ZUGAENGE[eingabe]) {
+      // Zugang speichern
+      sessionStorage.setItem('mvw_zugang', eingabe);
+      zeigeKurse(eingabe);
+    } else {
+      input.classList.add('error');
+      errorMsg.classList.add('visible');
+      input.value = '';
+      input.focus();
+      setTimeout(() => {
+        input.classList.remove('error');
+        errorMsg.classList.remove('visible');
+      }, 3000);
+    }
+  }
+
+  function zeigeKurse(passwort) {
+    const freigeschaltet = ZUGAENGE[passwort];
+    const liste = document.getElementById('kurs-liste');
+    liste.innerHTML = '';
+
+    freigeschaltet.forEach(id => {
+      const kurs = KURSE[id];
+      if (!kurs) return;
+      const li = document.createElement('li');
+      li.innerHTML = `
+        <div class="kurs-item" onclick="window.open('${kurs.url}', '_blank')">
+          <div class="kurs-icon">${kurs.icon}</div>
+          <div class="kurs-info">
+            <span class="kurs-name">${kurs.name}</span>
+            <span class="kurs-desc">${kurs.desc}</span>
+          </div>
+          <span class="kurs-arrow">→</span>
+        </div>`;
+      liste.appendChild(li);
+    });
+
+    document.getElementById('login-card').style.display = 'none';
+    document.getElementById('kurs-card').style.display = 'block';
+  }
+
+  function abmelden() {
+    sessionStorage.removeItem('mvw_zugang');
+    document.getElementById('login-card').style.display = 'block';
+    document.getElementById('kurs-card').style.display = 'none';
+    document.getElementById('passwort').value = '';
+  }
+
+  // Enter-Taste im Passwortfeld
+  document.getElementById('passwort').addEventListener('keydown', e => {
+    if (e.key === 'Enter') pruefeLogin();
+  });
+
+  // Session wiederherstellen (beim Neu-Öffnen im selben Tab)
+  const gespeichert = sessionStorage.getItem('mvw_zugang');
+  if (gespeichert && ZUGAENGE[gespeichert]) {
+    zeigeKurse(gespeichert);
+  }
+</script>
+</body>
+</html>
