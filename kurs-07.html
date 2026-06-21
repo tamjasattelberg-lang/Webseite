@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kurs 07 · Schritt für Schritt · Mein Veränderungsweg</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root { --gold: #B8935A; --cream: #F5EFE0; --dark-brown: #3D2519; --mid-brown: #7A4A2E; --light-gold: #E8D5B0; --white: #FDFAF4; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Jost', sans-serif; background: var(--cream); color: var(--dark-brown); min-height: 100vh; }
+  header { background: var(--dark-brown); color: var(--cream); padding: 2rem 1.5rem 1.5rem; text-align: center; }
+  header .brand { font-weight: 300; font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; }
+  header h1 { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(1.8rem, 5vw, 2.8rem); line-height: 1.2; }
+  header h1 em { font-style: italic; color: var(--light-gold); }
+  header .subtitle { font-weight: 300; font-size: 0.85rem; color: var(--light-gold); margin-top: 0.5rem; letter-spacing: 0.05em; }
+  .progress-bar-wrap { background: rgba(255,255,255,0.1); border-radius: 2px; height: 3px; margin-top: 1rem; overflow: hidden; }
+  .progress-bar { height: 100%; background: var(--gold); transition: width 0.5s ease; }
+  nav { background: var(--dark-brown); border-top: 1px solid rgba(184,147,90,0.3); padding: 0 1rem; display: flex; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  nav::-webkit-scrollbar { display: none; }
+  .nav-btn { background: none; border: none; color: var(--light-gold); font-family: 'Jost', sans-serif; font-weight: 300; font-size: 0.75rem; letter-spacing: 0.08em; padding: 0.9rem 1rem; cursor: pointer; white-space: nowrap; border-bottom: 2px solid transparent; transition: all 0.2s; opacity: 0.6; }
+  .nav-btn.active { color: var(--gold); border-bottom-color: var(--gold); opacity: 1; }
+  .nav-btn.locked { opacity: 0.3; cursor: default; }
+  .nav-btn:not(.locked):hover { opacity: 0.9; }
+  main { max-width: 680px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+  .modul { display: none; }
+  .modul.active { display: block; }
+  .welcome-card { background: var(--dark-brown); color: var(--cream); border-radius: 4px; padding: 2rem; margin-bottom: 2rem; }
+  .welcome-card h2 { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 1.6rem; margin-bottom: 1rem; color: var(--light-gold); }
+  .welcome-card p { font-weight: 300; line-height: 1.8; font-size: 0.95rem; margin-bottom: 0.75rem; }
+  .kernfrage { border-left: 2px solid var(--gold); padding: 0.75rem 1rem; margin: 1.25rem 0; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.15rem; color: var(--light-gold); line-height: 1.5; }
+  .modul-header { margin-bottom: 1.75rem; }
+  .modul-label { font-weight: 300; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.4rem; }
+  .modul-header h2 { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(1.5rem, 4vw, 2rem); line-height: 1.2; margin-bottom: 0.3rem; }
+  .modul-header .thema { font-weight: 300; font-size: 0.82rem; color: var(--mid-brown); font-style: italic; }
+  .divider { width: 40px; height: 1px; background: var(--gold); margin: 1.25rem 0; }
+  .text-block { font-weight: 300; line-height: 1.85; font-size: 0.95rem; margin-bottom: 1rem; }
+  .text-block p { margin-bottom: 0.75rem; }
+  .reflexion-block { background: var(--white); border-left: 3px solid var(--gold); border-radius: 0 4px 4px 0; padding: 1.25rem 1.5rem; margin: 1.5rem 0; }
+  .reflexion-block .block-label { font-weight: 500; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.6rem; }
+  .reflexion-block .question { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.1rem; line-height: 1.5; margin-bottom: 0.75rem; }
+  textarea { width: 100%; min-height: 100px; background: var(--cream); border: 1px solid var(--light-gold); border-radius: 3px; padding: 0.75rem; font-family: 'Jost', sans-serif; font-weight: 300; font-size: 0.9rem; color: var(--dark-brown); resize: vertical; outline: none; transition: border-color 0.2s; }
+  textarea:focus { border-color: var(--gold); }
+  .uebung-block { background: var(--white); border-radius: 4px; padding: 1.5rem; margin: 1.5rem 0; border: 1px solid var(--light-gold); }
+  .uebung-block .block-label { font-weight: 500; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--mid-brown); margin-bottom: 0.4rem; }
+  .uebung-block h3 { font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: 1.15rem; margin-bottom: 0.4rem; }
+  .uebung-block .zeit { font-size: 0.75rem; color: var(--gold); font-weight: 300; margin-bottom: 1rem; }
+  .uebung-block p { font-weight: 300; font-size: 0.9rem; line-height: 1.8; margin-bottom: 0.6rem; }
+  .uebung-block ol { padding-left: 1.25rem; margin: 0.5rem 0 0.75rem; }
+  .uebung-block li { font-weight: 300; font-size: 0.9rem; line-height: 1.75; margin-bottom: 0.3rem; }
+  .tabelle-wrap { overflow-x: auto; margin: 1rem 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+  th { background: var(--dark-brown); color: var(--cream); font-weight: 300; font-size: 0.75rem; letter-spacing: 0.08em; padding: 0.6rem 0.75rem; text-align: left; }
+  td { border: 1px solid var(--light-gold); padding: 0.5rem 0.75rem; background: var(--white); text-align: center; }
+  td input[type="text"] { width: 100%; border: none; background: transparent; font-family: 'Jost', sans-serif; font-weight: 300; font-size: 0.85rem; color: var(--dark-brown); outline: none; }
+  .tracker-check { width: 28px; height: 28px; border: 2px solid var(--gold); border-radius: 3px; cursor: pointer; display: flex; align-items: center; justify-content: center; margin: 0 auto; font-size: 1rem; transition: all 0.2s; }
+  .tracker-check.checked { background: var(--gold); color: var(--dark-brown); }
+  .affirmationen { background: var(--light-gold); border-radius: 4px; padding: 1.25rem 1.5rem; margin: 1.5rem 0; }
+  .affirmationen .block-label { font-weight: 500; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--mid-brown); margin-bottom: 0.75rem; }
+  .affirmationen ul { list-style: none; padding: 0; }
+  .affirmationen li { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1rem; line-height: 1.6; padding: 0.3rem 0; border-bottom: 1px solid rgba(184,147,90,0.3); }
+  .affirmationen li:last-child { border-bottom: none; }
+  .abschluss-hint { background: var(--white); border-radius: 4px; padding: 1.25rem 1.5rem; margin: 1.5rem 0; border: 1px solid var(--light-gold); font-weight: 300; font-size: 0.88rem; color: var(--mid-brown); line-height: 1.7; }
+  .abschluss-hint strong { color: var(--dark-brown); font-weight: 500; }
+  .btn-primary { display: inline-block; background: var(--gold); color: var(--dark-brown); font-family: 'Jost', sans-serif; font-weight: 500; font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.85rem 2rem; border: none; border-radius: 3px; cursor: pointer; transition: all 0.2s; margin-top: 0.5rem; }
+  .btn-primary:hover { background: var(--mid-brown); color: var(--cream); }
+  .btn-secondary { display: inline-block; background: transparent; color: var(--gold); font-family: 'Jost', sans-serif; font-weight: 400; font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.75rem 1.5rem; border: 1px solid var(--gold); border-radius: 3px; cursor: pointer; transition: all 0.2s; margin-top: 0.5rem; }
+  .btn-secondary:hover { background: var(--gold); color: var(--dark-brown); }
+  .btn-row { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.5rem; align-items: center; }
+  .toast { position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%) translateY(100px); background: var(--dark-brown); color: var(--cream); font-family: 'Jost', sans-serif; font-size: 0.82rem; font-weight: 300; padding: 0.75rem 1.5rem; border-radius: 3px; border-left: 3px solid var(--gold); transition: transform 0.3s ease; z-index: 100; white-space: nowrap; }
+  .toast.show { transform: translateX(-50%) translateY(0); }
+  footer { text-align: center; padding: 2rem 1.5rem; font-weight: 300; font-size: 0.72rem; color: var(--mid-brown); line-height: 1.7; border-top: 1px solid var(--light-gold); max-width: 680px; margin: 0 auto; }
+  @media (max-width: 480px) { main { padding: 1.5rem 1rem 3rem; } .welcome-card { padding: 1.5rem; } }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">Mein Veränderungsweg · Kurs 07</div>
+  <h1><em>Schritt für Schritt</em></h1>
+  <div class="subtitle">6 Module · Alltag · Kleine Gewohnheiten mit großer Wirkung</div>
+  <div class="progress-bar-wrap">
+    <div class="progress-bar" id="progressBar" style="width: 0%"></div>
+  </div>
+</header>
+
+<nav>
+  <button class="nav-btn active" onclick="showModul(0)" id="nav0">Start</button>
+  <button class="nav-btn" onclick="showModul(1)" id="nav1">Modul 1</button>
+  <button class="nav-btn locked" id="nav2">Modul 2</button>
+  <button class="nav-btn locked" id="nav3">Modul 3</button>
+  <button class="nav-btn locked" id="nav4">Modul 4</button>
+  <button class="nav-btn locked" id="nav5">Modul 5</button>
+  <button class="nav-btn locked" id="nav6">Modul 6</button>
+</nav>
+
+<main>
+
+  <!-- WILLKOMMEN -->
+  <div class="modul active" id="modul0">
+    <div class="welcome-card">
+      <h2>Willkommen.</h2>
+      <p>Erkenntnisse verändern nichts, wenn sie nicht gelebt werden. Dieser Kurs begleitet dich sechs Wochen dabei, echte Gewohnheiten aufzubauen – klein, tragfähig, alltagstauglich.</p>
+      <div class="kernfrage">Was ist der kleinste mögliche Schritt, den ich heute tun kann – und wirklich tun werde?</div>
+      <p>Alles, was du hier schreibst, bleibt auf deinem Gerät.</p>
+    </div>
+    <div class="btn-row">
+      <button class="btn-primary" onclick="showModul(1)">Modul 1 beginnen</button>
+    </div>
+  </div>
+
+  <!-- MODUL 1 -->
+  <div class="modul" id="modul1">
+    <div class="modul-header">
+      <div class="modul-label">Modul 1 von 6</div>
+      <h2>Warum Gewohnheiten scheitern</h2>
+      <div class="thema">Der Mythos der Willenskraft</div>
+    </div>
+    <div class="divider"></div>
+    <div class="text-block">
+      <p>Willenskraft ist begrenzt. Jede Entscheidung, die wir am Tag treffen, zehrt davon. Am Abend ist sie oft erschöpft – und dann greifen wir auf das zurück, was vertraut ist. Das ist keine Schwäche. Das ist Biologie.</p>
+      <p>Deshalb funktionieren große Vorsätze oft nicht. Nicht weil du zu schwach bist – sondern weil sie auf Willenskraft setzen, wo Struktur nötig wäre.</p>
+    </div>
+    <div class="reflexion-block">
+      <div class="block-label">Reflexionsfrage</div>
+      <div class="question">Welche Gewohnheit hast du dir schon mehrfach vorgenommen – und warum hat es bisher nicht geklappt?</div>
+      <textarea id="r1a" placeholder="Lass den ersten Gedanken kommen..." oninput="speichern()"></textarea>
+    </div>
+    <div class="uebung-block">
+      <div class="block-label">Übung</div>
+      <h3>Muster-Analyse</h3>
+      <div class="zeit">15 Minuten · einmalig</div>
+      <p>Drei Gewohnheiten, die ich mir schon oft vorgenommen habe — und was mich jeweils aufgehalten hat:</p>
+      <textarea id="r1b" placeholder="1. Gewohnheit: ... → Auslöser zum Scheitern: ...&#10;2. Gewohnheit: ... → Auslöser zum Scheitern: ...&#10;3. Gewohnheit: ... → Auslöser zum Scheitern: ..." rows="6" oninput="speichern()"></textarea>
+      <p style="margin-top:0.75rem;">Meine Erkenntnis: War es fehlende Motivation oder fehlende Struktur?</p>
+      <textarea id="r1c" placeholder="..." rows="3" oninput="speichern()"></textarea>
+    </div>
+    <div class="affirmationen">
+      <div class="block-label">Affirmationen</div>
+      <ul>
+        <li>Ich brauche keine Motivation – ich brauche Struktur.</li>
+        <li>Scheitern zeigt mir den Weg, nicht das Ende.</li>
+      </ul>
+    </div>
+    <div class="btn-row">
+      <button class="btn-primary" onclick="modulAbschliessen(1)">Modul abschließen</button>
+      <button class="btn-secondary" onclick="speichernAlle()">Speichern</button>
+    </div>
+  </div>
+
+  <!-- MODUL 2 -->
+  <div class="modul" id="modul2">
+    <div class="modul-header">
+      <div class="modul-label">Modul 2 von 6</div>
+      <h2>Die Gewohnheitsformel</h2>
+      <div class="thema">Auslöser – Routine – Belohnung</div>
+    </div>
+    <div class="divider"></div>
+    <div class="text-block">
+      <p>Jede Gewohnheit folgt derselben Struktur. Die einfachste Methode: Habit Stacking – eine neue Gewohnheit an eine bestehende ankoppeln.</p>
+    </div>
+    <div class="reflexion-block">
+      <div class="block-label">Reflexionsfrage</div>
+      <div class="question">Welche bestehende Gewohnheit könnte als Anker für eine neue dienen?</div>
+      <textarea id="r2a" placeholder="Lass den ersten Gedanken kommen..." oninput="speichern()"></textarea>
+    </div>
+    <div class="uebung-block">
+      <div class="block-label">Übung</div>
+      <h3>Gewohnheitskopplung</h3>
+      <div class="zeit">15 Minuten · einmalig</div>
+      <p><strong>Mein Anker-Moment</strong> (z.B. Morgenkaffee, Zähneputzen):</p>
+      <textarea id="r2b" placeholder="..." rows="2" oninput="speichern()"></textarea>
+      <p style="margin-top:0.75rem;"><strong>Meine neue Gewohnheit direkt danach:</strong></p>
+      <textarea id="r2c" placeholder="..." rows="2" oninput="speichern()"></textarea>
+      <p style="margin-top:0.75rem; font-style:italic; color: var(--mid-brown);">Meine Formel: Nach [Anker] tue ich [neue Gewohnheit].</p>
+    </div>
+    <div class="affirmationen">
+      <div class="block-label">Affirmationen</div>
+      <ul>
+        <li>Kleine Gewohnheiten verändern alles.</li>
+        <li>Ich nutze das, was schon da ist.</li>
+      </ul>
+    </div>
+    <div class="btn-row">
+      <button class="btn-primary" onclick="modulAbschliessen(2)">Modul abschließen</button>
+      <button class="btn-secondary" onclick="speichernAlle()">Speichern</button>
+    </div>
+  </div>
+
+  <!-- MODUL 3 -->
+  <div class="modul" id="modul3">
+    <div class="modul-header">
+      <div class="modul-label">Modul 3 von 6</div>
+      <h2>So klein wie möglich</h2>
+      <div class="thema">Die 2-Minuten-Regel</div>
+    </div>
+    <div class="divider"></div>
+    <div class="text-block">
+      <p>Wenn eine neue Gewohnheit schwer anläuft, ist sie meistens zu groß. Die Lösung: Sie so weit schrumpfen, bis sie sich fast lächerlich einfach anfühlt.</p>
+    </div>
+    <div class="reflexion-block">
+      <div class="block-label">Reflexionsfrage</div>
+      <div class="question">Wie könnte deine Gewohnheit so klein werden, dass du sie selbst an einem schlechten Tag noch tust?</div>
+      <textarea id="r3a" placeholder="Lass den ersten Gedanken kommen..." oninput="speichern()"></textarea>
+    </div>
+    <div class="uebung-block">
+      <div class="block-label">Übung</div>
+      <h3>Die 2-Minuten-Version — eine Woche</h3>
+      <div class="zeit">täglich · eine Woche lang</div>
+      <div class="tabelle-wrap">
+        <table>
+          <thead><tr><th>Tag</th><th>Gemacht?</th><th>Dauer</th><th>Wie war es?</th></tr></thead>
+          <tbody>
+            <tr><td>Montag</td><td><input type="text" id="w1a" oninput="speichern()"></td><td><input type="text" id="w1b" oninput="speichern()"></td><td><input type="text" id="w1c" oninput="speichern()"></td></tr>
+            <tr><td>Dienstag</td><td><input type="text" id="w2a" oninput="speichern()"></td><td><input type="text" id="w2b" oninput="speichern()"></td><td><input type="text" id="w2c" oninput="speichern()"></td></tr>
+            <tr><td>Mittwoch</td><td><input type="text" id="w3a" oninput="speichern()"></td><td><input type="text" id="w3b" oninput="speichern()"></td><td><input type="text" id="w3c" oninput="speichern()"></td></tr>
+            <tr><td>Donnerstag</td><td><input type="text" id="w4a" oninput="speichern()"></td><td><input type="text" id="w4b" oninput="speichern()"></td><td><input type="text" id="w4c" oninput="speichern()"></td></tr>
+            <tr><td>Freitag</td><td><input type="text" id="w5a" oninput="speichern()"></td><td><input type="text" id="w5b" oninput="speichern()"></td><td><input type="text" id="w5c" oninput="speichern()"></td></tr>
+            <tr><td>Samstag</td><td><input type="text" id="w6a" oninput="speichern()"></td><td><input type="text" id="w6b" oninput="speichern()"></td><td><input type="text" id="w6c" oninput="speichern()"></td></tr>
+            <tr><td>Sonntag</td><td><input type="text" id="w7a" oninput="speichern()"></td><td><input type="text" id="w7b" oninput="speichern()"></td><td><input type="text" id="w7c" oninput="speichern()"></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="affirmationen">
+      <div class="block-label">Affirmationen</div>
+      <ul>
+        <li>Der kleinste Schritt zählt.</li>
+        <li>Anfangen ist alles.</li>
+      </ul>
+    </div>
+    <div class="btn-row">
+      <button class="btn-primary" onclick="modulAbschliessen(3)">Modul abschließen</button>
+      <button class="btn-secondary" onclick="speichernAlle()">Speichern</button>
+    </div>
+  </div>
+
+  <!-- MODUL 4 -->
+  <div class="modul" id="modul4">
+    <div class="modul-header">
+      <div class="modul-label">Modul 4 von 6</div>
+      <h2>Sichtbarkeit und Freude</h2>
+      <div class="thema">Fortschritt feiern ohne Leistungsdruck</div>
+    </div>
+    <div class="divider"></div>
+    <div class="text-block">
+      <p>Was wir sehen, tun wir eher. Was wir feiern, wiederholen wir. Ein einfaches Häkchen oder ein kurzes Anerkennen des eigenen Fortschritts kann erstaunlich viel bewirken.</p>
+    </div>
+    <div class="reflexion-block">
+      <div class="block-label">Reflexionsfrage</div>
+      <div class="question">Wie feierst du normalerweise kleine Erfolge – oder tust du es gar nicht?</div>
+      <textarea id="r4a" placeholder="Lass den ersten Gedanken kommen..." oninput="speichern()"></textarea>
+    </div>
+    <div class="uebung-block">
+      <div class="block-label">Übung</div>
+      <h3>Mein Habit-Tracker — Woche 4</h3>
+      <div class="zeit">täglich abhaken</div>
+      <div class="tabelle-wrap">
+        <table>
+          <thead><tr><th>Mo</th><th>Di</th><th>Mi</th><th>Do</th><th>Fr</th><th>Sa</th><th>So</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><div class="tracker-check" id="t1" onclick="toggleCheck('t1')"></div></td>
+              <td><div class="tracker-check" id="t2" onclick="toggleCheck('t2')"></div></td>
+              <td><div class="tracker-check" id="t3" onclick="toggleCheck('t3')"></div></td>
+              <td><div class="tracker-check" id="t4" onclick="toggleCheck('t4')"></div></td>
+              <td><div class="tracker-check" id="t5" onclick="toggleCheck('t5')"></div></td>
+              <td><div class="tracker-check" id="t6" onclick="toggleCheck('t6')"></div></td>
+              <td><div class="tracker-check" id="t7" onclick="toggleCheck('t7')"></div></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="affirmationen">
+      <div class="block-label">Affirmationen</div>
+      <ul>
+        <li>Ich sehe meinen Fortschritt – auch den kleinen.</li>
+        <li>Jedes Häkchen ist ein Beweis für mich.</li>
+      </ul>
+    </div>
+    <div class="btn-row">
+      <button class="btn-primary" onclick="modulAbschliessen(4)">Modul abschließen</button>
+      <button class="btn-secondary" onclick="speichernAlle()">Speichern</button>
+    </div>
+  </div>
+
+  <!-- MODUL 5 -->
+  <div class="modul" id="modul5">
+    <div class="modul-header">
+      <div class="modul-label">Modul 5 von 6</div>
+      <h2>Rückfälle ohne Selbstkritik</h2>
+      <div class="thema">Die 2-Tage-Regel</div>
+    </div>
+    <div class="divider"></div>
+    <div class="text-block">
+      <p>Kein Mensch macht eine neue Gewohnheit perfekt durch. Die 2-Tage-Regel: Lass nie zwei Tage hintereinander aus. Ein Tag ist menschlich. Zwei Tage werden zur neuen Gewohnheit.</p>
+    </div>
+    <div class="reflexion-block">
+      <div class="block-label">Reflexionsfrage</div>
+      <div class="question">Was passiert bei dir typischerweise nach einem Aussetzer – und wie könntest du das verändern?</div>
+      <textarea id="r5a" placeholder="Lass den ersten Gedanken kommen..." oninput="speichern()"></textarea>
+    </div>
+    <div class="uebung-block">
+      <div class="block-label">Übung</div>
+      <h3>Mein Rückfall-Plan</h3>
+      <div class="zeit">15 Minuten · einmalig</div>
+      <p><strong>Was mich aus dem Rhythmus bringen könnte:</strong></p>
+      <textarea id="r5b" placeholder="..." rows="2" oninput="speichern()"></textarea>
+      <p style="margin-top:0.75rem;"><strong>Mein Plan für jeden Fall:</strong></p>
+      <textarea id="r5c" placeholder="..." rows="2" oninput="speichern()"></textarea>
+      <p style="margin-top:0.75rem;"><strong>Was ich mir sage, wenn es nicht klappt:</strong></p>
+      <textarea id="r5d" placeholder="..." rows="2" oninput="speichern()"></textarea>
+      <p style="margin-top:0.75rem;"><strong>Wer mich unterstützt:</strong></p>
+      <textarea id="r5e" placeholder="..." rows="2" oninput="speichern()"></textarea>
+    </div>
+    <div class="affirmationen">
+      <div class="block-label">Affirmationen</div>
+      <ul>
+        <li>Ein Rückfall ist kein Versagen – er ist Information.</li>
+        <li>Ich fange einfach neu an.</li>
+      </ul>
+    </div>
+    <div class="btn-row">
+      <button class="btn-primary" onclick="modulAbschliessen(5)">Modul abschließen</button>
+      <button class="btn-secondary" onclick="speichernAlle()">Speichern</button>
+    </div>
+  </div>
+
+  <!-- MODUL 6 -->
+  <div class="modul" id="modul6">
+    <div class="modul-header">
+      <div class="modul-label">Modul 6 von 6</div>
+      <h2>Gewohnheiten verankern</h2>
+      <div class="thema">Mein persönliches Integrationsritual</div>
+    </div>
+    <div class="divider"></div>
+    <div class="text-block">
+      <p>Am Ende dieser sechs Wochen geht es darum, das Ganze in einen langfristigen Rhythmus zu bringen – der zu dir passt, nicht zu einem Ideal.</p>
+    </div>
+    <div class="reflexion-block">
+      <div class="block-label">Reflexionsfrage</div>
+      <div class="question">Welche Gewohnheit hat sich am festesten etabliert – und was hat dabei geholfen?</div>
+      <textarea id="r6a" placeholder="Lass den ersten Gedanken kommen..." oninput="speichern()"></textarea>
+    </div>
+    <div class="uebung-block">
+      <div class="block-label">Übung</div>
+      <h3>Mein langfristiger Plan</h3>
+      <div class="zeit">20 Minuten · einmalig</div>
+      <p><strong>Gewohnheiten, die ich behalte:</strong></p>
+      <textarea id="r6b" placeholder="..." rows="3" oninput="speichern()"></textarea>
+      <p style="margin-top:0.75rem;"><strong>Gewohnheiten, die ich noch aufbaue:</strong></p>
+      <textarea id="r6c" placeholder="..." rows="3" oninput="speichern()"></textarea>
+      <p style="margin-top:0.75rem;"><strong>Mein idealer Morgen in 90 Tagen:</strong></p>
+      <textarea id="r6d" placeholder="..." rows="3" oninput="speichern()"></textarea>
+      <p style="margin-top:0.75rem;"><strong>Was ich heute feiere:</strong></p>
+      <textarea id="r6e" placeholder="..." rows="2" oninput="speichern()"></textarea>
+    </div>
+    <div class="affirmationen">
+      <div class="block-label">Affirmationen</div>
+      <ul>
+        <li>Mein Alltag trägt mich.</li>
+        <li>Ich gestalte mein Leben Schritt für Schritt.</li>
+        <li>Kleine Gewohnheiten sind das Fundament von allem.</li>
+      </ul>
+    </div>
+    <div class="abschluss-hint">
+      🌿 <strong>Dein nächster Schritt:</strong> Wenn du merkst, dass Lebensfreude gerade mehr Aufmerksamkeit verdient – der nächste Kurs heißt <strong>„Mehr Leichtigkeit"</strong>.
+    </div>
+    <div class="btn-row">
+      <button class="btn-primary" onclick="modulAbschliessen(6)">Kurs abschließen ✓</button>
+      <button class="btn-secondary" onclick="speichernAlle()">Speichern</button>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  Selbstreflexions- und Coaching-Angebot. Kein Ersatz für Psychotherapie oder medizinische Beratung.<br>
+  © 2025 Tanja Sattelberg · <a href="https://veraenderungsweg.de" style="color: var(--gold);">veraenderungsweg.de</a>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+  const STORAGE_KEY = 'kurs-07-schritt-fuer-schritt';
+  let state = { freigeschaltet: [0, 1], aktuell: 0 };
+  const FELDER = ['r1a','r1b','r1c','r2a','r2b','r2c','r3a','r4a','r5a','r5b','r5c','r5d','r5e','r6a','r6b','r6c','r6d','r6e',
+    'w1a','w1b','w1c','w2a','w2b','w2c','w3a','w3b','w3c','w4a','w4b','w4c','w5a','w5b','w5c','w6a','w6b','w6c','w7a','w7b','w7c'];
+  const CHECKS = ['t1','t2','t3','t4','t5','t6','t7'];
+
+  function laden() {
+    const g = localStorage.getItem(STORAGE_KEY);
+    if (g) {
+      const d = JSON.parse(g);
+      state = d.state || state;
+      Object.keys(d.felder || {}).forEach(id => { const el = document.getElementById(id); if (el) el.value = d.felder[id]; });
+      (d.checks || []).forEach(id => { const el = document.getElementById(id); if (el) { el.classList.add('checked'); el.textContent = '✓'; } });
+    }
+    navAktualisieren();
+    showModul(state.aktuell);
+  }
+
+  function toggleCheck(id) {
+    const el = document.getElementById(id);
+    el.classList.toggle('checked');
+    el.textContent = el.classList.contains('checked') ? '✓' : '';
+    speichern();
+  }
+
+  function alleFelder() {
+    const r = {};
+    FELDER.forEach(id => { const el = document.getElementById(id); if (el) r[id] = el.value; });
+    return r;
+  }
+
+  function alleChecks() {
+    return CHECKS.filter(id => { const el = document.getElementById(id); return el && el.classList.contains('checked'); });
+  }
+
+  function speichern() { localStorage.setItem(STORAGE_KEY, JSON.stringify({ state, felder: alleFelder(), checks: alleChecks() })); }
+  function speichernAlle() { speichern(); toast('Gespeichert ✓'); }
+
+  function showModul(nr) {
+    if (!state.freigeschaltet.includes(nr)) return;
+    document.querySelectorAll('.modul').forEach(m => m.classList.remove('active'));
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('modul' + nr).classList.add('active');
+    document.getElementById('nav' + nr).classList.add('active');
+    state.aktuell = nr;
+    document.getElementById('progressBar').style.width = Math.max(0, (nr / 6) * 100) + '%';
+    speichern();
+    window.scrollTo(0, 0);
+  }
+
+  function modulAbschliessen(nr) {
+    const n = nr + 1;
+    if (n <= 6 && !state.freigeschaltet.includes(n)) state.freigeschaltet.push(n);
+    speichernAlle();
+    navAktualisieren();
+    if (n <= 6) setTimeout(() => { toast('Modul ' + nr + ' abgeschlossen ✓'); showModul(n); }, 300);
+    else toast('Kurs abgeschlossen – herzlichen Glückwunsch! ✓');
+  }
+
+  function navAktualisieren() {
+    for (let i = 0; i <= 6; i++) {
+      const btn = document.getElementById('nav' + i);
+      if (!btn) continue;
+      if (state.freigeschaltet.includes(i)) { btn.classList.remove('locked'); btn.onclick = () => showModul(i); }
+      else { btn.classList.add('locked'); btn.onclick = null; }
+    }
+  }
+
+  function toast(msg) {
+    const el = document.getElementById('toast');
+    el.textContent = msg;
+    el.classList.add('show');
+    setTimeout(() => el.classList.remove('show'), 3000);
+  }
+
+  laden();
+</script>
+</body>
+</html>
