@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="apple-touch-icon" href="favicon.svg">
+<title>Was mein Körper mir sagen will · Mein Veränderungsweg</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gold: #B8935A;
+  --gold-light: #D4AF7A;
+  --gold-pale: #F0E6D3;
+  --cream: #FAF6F0;
+  --warm-white: #FFFDF9;
+  --brown-deep: #5C3D1E;
+  --brown-mid: #7A5230;
+  --brown-light: #A67C52;
+  --text: #3A2A1A;
+  --text-light: #7A6A5A;
+  --border: #E2D5C3;
+  --shadow: 0 4px 24px rgba(92,61,30,0.10);
+  --shadow-soft: 0 2px 12px rgba(92,61,30,0.07);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Jost', sans-serif;
+  background: var(--cream);
+  color: var(--text);
+  min-height: 100vh;
+  font-weight: 300;
+}
+
+header {
+  background: linear-gradient(160deg, #FAF6F0 0%, #F0E6D3 60%, #E8D5B8 100%);
+  padding: 64px 24px 56px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+header::before {
+  content: '';
+  position: absolute;
+  top: -80px; right: -80px;
+  width: 320px; height: 320px;
+  border-radius: 50%;
+  border: 1px solid rgba(184,147,90,0.15);
+}
+header::after {
+  content: '';
+  position: absolute;
+  bottom: -60px; left: -60px;
+  width: 240px; height: 240px;
+  border-radius: 50%;
+  border: 1px solid rgba(184,147,90,0.10);
+}
+
+.logo-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin-bottom: 28px;
+}
+.logo-circle {
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  border: 1.5px solid var(--gold);
+  display: flex; align-items: center; justify-content: center;
+}
+.logo-circle svg { width: 22px; height: 22px; }
+.logo-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--brown-deep);
+  letter-spacing: 0.5px;
+}
+.brand-label {
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--brown-light);
+  margin-bottom: 16px;
+}
+h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(32px, 7vw, 52px);
+  font-weight: 300;
+  color: var(--brown-deep);
+  line-height: 1.15;
+  margin-bottom: 16px;
+}
+h1 em { font-style: italic; color: var(--gold); }
+.hero-sub {
+  font-size: 15px;
+  color: var(--text-light);
+  line-height: 1.75;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+main {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 56px 20px 80px;
+}
+
+.section-label {
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--text-light);
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.module-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 56px;
+}
+
+.module-card {
+  background: var(--warm-white);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 22px 24px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  box-shadow: var(--shadow-soft);
+  position: relative;
+  overflow: hidden;
+}
+.module-card::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;
+  background: linear-gradient(180deg, var(--gold), var(--gold-light));
+}
+.module-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px;
+  font-weight: 300;
+  color: var(--gold);
+  min-width: 36px;
+  text-align: center;
+  line-height: 1;
+}
+.module-info { flex: 1; }
+.module-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--brown-deep);
+  margin-bottom: 4px;
+}
+.module-desc {
+  font-size: 13px;
+  color: var(--text-light);
+  line-height: 1.5;
+}
+
+.btn-row {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 56px;
+}
+.btn-primary {
+  display: inline-block;
+  padding: 15px 36px;
+  background: var(--brown-deep);
+  color: #fff;
+  border-radius: 32px;
+  text-decoration: none;
+  font-size: 15px;
+  letter-spacing: 0.04em;
+  transition: all 0.3s ease;
+}
+.btn-primary:hover { background: var(--brown-mid); transform: translateY(-2px); }
+.btn-secondary {
+  display: inline-block;
+  padding: 15px 32px;
+  background: transparent;
+  color: var(--brown-deep);
+  border: 1.5px solid var(--border);
+  border-radius: 32px;
+  text-decoration: none;
+  font-size: 15px;
+  letter-spacing: 0.04em;
+  transition: all 0.3s ease;
+}
+.btn-secondary:hover { border-color: var(--gold); color: var(--gold); }
+
+.info-section {
+  background: var(--warm-white);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 36px 32px;
+  margin-bottom: 32px;
+}
+.info-section h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 26px;
+  font-weight: 400;
+  color: var(--brown-deep);
+  margin-bottom: 16px;
+}
+.info-section p {
+  font-size: 14px;
+  color: var(--text-light);
+  line-height: 1.8;
+  margin-bottom: 12px;
+}
+.info-section p:last-child { margin-bottom: 0; }
+
+.feature-list { list-style: none; margin-top: 16px; }
+.feature-list li {
+  font-size: 14px;
+  color: var(--text-light);
+  line-height: 1.7;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+.feature-list li:last-child { border-bottom: none; }
+.feature-list li::before {
+  content: '–';
+  color: var(--gold);
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+footer {
+  text-align: center;
+  padding: 32px 24px;
+  border-top: 1px solid var(--border);
+}
+footer p {
+  font-size: 12px;
+  color: var(--text-light);
+  line-height: 1.7;
+}
+footer a { color: var(--gold); text-decoration: none; }
+footer a:hover { text-decoration: underline; }
+
+/* Update-Banner */
+#update-banner {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 40px);
+  max-width: 480px;
+  background: #fff;
+  border: 1.5px solid #e0d0b0;
+  border-radius: 16px;
+  padding: 16px 20px;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  box-shadow: 0 8px 32px rgba(139,105,20,0.15);
+  z-index: 9999;
+  animation: slideUp 0.4s ease;
+}
+@keyframes slideUp {
+  from { opacity:0; transform:translateX(-50%) translateY(20px); }
+  to   { opacity:1; transform:translateX(-50%) translateY(0); }
+}
+#update-banner .bi { flex-shrink:0; width:40px; height:40px; }
+#update-banner .bt { flex:1; }
+#update-banner .bt strong {
+  display:block; font-family:'Cormorant Garamond',serif;
+  font-size:1rem; color:#3a2e24; margin-bottom:3px;
+}
+#update-banner .bt span { font-size:0.82rem; color:#7a6a5a; line-height:1.5; }
+#update-banner .bc {
+  flex-shrink:0; background:#f5e9d4; border:none;
+  border-radius:50%; width:28px; height:28px;
+  font-size:1.1rem; color:#8B6914; cursor:pointer;
+  display:flex; align-items:center; justify-content:center;
+}
+
+@media(max-width:500px) {
+  .module-card { flex-direction: column; gap: 10px; }
+  .module-num { font-size: 22px; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo-wrap">
+    <div class="logo-circle">
+      <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="14" cy="14" r="10" stroke="#B8935A" stroke-width="1.5" stroke-dasharray="48 8" stroke-linecap="round"/>
+        <circle cx="14" cy="14" r="3" fill="#B8935A" opacity="0.7"/>
+      </svg>
+    </div>
+    <span class="logo-text">Mein Veränderungsweg</span>
+  </div>
+  <p class="brand-label">Selbstlernkurs · 7 Module</p>
+  <h1>Was mein Körper<br><em>mir sagen will</em></h1>
+  <p class="hero-sub">Ein Kurs zur bewussten Wahrnehmung von Körpersignalen und Gefühlen — sanft, alltagsnah, in deinem Tempo.</p>
+</header>
+
+<main>
+  <p class="section-label">Deine 7 Module</p>
+
+  <div class="module-list">
+    <div class="module-card">
+      <div class="module-num">1</div>
+      <div class="module-info">
+        <div class="module-title">Mein Körper spricht</div>
+        <div class="module-desc">Einführung in die Körper-Gefühl-Verbindung</div>
+      </div>
+    </div>
+    <div class="module-card">
+      <div class="module-num">2</div>
+      <div class="module-info">
+        <div class="module-title">Mein Nervensystem kennenlernen</div>
+        <div class="module-desc">Polyvagaltheorie alltagsnah verstehen</div>
+      </div>
+    </div>
+    <div class="module-card">
+      <div class="module-num">3</div>
+      <div class="module-info">
+        <div class="module-title">Gefühle — was sind das eigentlich?</div>
+        <div class="module-desc">Emotionale Grundkompetenz entwickeln</div>
+      </div>
+    </div>
+    <div class="module-card">
+      <div class="module-num">4</div>
+      <div class="module-info">
+        <div class="module-title">Was ich schon immer geschluckt habe</div>
+        <div class="module-desc">Unterdrückte Gefühle sanft wahrnehmen</div>
+      </div>
+    </div>
+    <div class="module-card">
+      <div class="module-num">5</div>
+      <div class="module-info">
+        <div class="module-title">Sicherheit schaffen — von innen</div>
+        <div class="module-desc">Innere Ressourcen und Regulation</div>
+      </div>
+    </div>
+    <div class="module-card">
+      <div class="module-num">6</div>
+      <div class="module-info">
+        <div class="module-title">Was will dieses Gefühl von mir?</div>
+        <div class="module-desc">Gefühle als Botschafter verstehen</div>
+      </div>
+    </div>
+    <div class="module-card">
+      <div class="module-num">7</div>
+      <div class="module-info">
+        <div class="module-title">Mein neuer Umgang mit Gefühlen</div>
+        <div class="module-desc">Integration und Alltagsübertragung</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <a href="koerper-kurs.html" class="btn-primary">Kurs starten</a>
+    <a href="https://veraenderungsweg.de" target="_blank" class="btn-secondary">veraenderungsweg.de</a>
+  </div>
+
+  <div class="info-section">
+    <h2>Was dich erwartet</h2>
+    <p>Dieser Kurs richtet sich an alle, die spüren, dass ihr Körper mehr sagt als Worte — und die lernen möchten, diese Sprache zu verstehen.</p>
+    <ul class="feature-list">
+      <li>7 Module mit Übungen, Reflexionsfragen und Körperwahrnehmung</li>
+      <li>Modularer Aufbau — ein Schritt nach dem anderen</li>
+      <li>Persönliche Reflexionsfelder, die lokal auf deinem Gerät gespeichert werden</li>
+      <li>Keine Vorkenntnisse nötig</li>
+      <li>Kein Heilversprechen — aber echte Werkzeuge für mehr Körperbewusstsein</li>
+    </ul>
+  </div>
+
+  <div class="info-section">
+    <h2>Theoretische Grundlagen</h2>
+    <p>Dieser Kurs verbindet Erkenntnisse aus der Polyvagaltheorie (Porges/Dana), dem psychosomatischen Ansatz und dem systemischen Coaching — alles alltagsnah aufbereitet, ohne Fachsprache.</p>
+    <p>Kein Richtig oder Falsch. Kein Tempo, das du halten musst. Nur du — und dein Körper.</p>
+  </div>
+</main>
+
+<footer>
+  <p>
+    <strong>Mein Veränderungsweg</strong> · Tanja ·
+    <a href="https://veraenderungsweg.de" target="_blank">veraenderungsweg.de</a> ·
+    <a href="mailto:info@veraenderungsweg.de">info@veraenderungsweg.de</a>
+  </p>
+  <p style="margin-top:8px;">Dieser Kurs ersetzt keine ärztliche oder psychotherapeutische Behandlung.</p>
+</footer>
+
+<div id="update-banner" style="display:none">
+  <svg class="bi" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+    <rect width="80" height="80" rx="18" fill="#f5e9d4"/>
+    <circle cx="40" cy="38" r="22" fill="none" stroke="#C4973A"
+      stroke-width="3.5" stroke-dasharray="118 20"
+      stroke-dashoffset="-5" stroke-linecap="round"/>
+    <path d="M32 35 L40 27 L48 35" fill="none" stroke="#C4973A"
+      stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <line x1="40" y1="27" x2="40" y2="48"
+      stroke="#C4973A" stroke-width="2.5" stroke-linecap="round"/>
+    <circle cx="40" cy="68" r="3" fill="#C4973A"/>
+  </svg>
+  <div class="bt">
+    <strong>Neues App-Icon verfügbar ✨</strong>
+    <span>Für das neue Symbol: App einmal vom Homescreen löschen und neu hinzufügen. Deine Daten bleiben erhalten.</span>
+  </div>
+  <button class="bc" onclick="closeBanner()">×</button>
+</div>
+
+<script>
+  if (!localStorage.getItem('iconBannerSeen')) {
+    document.getElementById('update-banner').style.display = 'flex';
+  }
+  function closeBanner() {
+    document.getElementById('update-banner').style.display = 'none';
+    localStorage.setItem('iconBannerSeen', '1');
+  }
+</script>
+
+</body>
+</html>
