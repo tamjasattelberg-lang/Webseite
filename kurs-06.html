@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kurs 06 · Mehr Mut · Mein Veränderungsweg</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root { --gold: #B8935A; --cream: #F5EFE0; --dark-brown: #3D2519; --mid-brown: #7A4A2E; --light-gold: #E8D5B0; --white: #FDFAF4; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Jost', sans-serif; background: var(--cream); color: var(--dark-brown); min-height: 100vh; }
+  header { background: var(--dark-brown); color: var(--cream); padding: 2rem 1.5rem 1.5rem; text-align: center; }
+  header .brand { font-weight: 300; font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; }
+  header h1 { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(1.8rem, 5vw, 2.8rem); line-height: 1.2; }
+  header h1 em { font-style: italic; color: var(--light-gold); }
+  header .subtitle { font-weight: 300; font-size: 0.85rem; color: var(--light-gold); margin-top: 0.5rem; letter-spacing: 0.05em; }
+  .progress-bar-wrap { background: rgba(255,255,255,0.1); border-radius: 2px; height: 3px; margin-top: 1rem; overflow: hidden; }
+  .progress-bar { height: 100%; background: var(--gold); transition: width 0.5s ease; }
+  nav { background: var(--dark-brown); border-top: 1px solid rgba(184,147,90,0.3); padding: 0 1rem; display: flex; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  nav::-webkit-scrollbar { display: none; }
+  .nav-btn { background: none; border: none; color: var(--light-gold); font-family: 'Jost', sans-serif; font-weight: 300; font-size: 0.75rem; letter-spacing: 0.08em; padding: 0.9rem 1rem; cursor: pointer; white-space: nowrap; border-bottom: 2px solid transparent; transition: all 0.2s; opacity: 0.6; }
+  .nav-btn.active { color: var(--gold); border-bottom-color: var(--gold); opacity: 1; }
+  .nav-btn.locked { opacity: 0.3; cursor: default; }
+  .nav-btn:not(.locked):hover { opacity: 0.9; }
+  main { max-width: 680px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+  .modul { display: none; }
+  .modul.active { display: block; }
+  .welcome-card { background: var(--dark-brown); color: var(--cream); border-radius: 4px; padding: 2rem; margin-bottom: 2rem; }
+  .welcome-card h2 { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 1.6rem; margin-bottom: 1rem; color: var(--light-gold); }
+  .welcome-card p { font-weight: 300; line-height: 1.8; font-size: 0.95rem; margin-bottom: 0.75rem; }
+  .kernfrage { border-left: 2px solid var(--gold); padding: 0.75rem 1rem; margin: 1.25rem 0; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.15rem; color: var(--light-gold); line-height: 1.5; }
+  .modul-header { margin-bottom: 1.75rem; }
+  .modul-label { font-weight: 300; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.4rem; }
+  .modul-header h2 { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(1.5rem, 4vw, 2rem); line-height: 1.2; margin-bottom: 0.3rem; }
+  .modul-header .thema { font-weight: 300; font-size: 0.82rem; color: var(--mid-brown); font-style: italic; }
+  .divider { width: 40px; height: 1px; background: var(--gold); margin: 1.25rem 0; }
+  .text-block { font-weight: 300; line-height: 1.85; font-size: 0.95rem; margin-bottom: 1rem; }
+  .text-block p { margin-bottom: 0.75rem; }
+  .reflexion-block { background: var(--white); border-left: 3px solid var(--gold); border-radius: 0 4px 4px 0; padding: 1.25rem 1.5rem; margin: 1.5rem 0; }
+  .reflexion-block .block-label { font-weight: 500; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.6rem; }
+  .reflexion-block .question { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.1rem; line-height: 1.5; margin-bottom: 0.75rem; }
+  textarea { width: 100%; min-height: 100px; background: var(--cream); border: 1px solid var(--light-gold); border-radius: 3px; padding: 0.75rem; font-family: 'Jost', sans-serif; font-weight: 300; font-size: 0.9rem; color: var(--dark-brown); resize: vertical; outline: none; transition: border-color 0.2s; }
+  textarea:focus { border-color: var(--gold); }
+  .uebung-block { background: var(--white); border-radius: 4px; padding: 1.5rem; margin: 1.5rem 0; border: 1px solid var(--light-gold); }
+  .uebung-block .block-label { font-weight: 500; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--mid-brown); margin-bottom: 0.4rem; }
+  .uebung-block h3 { font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: 1.15rem; margin-bottom: 0.4rem; }
+  .uebung-block .zeit { font-size: 0.75rem; color: var(--gold); font-weight: 300; margin-bottom: 1rem; }
+  .uebung-block p { font-weight: 300; font-size: 0.9rem; line-height: 1.8; margin-bottom: 0.6rem; }
+  .uebung-block ol { padding-left: 1.25rem; margin: 0.5rem 0 0.75rem; }
+  .uebung-block li { font-weight: 300; font-size: 0.9rem; line-height: 1.75; margin-bottom: 0.3rem; }
+  .affirmationen { background: var(--light-gold); border-radius: 4px; padding: 1.25rem 1.5rem; margin: 1.5rem 0; }
+  .affirmationen .block-label { font-weight: 500; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--mid-brown); margin-bottom: 0.75rem; }
+  .affirmationen ul { list-style: none; padding: 0; }
+  .affirmationen li { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1rem; line-height: 1.6; padding: 0.3rem 0; border-bottom: 1px solid rgba(184,147,90,0.3); }
+  .affirmationen li:last-child { border-bottom: none; }
+  .abschluss-hint { background: var(--white); border-radius: 4px; padding: 1.25rem 1.5rem; margin: 1.5rem 0; border: 1px solid var(--light-gold); font-weight: 300; font-size: 0.88rem; color: var(--mid-brown); line-height: 1.7; }
+  .abschluss-hint strong { color: var(--dark-brown); font-weight: 500; }
+  .btn-primary { display: inline-block; background: var(--gold); color: var(--dark-brown); font-family: 'Jost', sans-serif; font-weight: 500; font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.85rem 2rem; border: none; border-radius: 3px; cursor: pointer; transition: all 0.2s; margin-top: 0.5rem; }
+  .btn-primary:hover { background: var(--mid-brown); color: var(--cream); }
+  .btn-secondary { display: inline-block; background: transparent; color: var(--gold); font-family: 'Jost', sans-serif; font-weight: 400; font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.75rem 1.5rem; border: 1px solid var(--gold); border-radius: 3px; cursor: pointer; transition: all 0.2s; margin-top: 0.5rem; }
+  .btn-secondary:hover { background: var(--gold); color: var(--dark-brown); }
+  .btn-row { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.5rem; align-items: center; }
+  .toast { position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%) translateY(100px); background: var(--dark-brown); color: var(--cream); font-family: 'Jost', sans-serif; font-size: 0.82rem; font-weight: 300; padding: 0.75rem 1.5rem; border-radius: 3px; border-left: 3px solid var(--gold); transition: transform 0.3s ease; z-index: 100; white-space: nowrap; }
+  .toast.show { transform: translateX(-50%) translateY(0); }
+  footer { text-align: center; padding: 2rem 1.5rem; font-weight: 300; font-size: 0.72rem; color: var(--mid-brown); line-height: 1.7; border-top: 1px solid var(--light-gold); max-width: 680px; margin: 0 auto; }
+  @media (max-width: 480px) { main { padding: 1.5rem 1rem 3rem; } .welcome-card { padding: 1.5rem; } }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">Mein Veränderungsweg · Kurs 06</div>
+  <h1>Mehr <em>Mut</em></h1>
+  <div class="subtitle">4 Module · Entwicklung · Veränderung in kleinen, tragfähigen Schritten</div>
+  <div class="progress-bar-wrap">
+    <div class="progress-bar" id="progressBar" style="width: 0%"></div>
+  </div>
+</header>
+
+<nav>
+  <button class="nav-btn active" onclick="showModul(0)" id="nav0">Willkommen</button>
+  <button class="nav-btn" onclick="showModul(1)" id="nav1">Modul 1</button>
+  <button class="nav-btn locked" id="nav2">Modul 2</button>
+  <button class="nav-btn locked" id="nav3">Modul 3</button>
+  <button class="nav-btn locked" id="nav4">Modul 4</button>
+</nav>
+
+<main>
+
+  <!-- WILLKOMMEN -->
+  <div class="modul active" id="modul0">
+    <div class="welcome-card">
+      <h2>Willkommen.</h2>
+      <p>Dieser Kurs begleitet dich vier Wochen durch den Bereich Entwicklung. Veränderung beginnt oft leise – mit einer neuen Sicht auf dich selbst.</p>
+      <div class="kernfrage">Was will in mir wachsen – und was hält mich davon ab?</div>
+      <p>Alles, was du hier schreibst, bleibt auf deinem Gerät.</p>
+    </div>
+    <div class="btn-row">
+      <button class="btn-primary" onclick="showModul(1)">Modul 1 beginnen</button>
+    </div>
+  </div>
+
+  <!-- MODUL 1 -->
+  <div class="modul" id="modul1">
+    <div class="modul-header">
+      <div class="modul-label">Modul 1 von 4</div>
+      <h2>Warum Veränderung wehtut</h2>
+      <div class="thema">Das Nervensystem liebt Vertrautheit – selbst schmerzhafte</div>
+    </div>
+    <div class="divider"></div>
+
+    <div class="text-block">
+      <p>Veränderung fühlt sich oft zuerst schlechter an als der Stillstand. Das ist kein Zeichen, dass sie falsch ist. Es ist ein Zeichen, dass das Nervensystem Neues als Unsicherheit erlebt – auch wenn es heilsam wäre.</p>
+      <p>Dieses Wissen allein kann viel bewirken: Wenn ich weiß, dass das Unbehagen normal ist, muss ich es nicht als Signal interpretieren, dass ich aufhören soll.</p>
+    </div>
+
+    <div class="reflexion-block">
+      <div class="block-label">Reflexionsfrage</div>
+      <div class="question">Wann hast du zuletzt etwas verändert, das sich anfangs schlechter angefühlt hat – und im Nachhinein richtig war?</div>
+      <textarea id="r1a" placeholder="Lass den ersten Gedanken kommen..." oninput="speichern()"></textarea>
+    </div>
+
+    <div class="uebung-block">
+      <div class="block-label">Übung</div>
+      <h3>Brücken-Reflexion</h3>
+      <div class="zeit">20 Minuten · einmalig</div>
+      <p>Beschreibe deine persönliche Brücke:</p>
+      <p><strong>Links – Wo ich jetzt stehe:</strong></p>
+      <textarea id="r1b" placeholder="Meine aktuelle Situation..." rows="3" oninput="speichern()"></textarea>
+      <p style="margin-top:0.75rem;"><strong>Rechts – Wo ich hin möchte:</strong></p>
+      <textarea id="r1c" placeholder="Mein Ziel, meine Sehnsucht..." rows="3" oninput="speichern()"></textarea>
+      <p style="margin-top:0.75rem;"><strong>Auf der Brücke – Was mir Angst macht:</strong></p>
+      <textarea id="r1d" placeholder="Was mich aufhalten könnte..." rows="3" oninput="speichern()"></textarea>
+      <p style="margin-top:0.75rem;"><strong>Was mir hilft, die Brücke zu überqueren:</strong></p>
+      <textarea id="r1e" placeholder="Meine Ressourcen und Unterstützung..." rows="3" oninput="speichern()"></textarea>
+    </div>
+
+    <div class="affirmationen">
+      <div class="block-label">Affirmationen</div>
+      <ul>
+        <li>Veränderung darf sich anfangs fremd anfühlen.</li>
+        <li>Unsicherheit ist Raum für das Echte.</li>
+      </ul>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn-primary" onclick="modulAbschliessen(1)">Modul abschließen</button>
+      <button class="btn-secondary" onclick="speichernAlle()">Speichern</button>
+    </div>
+  </div>
+
+  <!-- MODUL 2 -->
+  <div class="modul" id="modul2">
+    <div class="modul-header">
+      <div class="modul-label">Modul 2 von 4</div>
+      <h2>Was ich wirklich will</h2>
+      <div class="thema">Jenseits von Erwartungen und Pflichten</div>
+    </div>
+    <div class="divider"></div>
+
+    <div class="text-block">
+      <p>Viele wissen, was sie sollen. Was von ihnen erwartet wird. Aber was wollen sie selbst – jenseits all dieser Stimmen?</p>
+      <p>Das ist keine einfache Frage. Manchmal braucht es Stille, um sie zu beantworten.</p>
+    </div>
+
+    <div class="reflexion-block">
+      <div class="block-label">Reflexionsfrage</div>
+      <div class="question">Was würdest du tun oder verändern, wenn du sicher sein könntest, dass niemand es falsch findet?</div>
+      <textarea id="r2a" placeholder="Lass den ersten Gedanken kommen..." oninput="speichern()"></textarea>
+    </div>
+
+    <div class="uebung-block">
+      <div class="block-label">Übung</div>
+      <h3>Übergangs-Brief</h3>
+      <div class="zeit">20 Minuten · einmalig</div>
+      <p>Schreibe einen Brief von deinem zukünftigen Ich – in 2 Jahren – an dich heute. Was hat sich verändert? Wie fühlt sich das Leben an? Was bist du froh, dass du es gewagt hast? Welchen Rat gibt dir dieses zukünftige Ich?</p>
+      <textarea id="r2b" placeholder="Liebe [dein Name], in zwei Jahren ..." rows="10" oninput="speichern()"></textarea>
+    </div>
+
+    <div class="affirmationen">
+      <div class="block-label">Affirmationen</div>
+      <ul>
+        <li>Ich bin im Prozess – und das ist genug.</li>
+        <li>Alte Glaubenssätze haben mich einmal geschützt. Heute darf ich neue wählen.</li>
+      </ul>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn-primary" onclick="modulAbschliessen(2)">Modul abschließen</button>
+      <button class="btn-secondary" onclick="speichernAlle()">Speichern</button>
+    </div>
+  </div>
+
+  <!-- MODUL 3 -->
+  <div class="modul" id="modul3">
+    <div class="modul-header">
+      <div class="modul-label">Modul 3 von 4</div>
+      <h2>Kleine Schritte, die tragen</h2>
+      <div class="thema">Warum große Veränderungen scheitern und kleine gelingen</div>
+    </div>
+    <div class="divider"></div>
+
+    <div class="text-block">
+      <p>Große Veränderungspläne scheitern oft, weil sie zu groß sind. Kleine Schritte funktionieren, weil sie das Nervensystem nicht bedrohen, regelmäßig Erfolgserlebnisse erzeugen und sich akkumulieren.</p>
+    </div>
+
+    <div class="reflexion-block">
+      <div class="block-label">Reflexionsfrage</div>
+      <div class="question">Welche Veränderung schwebt dir vor – und was wäre der kleinstmögliche erste Schritt?</div>
+      <textarea id="r3a" placeholder="Lass den ersten Gedanken kommen..." oninput="speichern()"></textarea>
+    </div>
+
+    <div class="uebung-block">
+      <div class="block-label">Übung</div>
+      <h3>Mikroschritte-Werkzeug</h3>
+      <div class="zeit">20 Minuten · einmalig</div>
+      <p><strong>Meine angestrebte Veränderung:</strong></p>
+      <textarea id="r3b" placeholder="..." rows="2" oninput="speichern()"></textarea>
+      <p style="margin-top:0.75rem;"><strong>5 Schritte dorthin:</strong></p>
+      <textarea id="r3c" placeholder="1. ...&#10;2. ...&#10;3. ...&#10;4. ...&#10;5. ..." rows="6" oninput="speichern()"></textarea>
+      <p style="margin-top:0.75rem;"><strong>Der kleinste mögliche erste Schritt:</strong></p>
+      <textarea id="r3d" placeholder="..." rows="2" oninput="speichern()"></textarea>
+      <p style="margin-top:0.75rem;"><strong>Was ich heute noch tue:</strong></p>
+      <textarea id="r3e" placeholder="..." rows="2" oninput="speichern()"></textarea>
+    </div>
+
+    <div class="affirmationen">
+      <div class="block-label">Affirmationen</div>
+      <ul>
+        <li>Kleine Schritte verändern alles.</li>
+        <li>Ich brauche keine Motivation – ich brauche den nächsten Schritt.</li>
+      </ul>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn-primary" onclick="modulAbschliessen(3)">Modul abschließen</button>
+      <button class="btn-secondary" onclick="speichernAlle()">Speichern</button>
+    </div>
+  </div>
+
+  <!-- MODUL 4 -->
+  <div class="modul" id="modul4">
+    <div class="modul-header">
+      <div class="modul-label">Modul 4 von 4</div>
+      <h2>Im Wachstum bleiben</h2>
+      <div class="thema">Mein 90-Tage-Entwicklungsplan</div>
+    </div>
+    <div class="divider"></div>
+
+    <div class="text-block">
+      <p>Wachstum ist kein gerader Weg. Es gibt Rückschritte, Pausen, Zweifel. Wichtig ist nicht, dass du immer weitergehst – sondern dass du weißt, warum du gehst.</p>
+    </div>
+
+    <div class="reflexion-block">
+      <div class="block-label">Reflexionsfrage</div>
+      <div class="question">Was nimmst du aus diesen vier Wochen mit – und was ist dein nächster Schritt?</div>
+      <textarea id="r4a" placeholder="Lass den ersten Gedanken kommen..." oninput="speichern()"></textarea>
+    </div>
+
+    <div class="uebung-block">
+      <div class="block-label">Übung</div>
+      <h3>Mein 90-Tage-Plan</h3>
+      <div class="zeit">20 Minuten · einmalig</div>
+      <p><strong>Mein Ziel:</strong></p>
+      <textarea id="r4b" placeholder="..." rows="2" oninput="speichern()"></textarea>
+      <p style="margin-top:0.75rem;"><strong>Drei kleine Schritte:</strong></p>
+      <textarea id="r4c" placeholder="1. ...&#10;2. ...&#10;3. ..." rows="4" oninput="speichern()"></textarea>
+      <p style="margin-top:0.75rem;"><strong>Was mich aufhalten könnte – und mein Plan:</strong></p>
+      <textarea id="r4d" placeholder="..." rows="3" oninput="speichern()"></textarea>
+      <p style="margin-top:0.75rem;"><strong>Wer mich begleitet:</strong></p>
+      <textarea id="r4e" placeholder="..." rows="2" oninput="speichern()"></textarea>
+      <p style="margin-top:0.75rem;"><strong>Was ich feiere, wenn ich es geschafft habe:</strong></p>
+      <textarea id="r4f" placeholder="..." rows="2" oninput="speichern()"></textarea>
+    </div>
+
+    <div class="affirmationen">
+      <div class="block-label">Affirmationen</div>
+      <ul>
+        <li>Ich wachse – in meinem Tempo.</li>
+        <li>Rückschritte gehören zum Wachstum.</li>
+        <li>Ich vertraue dem Prozess.</li>
+      </ul>
+    </div>
+
+    <div class="abschluss-hint">
+      🌿 <strong>Dein nächster Schritt:</strong> Wenn du merkst, dass dein Alltag mehr Aufmerksamkeit verdient – der nächste Kurs heißt <strong>„Schritt für Schritt"</strong>.
+    </div>
+
+    <div class="btn-row">
+      <button class="btn-primary" onclick="modulAbschliessen(4)">Kurs abschließen ✓</button>
+      <button class="btn-secondary" onclick="speichernAlle()">Speichern</button>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  Selbstreflexions- und Coaching-Angebot. Kein Ersatz für Psychotherapie oder medizinische Beratung.<br>
+  © 2025 Tanja Sattelberg · <a href="https://veraenderungsweg.de" style="color: var(--gold);">veraenderungsweg.de</a>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+  const STORAGE_KEY = 'kurs-06-mehr-mut';
+  let state = { freigeschaltet: [0, 1], aktuell: 0 };
+  const FELDER = ['r1a','r1b','r1c','r1d','r1e','r2a','r2b','r3a','r3b','r3c','r3d','r3e','r4a','r4b','r4c','r4d','r4e','r4f'];
+
+  function laden() {
+    const g = localStorage.getItem(STORAGE_KEY);
+    if (g) {
+      const d = JSON.parse(g);
+      state = d.state || state;
+      Object.keys(d.felder || {}).forEach(id => { const el = document.getElementById(id); if (el) el.value = d.felder[id]; });
+    }
+    navAktualisieren();
+    showModul(state.aktuell);
+  }
+
+  function alleFelder() {
+    const r = {};
+    FELDER.forEach(id => { const el = document.getElementById(id); if (el) r[id] = el.value; });
+    return r;
+  }
+
+  function speichern() { localStorage.setItem(STORAGE_KEY, JSON.stringify({ state, felder: alleFelder() })); }
+  function speichernAlle() { speichern(); toast('Gespeichert ✓'); }
+
+  function showModul(nr) {
+    if (!state.freigeschaltet.includes(nr)) return;
+    document.querySelectorAll('.modul').forEach(m => m.classList.remove('active'));
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('modul' + nr).classList.add('active');
+    document.getElementById('nav' + nr).classList.add('active');
+    state.aktuell = nr;
+    document.getElementById('progressBar').style.width = Math.max(0, (nr / 4) * 100) + '%';
+    speichern();
+    window.scrollTo(0, 0);
+  }
+
+  function modulAbschliessen(nr) {
+    const n = nr + 1;
+    if (n <= 4 && !state.freigeschaltet.includes(n)) state.freigeschaltet.push(n);
+    speichernAlle();
+    navAktualisieren();
+    if (n <= 4) setTimeout(() => { toast('Modul ' + nr + ' abgeschlossen ✓'); showModul(n); }, 300);
+    else toast('Kurs abgeschlossen – herzlichen Glückwunsch! ✓');
+  }
+
+  function navAktualisieren() {
+    for (let i = 0; i <= 4; i++) {
+      const btn = document.getElementById('nav' + i);
+      if (!btn) continue;
+      if (state.freigeschaltet.includes(i)) { btn.classList.remove('locked'); btn.onclick = () => showModul(i); }
+      else { btn.classList.add('locked'); btn.onclick = null; }
+    }
+  }
+
+  function toast(msg) {
+    const el = document.getElementById('toast');
+    el.textContent = msg;
+    el.classList.add('show');
+    setTimeout(() => el.classList.remove('show'), 3000);
+  }
+
+  laden();
+</script>
+</body>
+</html>
