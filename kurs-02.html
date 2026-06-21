@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kurs 02 · Mehr ich · Mein Veränderungsweg</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8935A;
+    --cream: #F5EFE0;
+    --dark-brown: #3D2519;
+    --mid-brown: #7A4A2E;
+    --light-gold: #E8D5B0;
+    --white: #FDFAF4;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Jost', sans-serif; background: var(--cream); color: var(--dark-brown); min-height: 100vh; }
+  header { background: var(--dark-brown); color: var(--cream); padding: 2rem 1.5rem 1.5rem; text-align: center; }
+  header .brand { font-weight: 300; font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; }
+  header h1 { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(1.8rem, 5vw, 2.8rem); line-height: 1.2; }
+  header h1 em { font-style: italic; color: var(--light-gold); }
+  header .subtitle { font-weight: 300; font-size: 0.85rem; color: var(--light-gold); margin-top: 0.5rem; letter-spacing: 0.05em; }
+  .progress-bar-wrap { background: rgba(255,255,255,0.1); border-radius: 2px; height: 3px; margin-top: 1rem; overflow: hidden; }
+  .progress-bar { height: 100%; background: var(--gold); transition: width 0.5s ease; }
+  nav { background: var(--dark-brown); border-top: 1px solid rgba(184,147,90,0.3); padding: 0 1rem; display: flex; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  nav::-webkit-scrollbar { display: none; }
+  .nav-btn { background: none; border: none; color: var(--light-gold); font-family: 'Jost', sans-serif; font-weight: 300; font-size: 0.75rem; letter-spacing: 0.08em; padding: 0.9rem 1rem; cursor: pointer; white-space: nowrap; border-bottom: 2px solid transparent; transition: all 0.2s; opacity: 0.6; }
+  .nav-btn.active { color: var(--gold); border-bottom-color: var(--gold); opacity: 1; }
+  .nav-btn.locked { opacity: 0.3; cursor: default; }
+  .nav-btn:not(.locked):hover { opacity: 0.9; }
+  main { max-width: 680px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+  .modul { display: none; }
+  .modul.active { display: block; }
+  .welcome-card { background: var(--dark-brown); color: var(--cream); border-radius: 4px; padding: 2rem; margin-bottom: 2rem; }
+  .welcome-card h2 { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 1.6rem; margin-bottom: 1rem; color: var(--light-gold); }
+  .welcome-card p { font-weight: 300; line-height: 1.8; font-size: 0.95rem; margin-bottom: 0.75rem; }
+  .kernfrage { border-left: 2px solid var(--gold); padding: 0.75rem 1rem; margin: 1.25rem 0; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.15rem; color: var(--light-gold); line-height: 1.5; }
+  .modul-header { margin-bottom: 1.75rem; }
+  .modul-label { font-weight: 300; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.4rem; }
+  .modul-header h2 { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(1.5rem, 4vw, 2rem); line-height: 1.2; margin-bottom: 0.3rem; }
+  .modul-header .thema { font-weight: 300; font-size: 0.82rem; color: var(--mid-brown); font-style: italic; }
+  .divider { width: 40px; height: 1px; background: var(--gold); margin: 1.25rem 0; }
+  .text-block { font-weight: 300; line-height: 1.85; font-size: 0.95rem; margin-bottom: 1rem; }
+  .text-block p { margin-bottom: 0.75rem; }
+  .reflexion-block { background: var(--white); border-left: 3px solid var(--gold); border-radius: 0 4px 4px 0; padding: 1.25rem 1.5rem; margin: 1.5rem 0; }
+  .reflexion-block .block-label { font-weight: 500; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.6rem; }
+  .reflexion-block .question { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.1rem; line-height: 1.5; margin-bottom: 0.75rem; }
+  textarea { width: 100%; min-height: 100px; background: var(--cream); border: 1px solid var(--light-gold); border-radius: 3px; padding: 0.75rem; font-family: 'Jost', sans-serif; font-weight: 300; font-size: 0.9rem; color: var(--dark-brown); resize: vertical; outline: none; transition: border-color 0.2s; }
+  textarea:focus { border-color: var(--gold); }
+  .uebung-block { background: var(--white); border-radius: 4px; padding: 1.5rem; margin: 1.5rem 0; border: 1px solid var(--light-gold); }
+  .uebung-block .block-label { font-weight: 500; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--mid-brown); margin-bottom: 0.4rem; }
+  .uebung-block h3 { font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: 1.15rem; margin-bottom: 0.4rem; }
+  .uebung-block .zeit { font-size: 0.75rem; color: var(--gold); font-weight: 300; margin-bottom: 1rem; }
+  .uebung-block p { font-weight: 300; font-size: 0.9rem; line-height: 1.8; margin-bottom: 0.6rem; }
+  .uebung-block ol { padding-left: 1.25rem; margin: 0.5rem 0 0.75rem; }
+  .uebung-block li { font-weight: 300; font-size: 0.9rem; line-height: 1.75; margin-bottom: 0.3rem; }
+  .tabelle-wrap { overflow-x: auto; margin: 1rem 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+  th { background: var(--dark-brown); color: var(--cream); font-weight: 300; font-size: 0.75rem; letter-spacing: 0.08em; padding: 0.6rem 0.75rem; text-align: left; }
+  td { border: 1px solid var(--light-gold); padding: 0.5rem 0.75rem; background: var(--white); }
+  td input { width: 100%; border: none; background: transparent; font-family: 'Jost', sans-serif; font-weight: 300; font-size: 0.85rem; color: var(--dark-brown); outline: none; }
+  .affirmationen { background: var(--light-gold); border-radius: 4px; padding: 1.25rem 1.5rem; margin: 1.5rem 0; }
+  .affirmationen .block-label { font-weight: 500; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--mid-brown); margin-bottom: 0.75rem; }
+  .affirmationen ul { list-style: none; padding: 0; }
+  .affirmationen li { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1rem; line-height: 1.6; padding: 0.3rem 0; border-bottom: 1px solid rgba(184,147,90,0.3); }
+  .affirmationen li:last-child { border-bottom: none; }
+  .abschluss-hint { background: var(--white); border-radius: 4px; padding: 1.25rem 1.5rem; margin: 1.5rem 0; border: 1px solid var(--light-gold); font-weight: 300; font-size: 0.88rem; color: var(--mid-brown); line-height: 1.7; }
+  .abschluss-hint strong { color: var(--dark-brown); font-weight: 500; }
+  .btn-primary { display: inline-block; background: var(--gold); color: var(--dark-brown); font-family: 'Jost', sans-serif; font-weight: 500; font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.85rem 2rem; border: none; border-radius: 3px; cursor: pointer; transition: all 0.2s; margin-top: 0.5rem; }
+  .btn-primary:hover { background: var(--mid-brown); color: var(--cream); }
+  .btn-secondary { display: inline-block; background: transparent; color: var(--gold); font-family: 'Jost', sans-serif; font-weight: 400; font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.75rem 1.5rem; border: 1px solid var(--gold); border-radius: 3px; cursor: pointer; transition: all 0.2s; margin-top: 0.5rem; }
+  .btn-secondary:hover { background: var(--gold); color: var(--dark-brown); }
+  .btn-row { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.5rem; align-items: center; }
+  .toast { position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%) translateY(100px); background: var(--dark-brown); color: var(--cream); font-family: 'Jost', sans-serif; font-size: 0.82rem; font-weight: 300; padding: 0.75rem 1.5rem; border-radius: 3px; border-left: 3px solid var(--gold); transition: transform 0.3s ease; z-index: 100; white-space: nowrap; }
+  .toast.show { transform: translateX(-50%) translateY(0); }
+  footer { text-align: center; padding: 2rem 1.5rem; font-weight: 300; font-size: 0.72rem; color: var(--mid-brown); line-height: 1.7; border-top: 1px solid var(--light-gold); max-width: 680px; margin: 0 auto; }
+  @media (max-width: 480px) { main { padding: 1.5rem 1rem 3rem; } .welcome-card { padding: 1.5rem; } }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">Mein Veränderungsweg · Kurs 02</div>
+  <h1>Mehr <em>ich</em></h1>
+  <div class="subtitle">4 Module · Beziehungen · Vom automatischen Ja zum bewussten Nein</div>
+  <div class="progress-bar-wrap">
+    <div class="progress-bar" id="progressBar" style="width: 0%"></div>
+  </div>
+</header>
+
+<nav>
+  <button class="nav-btn active" onclick="showModul(0)" id="nav0">Willkommen</button>
+  <button class="nav-btn" onclick="showModul(1)" id="nav1">Modul 1</button>
+  <button class="nav-btn locked" id="nav2">Modul 2</button>
+  <button class="nav-btn locked" id="nav3">Modul 3</button>
+  <button class="nav-btn locked" id="nav4">Modul 4</button>
+</nav>
+
+<main>
+
+  <!-- WILLKOMMEN -->
+  <div class="modul active" id="modul0">
+    <div class="welcome-card">
+      <h2>Schön, dass du hier bist.</h2>
+      <p>Dieser Kurs begleitet dich vier Wochen durch den Bereich Beziehungen. Kein Druck, keine Leistung. Nur du – und ein ehrlicherer Blick auf das, was in diesem Lebensbereich wirklich passiert.</p>
+      <div class="kernfrage">Wo sage ich Ja, obwohl innen Nein ist – und was kostet mich das?</div>
+      <p>Alles, was du hier schreibst, bleibt auf deinem Gerät.</p>
+    </div>
+    <div class="btn-row">
+      <button class="btn-primary" onclick="showModul(1)">Modul 1 beginnen</button>
+    </div>
+  </div>
+
+  <!-- MODUL 1 -->
+  <div class="modul" id="modul1">
+    <div class="modul-header">
+      <div class="modul-label">Modul 1 von 4</div>
+      <h2>Meine Grenz-Landkarte</h2>
+      <div class="thema">Wo verliere ich mich regelmäßig?</div>
+    </div>
+    <div class="divider"></div>
+
+    <div class="text-block">
+      <p>Grenzen sind kein Angriff auf andere. Sie sind ein Ausdruck von Selbstachtung. Aber viele Frauen haben gelernt, dass Grenzen setzen egoistisch ist – dass man für andere da sein muss, auch wenn man selbst dabei leer wird.</p>
+      <p>In diesem ersten Modul schaust du ehrlich hin: Wo verlierst du dich? In welchen Beziehungen, Situationen oder Rollen bist du so sehr für andere da, dass du selbst kaum noch vorkommst?</p>
+    </div>
+
+    <div class="reflexion-block">
+      <div class="block-label">Reflexionsfrage</div>
+      <div class="question">In welcher Beziehung bist du derzeit am wenigsten du selbst – und was genau passiert dort?</div>
+      <textarea id="r1a" placeholder="Lass den ersten Gedanken kommen..." oninput="speichern('r1a')"></textarea>
+    </div>
+
+    <div class="uebung-block">
+      <div class="block-label">Übung</div>
+      <h3>Grenz-Reflexion</h3>
+      <div class="zeit">20 Minuten · einmalig</div>
+      <ol>
+        <li>Schreib 5 konkrete Situationen aus den letzten Wochen auf, in denen du Ja gesagt hast, obwohl du eigentlich Nein wolltest.</li>
+        <li>Für jede Situation: Was hat dich davon abgehalten, Nein zu sagen?</li>
+        <li>Was hat dich das gekostet – an Energie, Zeit oder Stimmung?</li>
+        <li>Gibt es ein Muster?</li>
+      </ol>
+      <div class="tabelle-wrap">
+        <table>
+          <thead><tr><th>Tag</th><th>Situation</th><th>Mein inneres Signal</th><th>Meine Reaktion</th></tr></thead>
+          <tbody>
+            <tr><td>Montag</td><td><input id="t1a" oninput="speichern('t1a')"></td><td><input id="t1b" oninput="speichern('t1b')"></td><td><input id="t1c" oninput="speichern('t1c')"></td></tr>
+            <tr><td>Dienstag</td><td><input id="t2a" oninput="speichern('t2a')"></td><td><input id="t2b" oninput="speichern('t2b')"></td><td><input id="t2c" oninput="speichern('t2c')"></td></tr>
+            <tr><td>Mittwoch</td><td><input id="t3a" oninput="speichern('t3a')"></td><td><input id="t3b" oninput="speichern('t3b')"></td><td><input id="t3c" oninput="speichern('t3c')"></td></tr>
+            <tr><td>Donnerstag</td><td><input id="t4a" oninput="speichern('t4a')"></td><td><input id="t4b" oninput="speichern('t4b')"></td><td><input id="t4c" oninput="speichern('t4c')"></td></tr>
+            <tr><td>Freitag</td><td><input id="t5a" oninput="speichern('t5a')"></td><td><input id="t5b" oninput="speichern('t5b')"></td><td><input id="t5c" oninput="speichern('t5c')"></td></tr>
+            <tr><td>Samstag</td><td><input id="t6a" oninput="speichern('t6a')"></td><td><input id="t6b" oninput="speichern('t6b')"></td><td><input id="t6c" oninput="speichern('t6c')"></td></tr>
+            <tr><td>Sonntag</td><td><input id="t7a" oninput="speichern('t7a')"></td><td><input id="t7b" oninput="speichern('t7b')"></td><td><input id="t7c" oninput="speichern('t7c')"></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="affirmationen">
+      <div class="block-label">Affirmationen</div>
+      <ul>
+        <li>Ich darf Nein sagen und trotzdem liebenswert sein.</li>
+        <li>Klare Grenzen ermöglichen echte Begegnung.</li>
+      </ul>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn-primary" onclick="modulAbschliessen(1)">Modul abschließen</button>
+      <button class="btn-secondary" onclick="speichernAlle()">Speichern</button>
+    </div>
+  </div>
+
+  <!-- MODUL 2 -->
+  <div class="modul" id="modul2">
+    <div class="modul-header">
+      <div class="modul-label">Modul 2 von 4</div>
+      <h2>Warum das Nein so schwer ist</h2>
+      <div class="thema">Die Angst hinter dem Ja</div>
+    </div>
+    <div class="divider"></div>
+
+    <div class="text-block">
+      <p>Hinter jedem automatischen Ja steckt meistens eine Angst. Die Angst, nicht gemocht zu werden. Die Angst, einen Konflikt auszulösen. Die Angst, als schwierig zu gelten. Oder eine tief sitzende Überzeugung, dass die eigenen Bedürfnisse weniger zählen als die der anderen.</p>
+      <p>Diese Muster kommen nicht aus dem Nichts. Sie haben sich früher entwickelt – in der Familie, in der Schule, durch Erfahrungen, die gezeigt haben: Anpassung ist sicherer als Authentizität.</p>
+    </div>
+
+    <div class="reflexion-block">
+      <div class="block-label">Reflexionsfrage</div>
+      <div class="question">Welche Angst steckt hinter deinem häufigsten Ja? Und wessen Stimme hörst du, wenn du dir sagst, dass du Nein nicht sagen darfst?</div>
+      <textarea id="r2a" placeholder="Lass den ersten Gedanken kommen..." oninput="speichern('r2a')"></textarea>
+    </div>
+
+    <div class="uebung-block">
+      <div class="block-label">Übung</div>
+      <h3>Brief an mein Ja</h3>
+      <div class="zeit">15 Minuten · einmalig</div>
+      <ol>
+        <li>Schreibe einen Brief an dein automatisches Ja.</li>
+        <li>Frage es: Woher kommst du? Wen schützt du?</li>
+        <li>Was hast du mir früher gegeben, das ich gebraucht habe?</li>
+        <li>Was kostest du mich heute?</li>
+        <li>Danke ihm – und sage ihm, dass du langsam neue Wege lernst.</li>
+      </ol>
+      <textarea id="r2b" placeholder="Lieber automatischer Ja-Sager, ..." rows="8" oninput="speichern('r2b')"></textarea>
+    </div>
+
+    <div class="affirmationen">
+      <div class="block-label">Affirmationen</div>
+      <ul>
+        <li>Meine Bedürfnisse sind genauso wichtig wie die der anderen.</li>
+        <li>Ich habe das Recht, mich selbst zu schützen.</li>
+      </ul>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn-primary" onclick="modulAbschliessen(2)">Modul abschließen</button>
+      <button class="btn-secondary" onclick="speichernAlle()">Speichern</button>
+    </div>
+  </div>
+
+  <!-- MODUL 3 -->
+  <div class="modul" id="modul3">
+    <div class="modul-header">
+      <div class="modul-label">Modul 3 von 4</div>
+      <h2>Ja und Nein im Körper</h2>
+      <div class="thema">Körperliche Wahrnehmung von Zustimmung und Ablehnung</div>
+    </div>
+    <div class="divider"></div>
+
+    <div class="text-block">
+      <p>Dein Körper weiß oft vor deinem Verstand, was du wirklich willst. Ein echtes Ja fühlt sich anders an als ein erzwungenes. Ein inneres Nein zeigt sich – als Enge in der Brust, als flaues Gefühl im Bauch, als Anspannung in den Schultern.</p>
+      <p>Diese Signale waren immer da. Viele haben gelernt, sie zu überhören. In diesem Modul lernst du, wieder hinzuhören.</p>
+    </div>
+
+    <div class="reflexion-block">
+      <div class="block-label">Reflexionsfrage</div>
+      <div class="question">Wie fühlt sich ein echtes Ja in deinem Körper an? Und wie erkennst du ein inneres Nein – bevor du es überstimmst?</div>
+      <textarea id="r3a" placeholder="Lass den ersten Gedanken kommen..." oninput="speichern('r3a')"></textarea>
+    </div>
+
+    <div class="uebung-block">
+      <div class="block-label">Übung</div>
+      <h3>Körper-Ja-Nein-Übung</h3>
+      <div class="zeit">3 Minuten · täglich · eine Woche lang</div>
+      <ol>
+        <li>Denke an eine anstehende Entscheidung oder Anfrage.</li>
+        <li>Schließe kurz die Augen und nimm einen tiefen Atemzug.</li>
+        <li>Stell dir vor, du sagst Ja. Was passiert in deinem Körper? Weitung oder Enge?</li>
+        <li>Stell dir vor, du sagst Nein. Was passiert jetzt?</li>
+        <li>Notiere deine Beobachtung – ohne Bewertung.</li>
+      </ol>
+      <div class="tabelle-wrap">
+        <table>
+          <thead><tr><th>Tag</th><th>Situation</th><th>Körper bei Ja</th><th>Körper bei Nein</th></tr></thead>
+          <tbody>
+            <tr><td>Montag</td><td><input id="k1a" oninput="speichern('k1a')"></td><td><input id="k1b" oninput="speichern('k1b')"></td><td><input id="k1c" oninput="speichern('k1c')"></td></tr>
+            <tr><td>Dienstag</td><td><input id="k2a" oninput="speichern('k2a')"></td><td><input id="k2b" oninput="speichern('k2b')"></td><td><input id="k2c" oninput="speichern('k2c')"></td></tr>
+            <tr><td>Mittwoch</td><td><input id="k3a" oninput="speichern('k3a')"></td><td><input id="k3b" oninput="speichern('k3b')"></td><td><input id="k3c" oninput="speichern('k3c')"></td></tr>
+            <tr><td>Donnerstag</td><td><input id="k4a" oninput="speichern('k4a')"></td><td><input id="k4b" oninput="speichern('k4b')"></td><td><input id="k4c" oninput="speichern('k4c')"></td></tr>
+            <tr><td>Freitag</td><td><input id="k5a" oninput="speichern('k5a')"></td><td><input id="k5b" oninput="speichern('k5b')"></td><td><input id="k5c" oninput="speichern('k5c')"></td></tr>
+            <tr><td>Samstag</td><td><input id="k6a" oninput="speichern('k6a')"></td><td><input id="k6b" oninput="speichern('k6b')"></td><td><input id="k6c" oninput="speichern('k6c')"></td></tr>
+            <tr><td>Sonntag</td><td><input id="k7a" oninput="speichern('k7a')"></td><td><input id="k7b" oninput="speichern('k7b')"></td><td><input id="k7c" oninput="speichern('k7c')"></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="affirmationen">
+      <div class="block-label">Affirmationen</div>
+      <ul>
+        <li>Mein Körper kennt meine Wahrheit.</li>
+        <li>Ich lerne, seinen Signalen zu vertrauen.</li>
+      </ul>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn-primary" onclick="modulAbschliessen(3)">Modul abschließen</button>
+      <button class="btn-secondary" onclick="speichernAlle()">Speichern</button>
+    </div>
+  </div>
+
+  <!-- MODUL 4 -->
+  <div class="modul" id="modul4">
+    <div class="modul-header">
+      <div class="modul-label">Modul 4 von 4</div>
+      <h2>Grenzen kommunizieren</h2>
+      <div class="thema">Wie sage ich Nein, ohne zu verletzen?</div>
+    </div>
+    <div class="divider"></div>
+
+    <div class="text-block">
+      <p>Ein Nein muss nicht kalt sein. Es muss nicht mit langen Erklärungen gerechtfertigt werden. Und es muss die Beziehung nicht gefährden – wenn es klar, freundlich und ehrlich ausgesprochen wird.</p>
+      <p>In diesem letzten Modul übst du konkrete Formulierungen – und gehst einen echten Schritt.</p>
+    </div>
+
+    <div class="uebung-block">
+      <div class="block-label">Übung</div>
+      <h3>Mein bewusstes Nein</h3>
+      <div class="zeit">einmalig diese Woche</div>
+      <ol>
+        <li>Wähle eine Situation, in der du diese Woche Nein sagen könntest.</li>
+        <li>Formuliere dein Nein im Voraus – schriftlich.</li>
+        <li>Sprich es laut aus – erstmal nur für dich.</li>
+        <li>Sage es dann wirklich – in der Situation.</li>
+        <li>Schreibe danach auf: Wie war es? Was ist passiert?</li>
+      </ol>
+      <textarea id="r4a" placeholder="Mein Nein und wie es war..." rows="6" oninput="speichern('r4a')"></textarea>
+    </div>
+
+    <div class="reflexion-block">
+      <div class="block-label">Reflexionsfrage</div>
+      <div class="question">Welches Nein hast du diese Woche gesagt – oder hast du eines gewagt, das sich vorher unmöglich angefühlt hätte?</div>
+      <textarea id="r4b" placeholder="Lass den ersten Gedanken kommen..." oninput="speichern('r4b')"></textarea>
+    </div>
+
+    <div class="affirmationen">
+      <div class="block-label">Affirmationen</div>
+      <ul>
+        <li>Mein Nein schützt mein Ja.</li>
+        <li>Ich kommuniziere klar und trotzdem herzlich.</li>
+        <li>Grenzen sind ein Geschenk – an mich und an die anderen.</li>
+      </ul>
+    </div>
+
+    <div class="abschluss-hint">
+      🌿 <strong>Dein nächster Schritt:</strong> Wenn du merkst, dass der Bereich Arbeit gerade Aufmerksamkeit verdient – der nächste Kurs heißt <strong>„Mehr Freiheit"</strong>.
+    </div>
+
+    <div class="btn-row">
+      <button class="btn-primary" onclick="modulAbschliessen(4)">Kurs abschließen ✓</button>
+      <button class="btn-secondary" onclick="speichernAlle()">Speichern</button>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  Selbstreflexions- und Coaching-Angebot. Kein Ersatz für Psychotherapie oder medizinische Beratung.<br>
+  © 2025 Tanja Sattelberg · <a href="https://veraenderungsweg.de" style="color: var(--gold);">veraenderungsweg.de</a>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+  const STORAGE_KEY = 'kurs-02-mehr-ich';
+  let state = { freigeschaltet: [0, 1], aktuell: 0 };
+  const FELDER = ['r1a','r2a','r2b','r3a','r4a','r4b',
+    't1a','t1b','t1c','t2a','t2b','t2c','t3a','t3b','t3c','t4a','t4b','t4c',
+    't5a','t5b','t5c','t6a','t6b','t6c','t7a','t7b','t7c',
+    'k1a','k1b','k1c','k2a','k2b','k2c','k3a','k3b','k3c','k4a','k4b','k4c',
+    'k5a','k5b','k5c','k6a','k6b','k6c','k7a','k7b','k7c'];
+
+  function laden() {
+    const g = localStorage.getItem(STORAGE_KEY);
+    if (g) {
+      const d = JSON.parse(g);
+      state = d.state || state;
+      Object.keys(d.felder || {}).forEach(id => { const el = document.getElementById(id); if (el) el.value = d.felder[id]; });
+    }
+    navAktualisieren();
+    showModul(state.aktuell);
+  }
+
+  function alleFelder() {
+    const r = {};
+    FELDER.forEach(id => { const el = document.getElementById(id); if (el) r[id] = el.value; });
+    return r;
+  }
+
+  function speichern() { localStorage.setItem(STORAGE_KEY, JSON.stringify({ state, felder: alleFelder() })); }
+  function speichernAlle() { speichern(); toast('Gespeichert ✓'); }
+
+  function showModul(nr) {
+    if (!state.freigeschaltet.includes(nr)) return;
+    document.querySelectorAll('.modul').forEach(m => m.classList.remove('active'));
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('modul' + nr).classList.add('active');
+    document.getElementById('nav' + nr).classList.add('active');
+    state.aktuell = nr;
+    document.getElementById('progressBar').style.width = Math.max(0, (nr / 4) * 100) + '%';
+    speichern();
+    window.scrollTo(0, 0);
+  }
+
+  function modulAbschliessen(nr) {
+    const n = nr + 1;
+    if (n <= 4 && !state.freigeschaltet.includes(n)) state.freigeschaltet.push(n);
+    speichernAlle();
+    navAktualisieren();
+    if (n <= 4) setTimeout(() => { toast('Modul ' + nr + ' abgeschlossen ✓'); showModul(n); }, 300);
+    else toast('Kurs abgeschlossen – herzlichen Glückwunsch! ✓');
+  }
+
+  function navAktualisieren() {
+    for (let i = 0; i <= 4; i++) {
+      const btn = document.getElementById('nav' + i);
+      if (!btn) continue;
+      if (state.freigeschaltet.includes(i)) { btn.classList.remove('locked'); btn.onclick = () => showModul(i); }
+      else { btn.classList.add('locked'); btn.onclick = null; }
+    }
+  }
+
+  function toast(msg) {
+    const el = document.getElementById('toast');
+    el.textContent = msg;
+    el.classList.add('show');
+    setTimeout(() => el.classList.remove('show'), 3000);
+  }
+
+  laden();
+</script>
+</body>
+</html>
