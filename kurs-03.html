@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kurs 03 · Mehr Freiheit · Mein Veränderungsweg</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root { --gold: #B8935A; --cream: #F5EFE0; --dark-brown: #3D2519; --mid-brown: #7A4A2E; --light-gold: #E8D5B0; --white: #FDFAF4; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Jost', sans-serif; background: var(--cream); color: var(--dark-brown); min-height: 100vh; }
+  header { background: var(--dark-brown); color: var(--cream); padding: 2rem 1.5rem 1.5rem; text-align: center; }
+  header .brand { font-weight: 300; font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; }
+  header h1 { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(1.8rem, 5vw, 2.8rem); line-height: 1.2; }
+  header h1 em { font-style: italic; color: var(--light-gold); }
+  header .subtitle { font-weight: 300; font-size: 0.85rem; color: var(--light-gold); margin-top: 0.5rem; letter-spacing: 0.05em; }
+  .progress-bar-wrap { background: rgba(255,255,255,0.1); border-radius: 2px; height: 3px; margin-top: 1rem; overflow: hidden; }
+  .progress-bar { height: 100%; background: var(--gold); transition: width 0.5s ease; }
+  nav { background: var(--dark-brown); border-top: 1px solid rgba(184,147,90,0.3); padding: 0 1rem; display: flex; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  nav::-webkit-scrollbar { display: none; }
+  .nav-btn { background: none; border: none; color: var(--light-gold); font-family: 'Jost', sans-serif; font-weight: 300; font-size: 0.75rem; letter-spacing: 0.08em; padding: 0.9rem 1rem; cursor: pointer; white-space: nowrap; border-bottom: 2px solid transparent; transition: all 0.2s; opacity: 0.6; }
+  .nav-btn.active { color: var(--gold); border-bottom-color: var(--gold); opacity: 1; }
+  .nav-btn.locked { opacity: 0.3; cursor: default; }
+  .nav-btn:not(.locked):hover { opacity: 0.9; }
+  main { max-width: 680px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+  .modul { display: none; }
+  .modul.active { display: block; }
+  .welcome-card { background: var(--dark-brown); color: var(--cream); border-radius: 4px; padding: 2rem; margin-bottom: 2rem; }
+  .welcome-card h2 { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 1.6rem; margin-bottom: 1rem; color: var(--light-gold); }
+  .welcome-card p { font-weight: 300; line-height: 1.8; font-size: 0.95rem; margin-bottom: 0.75rem; }
+  .kernfrage { border-left: 2px solid var(--gold); padding: 0.75rem 1rem; margin: 1.25rem 0; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.15rem; color: var(--light-gold); line-height: 1.5; }
+  .modul-header { margin-bottom: 1.75rem; }
+  .modul-label { font-weight: 300; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.4rem; }
+  .modul-header h2 { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(1.5rem, 4vw, 2rem); line-height: 1.2; margin-bottom: 0.3rem; }
+  .modul-header .thema { font-weight: 300; font-size: 0.82rem; color: var(--mid-brown); font-style: italic; }
+  .divider { width: 40px; height: 1px; background: var(--gold); margin: 1.25rem 0; }
+  .text-block { font-weight: 300; line-height: 1.85; font-size: 0.95rem; margin-bottom: 1rem; }
+  .text-block p { margin-bottom: 0.75rem; }
+  .reflexion-block { background: var(--white); border-left: 3px solid var(--gold); border-radius: 0 4px 4px 0; padding: 1.25rem 1.5rem; margin: 1.5rem 0; }
+  .reflexion-block .block-label { font-weight: 500; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.6rem; }
+  .reflexion-block .question { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.1rem; line-height: 1.5; margin-bottom: 0.75rem; }
+  textarea { width: 100%; min-height: 100px; background: var(--cream); border: 1px solid var(--light-gold); border-radius: 3px; padding: 0.75rem; font-family: 'Jost', sans-serif; font-weight: 300; font-size: 0.9rem; color: var(--dark-brown); resize: vertical; outline: none; transition: border-color 0.2s; }
+  textarea:focus { border-color: var(--gold); }
+  .uebung-block { background: var(--white); border-radius: 4px; padding: 1.5rem; margin: 1.5rem 0; border: 1px solid var(--light-gold); }
+  .uebung-block .block-label { font-weight: 500; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--mid-brown); margin-bottom: 0.4rem; }
+  .uebung-block h3 { font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: 1.15rem; margin-bottom: 0.4rem; }
+  .uebung-block .zeit { font-size: 0.75rem; color: var(--gold); font-weight: 300; margin-bottom: 1rem; }
+  .uebung-block p { font-weight: 300; font-size: 0.9rem; line-height: 1.8; margin-bottom: 0.6rem; }
+  .uebung-block ol, .uebung-block ul { padding-left: 1.25rem; margin: 0.5rem 0 0.75rem; }
+  .uebung-block li { font-weight: 300; font-size: 0.9rem; line-height: 1.75; margin-bottom: 0.3rem; }
+  .tabelle-wrap { overflow-x: auto; margin: 1rem 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+  th { background: var(--dark-brown); color: var(--cream); font-weight: 300; font-size: 0.75rem; letter-spacing: 0.08em; padding: 0.6rem 0.75rem; text-align: left; }
+  td { border: 1px solid var(--light-gold); padding: 0.5rem 0.75rem; background: var(--white); }
+  td input { width: 100%; border: none; background: transparent; font-family: 'Jost', sans-serif; font-weight: 300; font-size: 0.85rem; color: var(--dark-brown); outline: none; }
+  .affirmationen { background: var(--light-gold); border-radius: 4px; padding: 1.25rem 1.5rem; margin: 1.5rem 0; }
+  .affirmationen .block-label { font-weight: 500; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--mid-brown); margin-bottom: 0.75rem; }
+  .affirmationen ul { list-style: none; padding: 0; }
+  .affirmationen li { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1rem; line-height: 1.6; padding: 0.3rem 0; border-bottom: 1px solid rgba(184,147,90,0.3); }
+  .affirmationen li:last-child { border-bottom: none; }
+  .abschluss-hint { background: var(--white); border-radius: 4px; padding: 1.25rem 1.5rem; margin: 1.5rem 0; border: 1px solid var(--light-gold); font-weight: 300; font-size: 0.88rem; color: var(--mid-brown); line-height: 1.7; }
+  .abschluss-hint strong { color: var(--dark-brown); font-weight: 500; }
+  .btn-primary { display: inline-block; background: var(--gold); color: var(--dark-brown); font-family: 'Jost', sans-serif; font-weight: 500; font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.85rem 2rem; border: none; border-radius: 3px; cursor: pointer; transition: all 0.2s; margin-top: 0.5rem; }
+  .btn-primary:hover { background: var(--mid-brown); color: var(--cream); }
+  .btn-secondary { display: inline-block; background: transparent; color: var(--gold); font-family: 'Jost', sans-serif; font-weight: 400; font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.75rem 1.5rem; border: 1px solid var(--gold); border-radius: 3px; cursor: pointer; transition: all 0.2s; margin-top: 0.5rem; }
+  .btn-secondary:hover { background: var(--gold); color: var(--dark-brown); }
+  .btn-row { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.5rem; align-items: center; }
+  .toast { position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%) translateY(100px); background: var(--dark-brown); color: var(--cream); font-family: 'Jost', sans-serif; font-size: 0.82rem; font-weight: 300; padding: 0.75rem 1.5rem; border-radius: 3px; border-left: 3px solid var(--gold); transition: transform 0.3s ease; z-index: 100; white-space: nowrap; }
+  .toast.show { transform: translateX(-50%) translateY(0); }
+  footer { text-align: center; padding: 2rem 1.5rem; font-weight: 300; font-size: 0.72rem; color: var(--mid-brown); line-height: 1.7; border-top: 1px solid var(--light-gold); max-width: 680px; margin: 0 auto; }
+  @media (max-width: 480px) { main { padding: 1.5rem 1rem 3rem; } .welcome-card { padding: 1.5rem; } }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">Mein Veränderungsweg · Kurs 03</div>
+  <h1>Mehr <em>Freiheit</em></h1>
+  <div class="subtitle">4 Module · Arbeit · Glaubenssätze rund um Leistung sichtbar machen</div>
+  <div class="progress-bar-wrap">
+    <div class="progress-bar" id="progressBar" style="width: 0%"></div>
+  </div>
+</header>
+
+<nav>
+  <button class="nav-btn active" onclick="showModul(0)" id="nav0">Willkommen</button>
+  <button class="nav-btn" onclick="showModul(1)" id="nav1">Modul 1</button>
+  <button class="nav-btn locked" id="nav2">Modul 2</button>
+  <button class="nav-btn locked" id="nav3">Modul 3</button>
+  <button class="nav-btn locked" id="nav4">Modul 4</button>
+</nav>
+
+<main>
+
+  <!-- WILLKOMMEN -->
+  <div class="modul active" id="modul0">
+    <div class="welcome-card">
+      <h2>Willkommen.</h2>
+      <p>Dieser Kurs begleitet dich vier Wochen durch den Bereich Arbeit. Kein Druck, keine Leistung. Nur du – und ein ehrlicherer Blick auf das, was hier wirklich passiert.</p>
+      <div class="kernfrage">Handle ich gerade aus Stärke – oder aus Angst?</div>
+      <p>Alles, was du hier schreibst, bleibt auf deinem Gerät.</p>
+    </div>
+    <div class="btn-row">
+      <button class="btn-primary" onclick="showModul(1)">Modul 1 beginnen</button>
+    </div>
+  </div>
+
+  <!-- MODUL 1 -->
+  <div class="modul" id="modul1">
+    <div class="modul-header">
+      <div class="modul-label">Modul 1 von 4</div>
+      <h2>Meine Glaubenssätze bei der Arbeit</h2>
+      <div class="thema">Was glaube ich wirklich über Leistung, Pflicht und Selbstwert?</div>
+    </div>
+    <div class="divider"></div>
+
+    <div class="text-block">
+      <p>Hinter unserem Arbeitsverhalten stecken fast immer tief sitzende Überzeugungen. Nicht bewusste Entscheidungen – sondern eingravierte Sätze, die wir irgendwann übernommen haben. Sätze wie: Ich muss funktionieren. Ich darf nicht schwach sein. Mein Wert hängt davon ab, was ich leiste.</p>
+      <p>Diese Sätze sind nicht wahr. Aber sie fühlen sich wahr an – und sie steuern uns, ohne dass wir es merken.</p>
+    </div>
+
+    <div class="reflexion-block">
+      <div class="block-label">Reflexionsfrage</div>
+      <div class="question">Welcher Satz über Arbeit und Leistung hat dich am längsten begleitet – und woher kommt er?</div>
+      <textarea id="r1a" placeholder="Lass den ersten Gedanken kommen..." oninput="speichern()"></textarea>
+    </div>
+
+    <div class="uebung-block">
+      <div class="block-label">Übung</div>
+      <h3>Satzergänzungs-Übung</h3>
+      <div class="zeit">15 Minuten · einmalig</div>
+      <p>Schreib schnell und unzensiert – lass den ersten Gedanken kommen:</p>
+      <textarea id="r1b" placeholder="Gute Arbeit bedeutet für mich...&#10;Wenn ich weniger leiste als andere, dann...&#10;Ich verdiene Anerkennung, wenn...&#10;Ausruhen darf ich, wenn...&#10;Mein Wert als Mensch hängt davon ab, dass..." rows="8" oninput="speichern()"></textarea>
+    </div>
+
+    <div class="affirmationen">
+      <div class="block-label">Affirmationen</div>
+      <ul>
+        <li>Mein Wert bemisst sich nicht an meiner Leistung.</li>
+        <li>Ich darf aus Stärke handeln – nicht aus Angst.</li>
+      </ul>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn-primary" onclick="modulAbschliessen(1)">Modul abschließen</button>
+      <button class="btn-secondary" onclick="speichernAlle()">Speichern</button>
+    </div>
+  </div>
+
+  <!-- MODUL 2 -->
+  <div class="modul" id="modul2">
+    <div class="modul-header">
+      <div class="modul-label">Modul 2 von 4</div>
+      <h2>Woher kommen diese Stimmen?</h2>
+      <div class="thema">Frühe Prägungen und ihre Wirkung heute</div>
+    </div>
+    <div class="divider"></div>
+
+    <div class="text-block">
+      <p>Die Stimmen, die uns bei der Arbeit antreiben oder bremsen, sind selten unsere eigenen. Oft sind es die Stimmen von Eltern, Lehrern oder gesellschaftlichen Erwartungen – aufgenommen in einer Zeit, in der wir keine andere Wahl hatten, als sie zu glauben.</p>
+      <p>Das zu erkennen, verändert nichts sofort. Aber es löst etwas – wenn ich weiß, dass es nicht meine Wahrheit ist, sondern jemand anderen Satz.</p>
+    </div>
+
+    <div class="reflexion-block">
+      <div class="block-label">Reflexionsfrage</div>
+      <div class="question">Wessen Stimme hörst du am lautesten, wenn du an Arbeit und Leistung denkst?</div>
+      <textarea id="r2a" placeholder="Lass den ersten Gedanken kommen..." oninput="speichern()"></textarea>
+    </div>
+
+    <div class="uebung-block">
+      <div class="block-label">Übung</div>
+      <h3>Herkunfts-Analyse</h3>
+      <div class="zeit">20 Minuten · einmalig</div>
+      <ol>
+        <li>Nimm deinen stärksten Glaubenssatz aus Modul 1.</li>
+        <li>Frage dich: Wo habe ich das zum ersten Mal gehört oder erlebt?</li>
+        <li>Wer hat es gesagt – oder vorgelebt?</li>
+        <li>Was war damals die Botschaft dahinter?</li>
+        <li>Gilt das heute noch für mich – wirklich?</li>
+        <li>Wie wäre ein neuer Satz, der mir besser dient?</li>
+      </ol>
+      <textarea id="r2b" placeholder="Meine Erkenntnisse..." rows="7" oninput="speichern()"></textarea>
+    </div>
+
+    <div class="affirmationen">
+      <div class="block-label">Affirmationen</div>
+      <ul>
+        <li>Ich darf die Stimmen meiner Vergangenheit freundlich zurücklassen.</li>
+        <li>Heute entscheide ich, wer ich bei der Arbeit sein will.</li>
+      </ul>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn-primary" onclick="modulAbschliessen(2)">Modul abschließen</button>
+      <button class="btn-secondary" onclick="speichernAlle()">Speichern</button>
+    </div>
+  </div>
+
+  <!-- MODUL 3 -->
+  <div class="modul" id="modul3">
+    <div class="modul-header">
+      <div class="modul-label">Modul 3 von 4</div>
+      <h2>Neue Haltung zur Arbeit</h2>
+      <div class="thema">Was würde sich verändern, wenn ich aus Stärke handle?</div>
+    </div>
+    <div class="divider"></div>
+
+    <div class="text-block">
+      <p>Aus Stärke zu handeln bedeutet nicht, weniger zu tun. Es bedeutet, aus innerer Klarheit zu handeln – nicht aus Angst vor Versagen, nicht aus dem Bedürfnis nach Anerkennung.</p>
+      <p>Was wäre anders, wenn du morgen zur Arbeit gehen würdest – nicht weil du musst, sondern weil du willst?</p>
+    </div>
+
+    <div class="reflexion-block">
+      <div class="block-label">Reflexionsfrage</div>
+      <div class="question">Welcher Teil deiner Arbeit macht dir wirklich Freude – und würdest du ihn auch tun, wenn dir niemand zuguckt?</div>
+      <textarea id="r3a" placeholder="Lass den ersten Gedanken kommen..." oninput="speichern()"></textarea>
+    </div>
+
+    <div class="uebung-block">
+      <div class="block-label">Übung</div>
+      <h3>3-Tage-Verhaltensexperiment</h3>
+      <div class="zeit">3 Tage · täglich beobachten</div>
+      <p>Beobachte in den nächsten drei Tagen deine Reaktionen bei der Arbeit — und frage dich jeweils: Handle ich gerade aus Angst oder aus Stärke?</p>
+      <div class="tabelle-wrap">
+        <table>
+          <thead><tr><th>Tag</th><th>Situation</th><th>Reaktion aus Angst</th><th>Reaktion aus Stärke</th></tr></thead>
+          <tbody>
+            <tr><td>Tag 1</td><td><input id="v1a" oninput="speichern()"></td><td><input id="v1b" oninput="speichern()"></td><td><input id="v1c" oninput="speichern()"></td></tr>
+            <tr><td>Tag 2</td><td><input id="v2a" oninput="speichern()"></td><td><input id="v2b" oninput="speichern()"></td><td><input id="v2c" oninput="speichern()"></td></tr>
+            <tr><td>Tag 3</td><td><input id="v3a" oninput="speichern()"></td><td><input id="v3b" oninput="speichern()"></td><td><input id="v3c" oninput="speichern()"></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="affirmationen">
+      <div class="block-label">Affirmationen</div>
+      <ul>
+        <li>Ich handle aus Stärke – nicht aus Pflicht.</li>
+        <li>Qualität entsteht aus Freude, nicht aus Druck.</li>
+      </ul>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn-primary" onclick="modulAbschliessen(3)">Modul abschließen</button>
+      <button class="btn-secondary" onclick="speichernAlle()">Speichern</button>
+    </div>
+  </div>
+
+  <!-- MODUL 4 -->
+  <div class="modul" id="modul4">
+    <div class="modul-header">
+      <div class="modul-label">Modul 4 von 4</div>
+      <h2>Mein neues Arbeits-Selbstbild</h2>
+      <div class="thema">Wer bin ich bei der Arbeit – jenseits meiner Rollen?</div>
+    </div>
+    <div class="divider"></div>
+
+    <div class="text-block">
+      <p>Du bist mehr als deine Funktion. Mehr als dein Jobtitel, deine Aufgaben, deine Leistungen. In diesem letzten Modul schreibst du dir einen Brief – von dir an die Arbeit.</p>
+    </div>
+
+    <div class="reflexion-block">
+      <div class="block-label">Reflexionsfrage</div>
+      <div class="question">Was möchtest du deiner Arbeit sagen – was du ihr noch nie gesagt hast?</div>
+      <textarea id="r4a" placeholder="Lass den ersten Gedanken kommen..." oninput="speichern()"></textarea>
+    </div>
+
+    <div class="uebung-block">
+      <div class="block-label">Übung</div>
+      <h3>Brief an die Arbeit</h3>
+      <div class="zeit">20 Minuten · einmalig</div>
+      <ol>
+        <li>Schreib einen Brief an deine Arbeit – so persönlich, als wäre sie ein Mensch.</li>
+        <li>Was war gut zwischen euch?</li>
+        <li>Was hat dich erschöpft oder verletzt?</li>
+        <li>Was brauchst du in Zukunft von ihr?</li>
+        <li>Was bietest du ihr an – aus freier Wahl?</li>
+      </ol>
+      <textarea id="r4b" placeholder="Liebe Arbeit, ..." rows="8" oninput="speichern()"></textarea>
+    </div>
+
+    <div class="affirmationen">
+      <div class="block-label">Affirmationen</div>
+      <ul>
+        <li>Ich wähle, wie ich arbeite.</li>
+        <li>Meine Arbeit dient mir – nicht umgekehrt.</li>
+        <li>Leistung aus Freude ist nachhaltig.</li>
+      </ul>
+    </div>
+
+    <div class="abschluss-hint">
+      🌿 <strong>Dein nächster Schritt:</strong> Wenn du merkst, dass der Bereich Finanzen gerade Aufmerksamkeit verdient – der nächste Kurs heißt <strong>„Mehr Klarheit"</strong>.
+    </div>
+
+    <div class="btn-row">
+      <button class="btn-primary" onclick="modulAbschliessen(4)">Kurs abschließen ✓</button>
+      <button class="btn-secondary" onclick="speichernAlle()">Speichern</button>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  Selbstreflexions- und Coaching-Angebot. Kein Ersatz für Psychotherapie oder medizinische Beratung.<br>
+  © 2025 Tanja Sattelberg · <a href="https://veraenderungsweg.de" style="color: var(--gold);">veraenderungsweg.de</a>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+  const STORAGE_KEY = 'kurs-03-mehr-freiheit';
+  let state = { freigeschaltet: [0, 1], aktuell: 0 };
+  const FELDER = ['r1a','r1b','r2a','r2b','r3a','r4a','r4b',
+    'v1a','v1b','v1c','v2a','v2b','v2c','v3a','v3b','v3c'];
+
+  function laden() {
+    const g = localStorage.getItem(STORAGE_KEY);
+    if (g) {
+      const d = JSON.parse(g);
+      state = d.state || state;
+      Object.keys(d.felder || {}).forEach(id => { const el = document.getElementById(id); if (el) el.value = d.felder[id]; });
+    }
+    navAktualisieren();
+    showModul(state.aktuell);
+  }
+
+  function alleFelder() {
+    const r = {};
+    FELDER.forEach(id => { const el = document.getElementById(id); if (el) r[id] = el.value; });
+    return r;
+  }
+
+  function speichern() { localStorage.setItem(STORAGE_KEY, JSON.stringify({ state, felder: alleFelder() })); }
+  function speichernAlle() { speichern(); toast('Gespeichert ✓'); }
+
+  function showModul(nr) {
+    if (!state.freigeschaltet.includes(nr)) return;
+    document.querySelectorAll('.modul').forEach(m => m.classList.remove('active'));
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('modul' + nr).classList.add('active');
+    document.getElementById('nav' + nr).classList.add('active');
+    state.aktuell = nr;
+    document.getElementById('progressBar').style.width = Math.max(0, (nr / 4) * 100) + '%';
+    speichern();
+    window.scrollTo(0, 0);
+  }
+
+  function modulAbschliessen(nr) {
+    const n = nr + 1;
+    if (n <= 4 && !state.freigeschaltet.includes(n)) state.freigeschaltet.push(n);
+    speichernAlle();
+    navAktualisieren();
+    if (n <= 4) setTimeout(() => { toast('Modul ' + nr + ' abgeschlossen ✓'); showModul(n); }, 300);
+    else toast('Kurs abgeschlossen – herzlichen Glückwunsch! ✓');
+  }
+
+  function navAktualisieren() {
+    for (let i = 0; i <= 4; i++) {
+      const btn = document.getElementById('nav' + i);
+      if (!btn) continue;
+      if (state.freigeschaltet.includes(i)) { btn.classList.remove('locked'); btn.onclick = () => showModul(i); }
+      else { btn.classList.add('locked'); btn.onclick = null; }
+    }
+  }
+
+  function toast(msg) {
+    const el = document.getElementById('toast');
+    el.textContent = msg;
+    el.classList.add('show');
+    setTimeout(() => el.classList.remove('show'), 3000);
+  }
+
+  laden();
+</script>
+</body>
+</html>
