@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kurs 01 · Mehr bei mir · Mein Veränderungsweg</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8935A;
+    --cream: #F5EFE0;
+    --dark-brown: #3D2519;
+    --mid-brown: #7A4A2E;
+    --light-gold: #E8D5B0;
+    --white: #FDFAF4;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Jost', sans-serif;
+    background: var(--cream);
+    color: var(--dark-brown);
+    min-height: 100vh;
+  }
+
+  header {
+    background: var(--dark-brown);
+    color: var(--cream);
+    padding: 2rem 1.5rem 1.5rem;
+    text-align: center;
+  }
+
+  header .brand {
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+  }
+
+  header h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(1.8rem, 5vw, 2.8rem);
+    line-height: 1.2;
+    color: var(--cream);
+  }
+
+  header h1 em {
+    font-style: italic;
+    color: var(--light-gold);
+  }
+
+  header .subtitle {
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    font-size: 0.85rem;
+    color: var(--light-gold);
+    margin-top: 0.5rem;
+    letter-spacing: 0.05em;
+  }
+
+  .progress-bar-wrap {
+    background: rgba(255,255,255,0.1);
+    border-radius: 2px;
+    height: 3px;
+    margin-top: 1rem;
+    overflow: hidden;
+  }
+
+  .progress-bar {
+    height: 100%;
+    background: var(--gold);
+    transition: width 0.5s ease;
+  }
+
+  nav {
+    background: var(--dark-brown);
+    border-top: 1px solid rgba(184,147,90,0.3);
+    padding: 0 1rem;
+    display: flex;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  nav::-webkit-scrollbar { display: none; }
+
+  .nav-btn {
+    background: none;
+    border: none;
+    color: var(--light-gold);
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    padding: 0.9rem 1rem;
+    cursor: pointer;
+    white-space: nowrap;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+    opacity: 0.6;
+  }
+
+  .nav-btn.active {
+    color: var(--gold);
+    border-bottom-color: var(--gold);
+    opacity: 1;
+  }
+
+  .nav-btn.locked {
+    opacity: 0.3;
+    cursor: default;
+  }
+
+  .nav-btn:not(.locked):hover { opacity: 0.9; }
+
+  main {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 4rem;
+  }
+
+  .modul { display: none; }
+  .modul.active { display: block; }
+
+  /* WILLKOMMEN */
+  .welcome-card {
+    background: var(--dark-brown);
+    color: var(--cream);
+    border-radius: 4px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .welcome-card h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+    color: var(--light-gold);
+  }
+
+  .welcome-card p {
+    font-weight: 300;
+    line-height: 1.8;
+    font-size: 0.95rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .kernfrage {
+    border-left: 2px solid var(--gold);
+    padding: 0.75rem 1rem;
+    margin: 1.25rem 0;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.15rem;
+    color: var(--light-gold);
+    line-height: 1.5;
+  }
+
+  /* MODUL HEADER */
+  .modul-header { margin-bottom: 1.75rem; }
+
+  .modul-label {
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.4rem;
+  }
+
+  .modul-header h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    color: var(--dark-brown);
+    line-height: 1.2;
+    margin-bottom: 0.3rem;
+  }
+
+  .modul-header .thema {
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    font-size: 0.82rem;
+    color: var(--mid-brown);
+    font-style: italic;
+  }
+
+  .divider {
+    width: 40px;
+    height: 1px;
+    background: var(--gold);
+    margin: 1.25rem 0;
+  }
+
+  .text-block {
+    font-weight: 300;
+    line-height: 1.85;
+    font-size: 0.95rem;
+    color: var(--dark-brown);
+    margin-bottom: 1rem;
+  }
+
+  .text-block p { margin-bottom: 0.75rem; }
+
+  .text-block h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    font-size: 1.1rem;
+    color: var(--dark-brown);
+    margin: 1.25rem 0 0.5rem;
+  }
+
+  /* REFLEXION */
+  .reflexion-block {
+    background: var(--white);
+    border-left: 3px solid var(--gold);
+    border-radius: 0 4px 4px 0;
+    padding: 1.25rem 1.5rem;
+    margin: 1.5rem 0;
+  }
+
+  .reflexion-block .block-label {
+    font-family: 'Jost', sans-serif;
+    font-weight: 500;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.6rem;
+  }
+
+  .reflexion-block .question {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--dark-brown);
+    line-height: 1.5;
+    margin-bottom: 0.75rem;
+  }
+
+  textarea {
+    width: 100%;
+    min-height: 100px;
+    background: var(--cream);
+    border: 1px solid var(--light-gold);
+    border-radius: 3px;
+    padding: 0.75rem;
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    font-size: 0.9rem;
+    color: var(--dark-brown);
+    resize: vertical;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  textarea:focus { border-color: var(--gold); }
+
+  /* ÜBUNG */
+  .uebung-block {
+    background: var(--white);
+    border-radius: 4px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    border: 1px solid var(--light-gold);
+  }
+
+  .uebung-block .block-label {
+    font-family: 'Jost', sans-serif;
+    font-weight: 500;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--mid-brown);
+    margin-bottom: 0.4rem;
+  }
+
+  .uebung-block h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    font-size: 1.15rem;
+    color: var(--dark-brown);
+    margin-bottom: 0.4rem;
+  }
+
+  .uebung-block .zeit {
+    font-size: 0.75rem;
+    color: var(--gold);
+    font-weight: 300;
+    margin-bottom: 1rem;
+  }
+
+  .uebung-block p {
+    font-weight: 300;
+    font-size: 0.9rem;
+    line-height: 1.8;
+    color: var(--dark-brown);
+    margin-bottom: 0.6rem;
+  }
+
+  .uebung-block ol, .uebung-block ul {
+    padding-left: 1.25rem;
+    margin: 0.5rem 0 0.75rem;
+  }
+
+  .uebung-block li {
+    font-weight: 300;
+    font-size: 0.9rem;
+    line-height: 1.75;
+    color: var(--dark-brown);
+    margin-bottom: 0.3rem;
+  }
+
+  /* TABELLE */
+  .tabelle-wrap {
+    overflow-x: auto;
+    margin: 1rem 0;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+  }
+
+  th {
+    background: var(--dark-brown);
+    color: var(--cream);
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    padding: 0.6rem 0.75rem;
+    text-align: left;
+  }
+
+  td {
+    border: 1px solid var(--light-gold);
+    padding: 0.5rem 0.75rem;
+    background: var(--white);
+  }
+
+  td input {
+    width: 100%;
+    border: none;
+    background: transparent;
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    font-size: 0.85rem;
+    color: var(--dark-brown);
+    outline: none;
+  }
+
+  /* AUDIO */
+  .audio-block {
+    background: var(--dark-brown);
+    border-radius: 4px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    color: var(--cream);
+  }
+
+  .audio-block .block-label {
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+  }
+
+  .audio-block h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: 1.15rem;
+    color: var(--light-gold);
+    margin-bottom: 0.5rem;
+  }
+
+  .audio-block p {
+    font-weight: 300;
+    font-size: 0.85rem;
+    line-height: 1.7;
+    color: var(--light-gold);
+    margin-bottom: 1rem;
+    opacity: 0.85;
+  }
+
+  .audio-block audio {
+    width: 100%;
+    accent-color: var(--gold);
+  }
+
+  /* AFFIRMATIONEN */
+  .affirmationen {
+    background: var(--light-gold);
+    border-radius: 4px;
+    padding: 1.25rem 1.5rem;
+    margin: 1.5rem 0;
+  }
+
+  .affirmationen .block-label {
+    font-family: 'Jost', sans-serif;
+    font-weight: 500;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--mid-brown);
+    margin-bottom: 0.75rem;
+  }
+
+  .affirmationen ul { list-style: none; padding: 0; }
+
+  .affirmationen li {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1rem;
+    color: var(--dark-brown);
+    line-height: 1.6;
+    padding: 0.3rem 0;
+    border-bottom: 1px solid rgba(184,147,90,0.3);
+  }
+
+  .affirmationen li:last-child { border-bottom: none; }
+
+  /* ABSCHLUSS */
+  .abschluss-hint {
+    background: var(--white);
+    border-radius: 4px;
+    padding: 1.25rem 1.5rem;
+    margin: 1.5rem 0;
+    border: 1px solid var(--light-gold);
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    font-size: 0.88rem;
+    color: var(--mid-brown);
+    line-height: 1.7;
+  }
+
+  .abschluss-hint strong {
+    color: var(--dark-brown);
+    font-weight: 500;
+  }
+
+  /* BUTTONS */
+  .btn-primary {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--dark-brown);
+    font-family: 'Jost', sans-serif;
+    font-weight: 500;
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.85rem 2rem;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-top: 0.5rem;
+  }
+
+  .btn-primary:hover {
+    background: var(--mid-brown);
+    color: var(--cream);
+  }
+
+  .btn-secondary {
+    display: inline-block;
+    background: transparent;
+    color: var(--gold);
+    font-family: 'Jost', sans-serif;
+    font-weight: 400;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.75rem 1.5rem;
+    border: 1px solid var(--gold);
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-top: 0.5rem;
+  }
+
+  .btn-secondary:hover {
+    background: var(--gold);
+    color: var(--dark-brown);
+  }
+
+  .btn-row {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 1.5rem;
+    align-items: center;
+  }
+
+  /* TOAST */
+  .toast {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background: var(--dark-brown);
+    color: var(--cream);
+    font-family: 'Jost', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 300;
+    padding: 0.75rem 1.5rem;
+    border-radius: 3px;
+    border-left: 3px solid var(--gold);
+    transition: transform 0.3s ease;
+    z-index: 100;
+    white-space: nowrap;
+  }
+
+  .toast.show { transform: translateX(-50%) translateY(0); }
+
+  footer {
+    text-align: center;
+    padding: 2rem 1.5rem;
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    font-size: 0.72rem;
+    color: var(--mid-brown);
+    line-height: 1.7;
+    border-top: 1px solid var(--light-gold);
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 480px) {
+    main { padding: 1.5rem 1rem 3rem; }
+    .welcome-card { padding: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">Mein Veränderungsweg · Kurs 01</div>
+  <h1>Mehr <em>bei mir</em></h1>
+  <div class="subtitle">4 Module · Inneres Erleben · Tägliche Selbstwahrnehmung</div>
+  <div class="progress-bar-wrap">
+    <div class="progress-bar" id="progressBar" style="width: 0%"></div>
+  </div>
+</header>
+
+<nav id="nav">
+  <button class="nav-btn active" onclick="showModul(0)" id="nav0">Willkommen</button>
+  <button class="nav-btn" onclick="showModul(1)" id="nav1">Modul 1</button>
+  <button class="nav-btn locked" id="nav2">Modul 2</button>
+  <button class="nav-btn locked" id="nav3">Modul 3</button>
+  <button class="nav-btn locked" id="nav4">Modul 4</button>
+</nav>
+
+<main>
+
+  <!-- WILLKOMMEN -->
+  <div class="modul active" id="modul0">
+    <div class="welcome-card">
+      <h2>Schön, dass du hier bist.</h2>
+      <p>Viele Frauen beschreiben dasselbe: Sie funktionieren. Sie sind für andere da. Sie erledigen, was erledigt werden muss. Und irgendwann – oft schleichend, fast unbemerkt – ist die Verbindung zu dem, was sie selbst fühlen und brauchen, schwächer geworden.</p>
+      <p>Das ist kein persönliches Versagen. Es ist ein Muster, das viele kennen. Und es lässt sich verändern – nicht durch große Schritte, sondern durch kleine, tägliche Momente der Aufmerksamkeit.</p>
+      <div class="kernfrage">Was fühle ich wirklich – und wo im Körper?</div>
+      <p>Kein Druck, keine Leistung. Nur du – und ein ehrlicherer Blick auf das, was in dir wirklich passiert. Alles, was du hier schreibst, bleibt auf deinem Gerät.</p>
+    </div>
+    <div class="btn-row">
+      <button class="btn-primary" onclick="showModul(1)">Modul 1 beginnen</button>
+    </div>
+  </div>
+
+  <!-- MODUL 1 -->
+  <div class="modul" id="modul1">
+    <div class="modul-header">
+      <div class="modul-label">Modul 1 von 4</div>
+      <h2>Der erste Blick nach innen</h2>
+      <div class="thema">Was ist inneres Erleben – und warum verlieren wir den Zugang dazu?</div>
+    </div>
+    <div class="divider"></div>
+
+    <div class="text-block">
+      <p>Inneres Erleben ist alles, was in dir passiert – jenseits von dem, was du nach außen zeigst. Deine Gefühle. Deine Stimmungen. Das diffuse Unbehagen, das du nicht genau benennen kannst. Die Erschöpfung hinter der Freundlichkeit. Die leise Freude beim Morgenkaffee.</p>
+      <p>Wir alle haben diesen inneren Raum. Aber viele haben gelernt, ihn zu übersehen – weil der Alltag keine Zeit lässt, weil die eigenen Gefühle als störend erlebt wurden, oder weil Funktionieren einfacher schien als Fühlen.</p>
+
+      <h3>Drei häufige Muster</h3>
+      <p><strong>Verdrängen</strong> — „Das ist nicht so schlimm." Das Gefühl wird beiseitegeschoben, bevor es wirklich ankommen darf. Kurzfristig funktioniert das. Langfristig kostet es viel Energie.</p>
+      <p><strong>Rationalisieren</strong> — „Ich bin müde, weil ich viel gearbeitet habe." Stimmt vielleicht. Aber manchmal ist die Erschöpfung ein Signal von etwas, das tiefer liegt.</p>
+      <p><strong>Ablenken</strong> — Scrollen, Essen, Beschäftigung. Nicht aus Schwäche – sondern weil der innere Raum sich manchmal bedrohlich anfühlt.</p>
+      <p>Keines dieser Muster ist falsch. Sie alle haben uns einmal geholfen. Es geht nicht darum, sie zu verurteilen – sondern sie zu erkennen.</p>
+    </div>
+
+    <div class="reflexion-block">
+      <div class="block-label">Reflexionsfrage</div>
+      <div class="question">Welches dieser drei Muster erkennst du bei dir – und in welchen Situationen taucht es besonders auf?</div>
+      <textarea id="r1a" placeholder="Lass den ersten Gedanken kommen..." oninput="speichern('r1a')"></textarea>
+    </div>
+
+    <div class="audio-block">
+      <div class="block-label">Geführte Übung · Audio</div>
+      <h3>Körper-Scan · ca. 8 Minuten</h3>
+      <p>Setz oder leg dich bequem hin. Diese Übung begleitet dich durch deinen Körper – von den Füßen bis zum Kopf. Lass dich führen.</p>
+      <audio controls>
+        <source src="koerperscan-modul1.mp4" type="video/mp4">
+      </audio>
+    </div>
+
+    <div class="uebung-block">
+      <div class="block-label">Übung</div>
+      <h3>Das Emotions-Barometer</h3>
+      <div class="zeit">2 Minuten · 3× täglich · eine Woche lang</div>
+      <p>Das Emotions-Barometer fragt dich dreimal täglich nach deinem inneren Zustand – nicht um ihn zu bewerten, sondern um ihn wahrzunehmen.</p>
+      <ol>
+        <li>Halte kurz inne. Lass den Alltag einen Moment pausieren.</li>
+        <li>Frage dich: Was ist gerade da? Nicht was sein sollte – was wirklich da ist.</li>
+        <li>Benenne es in einem Wort oder einem Satz: Unruhig. Erschöpft. Leicht. Irgendwie leer.</li>
+        <li>Spüre kurz nach: Wo im Körper spürst du das? Brust, Bauch, Schultern?</li>
+      </ol>
+      <div class="tabelle-wrap">
+        <table>
+          <thead>
+            <tr><th>Tag</th><th>Morgens</th><th>Mittags</th><th>Abends</th></tr>
+          </thead>
+          <tbody id="barometer">
+            <tr><td>Montag</td><td><input id="b1m" oninput="speichern('b1m')"></td><td><input id="b1mi" oninput="speichern('b1mi')"></td><td><input id="b1a" oninput="speichern('b1a')"></td></tr>
+            <tr><td>Dienstag</td><td><input id="b2m" oninput="speichern('b2m')"></td><td><input id="b2mi" oninput="speichern('b2mi')"></td><td><input id="b2a" oninput="speichern('b2a')"></td></tr>
+            <tr><td>Mittwoch</td><td><input id="b3m" oninput="speichern('b3m')"></td><td><input id="b3mi" oninput="speichern('b3mi')"></td><td><input id="b3a" oninput="speichern('b3a')"></td></tr>
+            <tr><td>Donnerstag</td><td><input id="b4m" oninput="speichern('b4m')"></td><td><input id="b4mi" oninput="speichern('b4mi')"></td><td><input id="b4a" oninput="speichern('b4a')"></td></tr>
+            <tr><td>Freitag</td><td><input id="b5m" oninput="speichern('b5m')"></td><td><input id="b5mi" oninput="speichern('b5mi')"></td><td><input id="b5a" oninput="speichern('b5a')"></td></tr>
+            <tr><td>Samstag</td><td><input id="b6m" oninput="speichern('b6m')"></td><td><input id="b6mi" oninput="speichern('b6mi')"></td><td><input id="b6a" oninput="speichern('b6a')"></td></tr>
+            <tr><td>Sonntag</td><td><input id="b7m" oninput="speichern('b7m')"></td><td><input id="b7mi" oninput="speichern('b7mi')"></td><td><input id="b7a" oninput="speichern('b7a')"></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="affirmationen">
+      <div class="block-label">Affirmationen</div>
+      <ul>
+        <li>Meine Gefühle sind keine Schwäche – sie sind Informationen.</li>
+        <li>Ich darf wahrnehmen, was wirklich da ist.</li>
+      </ul>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn-primary" onclick="modulAbschliessen(1)">Modul abschließen</button>
+      <button class="btn-secondary" onclick="speichernAlle()">Speichern</button>
+    </div>
+  </div>
+
+  <!-- MODUL 2 -->
+  <div class="modul" id="modul2">
+    <div class="modul-header">
+      <div class="modul-label">Modul 2 von 4</div>
+      <h2>Gefühle benennen</h2>
+      <div class="thema">Von einem diffusen Unwohlsein zu konkreten Gefühlen</div>
+    </div>
+    <div class="divider"></div>
+
+    <div class="text-block">
+      <p>Viele Menschen kennen das Gefühl: Da ist etwas. Irgendwie. Aber ich weiß nicht genau, was. Ein diffuses Unwohlsein, eine innere Unruhe, eine Schwere – ohne klare Form.</p>
+      <p>Wenn wir einem Gefühl einen Namen geben, passiert etwas Erstaunliches: Es verliert einen Teil seiner Bedrohlichkeit. Das Benennen von Gefühlen beruhigt das Nervensystem – das ist wissenschaftlich gut belegt.</p>
+
+      <h3>Körpersignale als erste Sprache</h3>
+      <p>Bevor wir ein Gefühl benennen können, hilft es, den Körper zu befragen:</p>
+      <p>Wo im Körper spüre ich etwas? Brust, Bauch, Kehle, Schultern? Wie fühlt es sich an – eng, weit, schwer, leicht, warm, kalt? Verändert es sich, wenn ich einen Moment lang bei ihm bleibe?</p>
+
+      <h3>Das Gefühlsrad</h3>
+      <p>In der Mitte stehen vier Grundgefühle – Freude, Trauer, Wut, Angst. Nach außen hin werden sie differenzierter. Aus „Trauer" wird „Enttäuschung", „Einsamkeit", „Sehnsucht", „Erschöpfung". Schau einmal auf dein Barometer aus Woche 1: Welche konkreteren Gefühle könnten dahinterstecken?</p>
+    </div>
+
+    <div class="reflexion-block">
+      <div class="block-label">Reflexionsfrage</div>
+      <div class="question">Nimm ein Gefühl aus deiner Barometer-Liste und frag dich: Was steckt noch darunter? Und wo genau im Körper sitzt es?</div>
+      <textarea id="r2a" placeholder="Lass den ersten Gedanken kommen..." oninput="speichern('r2a')"></textarea>
+    </div>
+
+    <div class="uebung-block">
+      <div class="block-label">Übung</div>
+      <h3>Gefühlstagebuch</h3>
+      <div class="zeit">5 Minuten · täglich morgens · eine Woche lang</div>
+      <ol>
+        <li>Setz dich kurz hin. Einen Atemzug tief.</li>
+        <li>Frage dich: Was ist gerade in mir los?</li>
+        <li>Schreib es auf – unkontrolliert, unkorrigiert.</li>
+        <li>Benenne dann: Was ist das für ein Gefühl?</li>
+        <li>Wo spürst du es im Körper?</li>
+      </ol>
+      <div class="tabelle-wrap">
+        <table>
+          <thead>
+            <tr><th>Tag</th><th>Was ist da?</th><th>Gefühl (benannt)</th><th>Wo im Körper?</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Mo</td><td><input id="g1a" oninput="speichern('g1a')"></td><td><input id="g1b" oninput="speichern('g1b')"></td><td><input id="g1c" oninput="speichern('g1c')"></td></tr>
+            <tr><td>Di</td><td><input id="g2a" oninput="speichern('g2a')"></td><td><input id="g2b" oninput="speichern('g2b')"></td><td><input id="g2c" oninput="speichern('g2c')"></td></tr>
+            <tr><td>Mi</td><td><input id="g3a" oninput="speichern('g3a')"></td><td><input id="g3b" oninput="speichern('g3b')"></td><td><input id="g3c" oninput="speichern('g3c')"></td></tr>
+            <tr><td>Do</td><td><input id="g4a" oninput="speichern('g4a')"></td><td><input id="g4b" oninput="speichern('g4b')"></td><td><input id="g4c" oninput="speichern('g4c')"></td></tr>
+            <tr><td>Fr</td><td><input id="g5a" oninput="speichern('g5a')"></td><td><input id="g5b" oninput="speichern('g5b')"></td><td><input id="g5c" oninput="speichern('g5c')"></td></tr>
+            <tr><td>Sa</td><td><input id="g6a" oninput="speichern('g6a')"></td><td><input id="g6b" oninput="speichern('g6b')"></td><td><input id="g6c" oninput="speichern('g6c')"></td></tr>
+            <tr><td>So</td><td><input id="g7a" oninput="speichern('g7a')"></td><td><input id="g7b" oninput="speichern('g7b')"></td><td><input id="g7c" oninput="speichern('g7c')"></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="affirmationen">
+      <div class="block-label">Affirmationen</div>
+      <ul>
+        <li>Meine Gefühle haben Namen – und ich darf sie finden.</li>
+        <li>Fühlen ist eine Fähigkeit, die ich täglich üben darf.</li>
+      </ul>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn-primary" onclick="modulAbschliessen(2)">Modul abschließen</button>
+      <button class="btn-secondary" onclick="speichernAlle()">Speichern</button>
+    </div>
+  </div>
+
+  <!-- MODUL 3 -->
+  <div class="modul" id="modul3">
+    <div class="modul-header">
+      <div class="modul-label">Modul 3 von 4</div>
+      <h2>Was deine Gefühle dir sagen</h2>
+      <div class="thema">Gefühle als Informationsquelle – nicht als Problem</div>
+    </div>
+    <div class="divider"></div>
+
+    <div class="text-block">
+      <p>Wir haben gelernt, bestimmte Gefühle zu vermeiden. Wut ist gefährlich. Trauer ist schwach. Angst ist peinlich. Aber Gefühle sind keine Fehler im System. Sie sind das System.</p>
+      <p><strong>Wut</strong> sagt: Hier wird etwas verletzt, das mir wichtig ist.<br>
+      <strong>Trauer</strong> sagt: Ich habe etwas verloren, das Bedeutung hatte.<br>
+      <strong>Angst</strong> sagt: Ich brauche gerade mehr Sicherheit oder Orientierung.<br>
+      <strong>Freude</strong> sagt: Hier bin ich ganz bei mir.</p>
+      <p>Keines davon ist falsch. Keines muss sofort weggehen.</p>
+    </div>
+
+    <div class="uebung-block">
+      <div class="block-label">Übung</div>
+      <h3>Innerer Dialog mit einem Gefühl</h3>
+      <div class="zeit">10–15 Minuten · einmalig diese Woche</div>
+      <ol>
+        <li>Wähle ein Gefühl, das in letzter Zeit oft da war.</li>
+        <li>Setz dich ruhig hin und schließe kurz die Augen.</li>
+        <li>Stell dir vor, das Gefühl sitzt dir gegenüber. Wie sieht es aus?</li>
+        <li>Frage es: Was willst du mir sagen?</li>
+        <li>Schreib auf, was kommt – ohne zu zensieren.</li>
+        <li>Frage weiter: Was brauchst du von mir?</li>
+        <li>Schreib die Antwort auf. Dann: Danke. Ich habe dich gehört.</li>
+      </ol>
+      <p>Das Gefühl, das ich befrage:</p>
+      <textarea id="r3a" placeholder="..." rows="2" oninput="speichern('r3a')"></textarea>
+      <p style="margin-top:0.75rem;">Was es mir sagen will:</p>
+      <textarea id="r3b" placeholder="..." oninput="speichern('r3b')"></textarea>
+      <p style="margin-top:0.75rem;">Was es von mir braucht:</p>
+      <textarea id="r3c" placeholder="..." oninput="speichern('r3c')"></textarea>
+    </div>
+
+    <div class="reflexion-block">
+      <div class="block-label">Reflexionsfrage</div>
+      <div class="question">Was hat dich am meisten überrascht, als du das Gefühl befragt hast?</div>
+      <textarea id="r3d" placeholder="Lass den ersten Gedanken kommen..." oninput="speichern('r3d')"></textarea>
+    </div>
+
+    <div class="affirmationen">
+      <div class="block-label">Affirmationen</div>
+      <ul>
+        <li>Ich höre hin – auch wenn das, was ich höre, unbequem ist.</li>
+        <li>Meine Gefühle führen mich zu dem, was mir wirklich wichtig ist.</li>
+      </ul>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn-primary" onclick="modulAbschliessen(3)">Modul abschließen</button>
+      <button class="btn-secondary" onclick="speichernAlle()">Speichern</button>
+    </div>
+  </div>
+
+  <!-- MODUL 4 -->
+  <div class="modul" id="modul4">
+    <div class="modul-header">
+      <div class="modul-label">Modul 4 von 4</div>
+      <h2>Fühlen als tägliche Praxis</h2>
+      <div class="thema">Integration – und ein Rückblick</div>
+    </div>
+    <div class="divider"></div>
+
+    <div class="text-block">
+      <p>Vier Wochen lang hast du hingeschaut. Du hast dein inneres Erleben beobachtet, Gefühle benannt, einen Dialog geführt. Das ist keine Kleinigkeit – auch wenn es von außen unspektakulär aussieht.</p>
+      <p>Jetzt geht es darum, aus dem Kurs eine Haltung zu machen. Eine Haltung der freundlichen Aufmerksamkeit sich selbst gegenüber.</p>
+
+      <h3>Dein persönliches Wahrnehmungsritual</h3>
+      <p>Ein Ritual ist keine Routine. Eine Routine macht man, weil man es machen muss. Ein Ritual macht man, weil es etwas in einem hält. Überlege: Welcher Moment im Tag gehört schon mir – und was soll täglich dazugehören?</p>
+    </div>
+
+    <div class="uebung-block">
+      <div class="block-label">Mein Ritual</div>
+      <h3>So verankere ich meine neue Praxis</h3>
+      <p>Mein Zeitpunkt:</p>
+      <textarea id="r4a" placeholder="z.B. morgens nach dem Aufwachen..." rows="2" oninput="speichern('r4a')"></textarea>
+      <p style="margin-top:0.75rem;">Mein Ort:</p>
+      <textarea id="r4b" placeholder="..." rows="2" oninput="speichern('r4b')"></textarea>
+      <p style="margin-top:0.75rem;">Was ich tue:</p>
+      <textarea id="r4c" placeholder="..." oninput="speichern('r4c')"></textarea>
+    </div>
+
+    <div class="reflexion-block">
+      <div class="block-label">Rückblick</div>
+      <div class="question">Was nimmst du aus diesen vier Wochen mit? Was hat sich verändert – vielleicht leise, vielleicht kaum merklich?</div>
+      <textarea id="r4d" placeholder="Lass den ersten Gedanken kommen..." oninput="speichern('r4d')"></textarea>
+    </div>
+
+    <div class="reflexion-block">
+      <div class="block-label">Rückblick</div>
+      <div class="question">Welcher Moment aus dem Kurs war der wichtigste für dich – und warum?</div>
+      <textarea id="r4e" placeholder="Lass den ersten Gedanken kommen..." oninput="speichern('r4e')"></textarea>
+    </div>
+
+    <div class="affirmationen">
+      <div class="block-label">Affirmationen</div>
+      <ul>
+        <li>Fühlen ist eine Fähigkeit, die ich täglich üben darf.</li>
+        <li>Ich bin gut genug, um bei mir selbst zu sein.</li>
+        <li>Kleine Momente der Aufmerksamkeit verändern alles.</li>
+      </ul>
+    </div>
+
+    <div class="abschluss-hint">
+      🌿 <strong>Dein nächster Schritt:</strong> Wenn du merkst, dass der Bereich Beziehungen gerade Aufmerksamkeit verdient – der nächste Kurs heißt <strong>„Mehr ich"</strong>. Er begleitet dich vom automatischen Ja zum bewussten Nein.
+    </div>
+
+    <div class="btn-row">
+      <button class="btn-primary" onclick="modulAbschliessen(4)">Kurs abschließen ✓</button>
+      <button class="btn-secondary" onclick="speichernAlle()">Speichern</button>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  Selbstreflexions- und Coaching-Angebot. Kein Ersatz für Psychotherapie oder medizinische Beratung.<br>
+  Bei psychischen Erkrankungen wende dich bitte an eine Fachperson.<br>
+  © 2025 Tanja Sattelberg · <a href="https://veraenderungsweg.de" style="color: var(--gold);">veraenderungsweg.de</a>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+  const STORAGE_KEY = 'kurs-01-mehr-bei-mir';
+  let state = { freigeschaltet: [0, 1], aktuell: 0 };
+
+  const FELDER = ['r1a','r2a','r3a','r3b','r3c','r3d','r4a','r4b','r4c','r4d','r4e',
+    'b1m','b1mi','b1a','b2m','b2mi','b2a','b3m','b3mi','b3a','b4m','b4mi','b4a',
+    'b5m','b5mi','b5a','b6m','b6mi','b6a','b7m','b7mi','b7a',
+    'g1a','g1b','g1c','g2a','g2b','g2c','g3a','g3b','g3c','g4a','g4b','g4c',
+    'g5a','g5b','g5c','g6a','g6b','g6c','g7a','g7b','g7c'];
+
+  function laden() {
+    const gespeichert = localStorage.getItem(STORAGE_KEY);
+    if (gespeichert) {
+      const data = JSON.parse(gespeichert);
+      state = data.state || state;
+      const felder = data.felder || {};
+      Object.keys(felder).forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.value = felder[id];
+      });
+    }
+    navAktualisieren();
+    showModul(state.aktuell);
+  }
+
+  function alleFelder() {
+    const result = {};
+    FELDER.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) result[id] = el.value;
+    });
+    return result;
+  }
+
+  function speichern(id) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({ state, felder: alleFelder() }));
+  }
+
+  function speichernAlle() {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({ state, felder: alleFelder() }));
+    toast('Gespeichert ✓');
+  }
+
+  function showModul(nr) {
+    if (!state.freigeschaltet.includes(nr)) return;
+    document.querySelectorAll('.modul').forEach(m => m.classList.remove('active'));
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('modul' + nr).classList.add('active');
+    document.getElementById('nav' + nr).classList.add('active');
+    state.aktuell = nr;
+    const prozent = Math.max(0, (nr / 4) * 100);
+    document.getElementById('progressBar').style.width = prozent + '%';
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({ state, felder: alleFelder() }));
+    window.scrollTo(0, 0);
+  }
+
+  function modulAbschliessen(nr) {
+    const naechste = nr + 1;
+    if (naechste <= 4 && !state.freigeschaltet.includes(naechste)) {
+      state.freigeschaltet.push(naechste);
+    }
+    speichernAlle();
+    navAktualisieren();
+    if (naechste <= 4) {
+      setTimeout(() => {
+        toast('Modul ' + nr + ' abgeschlossen – Modul ' + naechste + ' ist jetzt freigeschaltet ✓');
+        showModul(naechste);
+      }, 300);
+    } else {
+      toast('Kurs abgeschlossen – herzlichen Glückwunsch! ✓');
+    }
+  }
+
+  function navAktualisieren() {
+    for (let i = 0; i <= 4; i++) {
+      const btn = document.getElementById('nav' + i);
+      if (!btn) continue;
+      if (state.freigeschaltet.includes(i)) {
+        btn.classList.remove('locked');
+        btn.onclick = () => showModul(i);
+      } else {
+        btn.classList.add('locked');
+        btn.onclick = null;
+      }
+    }
+  }
+
+  function toast(msg) {
+    const el = document.getElementById('toast');
+    el.textContent = msg;
+    el.classList.add('show');
+    setTimeout(() => el.classList.remove('show'), 3000);
+  }
+
+  laden();
+</script>
+
+</body>
+</html>
