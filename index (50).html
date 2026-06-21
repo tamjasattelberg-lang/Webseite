@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<!--
+  ============================================================
+  © 2025 Tanja Sattelberg · Systemische Beraterin & Coach
+  Alle Rechte vorbehalten · veraenderungsweg.de
+  Kurs 05b – Rauchfrei · Körper Vertiefung · 6 Wochen
+  ============================================================
+-->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#F5F0EA">
+<title>Kurs 05b · Rauchfrei · Tanja Sattelberg</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --bg:#FAF8F4;--warm:#F5F0EA;--cream:#F0EBE3;
+  --text:#3A3530;--soft:#7A7068;--muted:#B0A898;
+  --border:#E0D8CE;
+  /* Rauchfrei-Akzent: warmes Blaugrün statt Rosa */
+  --accent:#5B9EA0;--accent-mid:#8EC4C6;--accent-bg:#EEF7F7;
+  --accent-dark:#3D7A7C;
+}
+body{font-family:'Jost',sans-serif;background:var(--bg);color:var(--text);font-size:14px;font-weight:300;line-height:1.65;min-height:100vh;}
+h1,h2,h3,h4{font-family:'Cormorant Garamond',serif;font-weight:500;}
+h2{font-size:1.4rem;margin-bottom:.4rem;}
+h3{font-size:1.1rem;margin-bottom:.3rem;}
+p{line-height:1.7;}
+a{color:var(--accent);text-decoration:none;}
+
+/* ── Header ── */
+.header{background:var(--warm);border-bottom:1px solid var(--border);padding:1.4rem 1.5rem 1.1rem;text-align:center;}
+.brand{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:.4rem;}
+.header h1{font-size:1.75rem;font-weight:400;font-style:italic;line-height:1.15;margin-bottom:.25rem;}
+.tagline{font-size:12px;letter-spacing:.08em;color:var(--soft);}
+
+/* ── Disclaimer ── */
+.disclaimer{background:#FFF8F0;border-bottom:1px solid #E8D8C0;padding:.6rem 1.5rem;text-align:center;}
+.disclaimer p{font-size:11px;color:var(--soft);max-width:640px;margin:0 auto;line-height:1.55;}
+.disclaimer strong{color:var(--text);font-weight:500;}
+
+/* ── Progress ── */
+.progress-bar-wrap{background:var(--warm);border-bottom:1px solid var(--border);padding:.7rem 1.5rem;}
+.progress-label{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:.4rem;display:flex;justify-content:space-between;}
+.progress-track{height:4px;background:var(--border);border-radius:2px;overflow:hidden;}
+.progress-fill{height:100%;background:linear-gradient(to right,var(--accent-mid),var(--accent));border-radius:2px;transition:width .6s ease;}
+
+/* ── Nav ── */
+.nav{display:flex;gap:0;border-bottom:1px solid var(--border);background:var(--warm);overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
+.nav::-webkit-scrollbar{display:none;}
+.nav-btn{font-family:'Jost',sans-serif;font-size:11px;font-weight:400;letter-spacing:.06em;padding:11px 16px;border:none;background:transparent;color:var(--soft);cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;transition:all .2s;flex-shrink:0;position:relative;}
+.nav-btn.active{color:var(--accent);border-bottom-color:var(--accent);background:var(--accent-bg);}
+.nav-btn.locked{color:var(--muted);cursor:default;}
+.nav-btn .lock-icon{font-size:9px;position:absolute;top:6px;right:6px;opacity:.6;}
+
+/* ── Main ── */
+.main{max-width:720px;margin:0 auto;padding:1.5rem 1rem 4rem;}
+.panel{display:none;}
+.panel.active{display:block;}
+
+/* ── Cards ── */
+.card{background:#fff;border:1px solid var(--border);border-radius:14px;padding:1.3rem 1.4rem;margin-bottom:1rem;}
+.card-accent{background:var(--accent-bg);border-color:var(--accent-mid);}
+
+/* ── Modul-Header ── */
+.modul-eyebrow{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:.4rem;}
+.modul-week{font-size:11px;color:var(--muted);margin-bottom:1rem;}
+.kernfrage{background:var(--warm);border-left:3px solid var(--accent-mid);border-radius:0 8px 8px 0;padding:.9rem 1.1rem;margin:1rem 0;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.05rem;color:var(--text);line-height:1.55;}
+
+/* ── Section-Titel ── */
+.sec-title{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:1.2rem 0 .5rem;}
+
+/* ── Intro-Box ── */
+.intro-box{font-size:13px;color:var(--soft);line-height:1.7;padding:1rem 1.2rem;background:var(--cream);border-radius:10px;border-left:2px solid var(--accent-mid);}
+
+/* ── Reflexion ── */
+.q-item{margin-bottom:.9rem;}
+.q-item label{font-size:13px;color:var(--text);display:block;margin-bottom:5px;line-height:1.5;}
+.textarea-wrap{position:relative;}
+textarea{width:100%;font-family:'Jost',sans-serif;font-size:13px;font-weight:300;color:var(--text);background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:10px 40px 10px 12px;resize:vertical;min-height:72px;line-height:1.6;transition:border .2s;}
+textarea:focus{outline:none;border-color:var(--accent-mid);}
+.mic-btn{position:absolute;bottom:8px;right:8px;width:28px;height:28px;border-radius:50%;border:1px solid var(--border);background:var(--bg);color:var(--soft);font-size:13px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;}
+.mic-btn:hover{border-color:var(--accent-mid);color:var(--accent);}
+.mic-btn.recording{background:var(--accent);color:#fff;border-color:var(--accent);animation:pulse-mic .6s infinite;}
+@keyframes pulse-mic{0%,100%{transform:scale(1);}50%{transform:scale(1.1);}}
+
+/* ── Affirmationen ── */
+.affirmation-box{display:flex;flex-direction:column;gap:6px;margin-top:.8rem;}
+.affirmation{font-family:'Cormorant Garamond',serif;font-size:1rem;font-style:italic;color:var(--text);padding:8px 12px;background:var(--accent-bg);border-radius:8px;line-height:1.5;border-left:2px solid var(--accent-mid);}
+
+/* ── Tabelle ── */
+.uebung-table{width:100%;border-collapse:collapse;font-size:12px;margin:.5rem 0;}
+.uebung-table th{background:var(--cream);color:var(--soft);font-weight:400;letter-spacing:.05em;padding:7px 10px;text-align:left;border-bottom:1px solid var(--border);}
+.uebung-table td{padding:7px 10px;border-bottom:1px solid var(--border);color:var(--soft);font-size:12px;}
+.uebung-table tr:last-child td{border-bottom:none;}
+
+/* ── Atemtechniken ── */
+.atem-card{background:var(--cream);border-radius:10px;padding:1rem 1.2rem;margin-bottom:.7rem;}
+.atem-name{font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:500;color:var(--text);margin-bottom:.3rem;}
+.atem-steps{display:flex;gap:.5rem;flex-wrap:wrap;margin:.4rem 0;}
+.atem-step{background:var(--accent-bg);border:1px solid var(--accent-mid);border-radius:6px;padding:4px 10px;font-size:11px;color:var(--accent-dark);}
+.atem-select{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--soft);margin-top:.4rem;cursor:pointer;}
+.atem-select input[type=radio]{accent-color:var(--accent);}
+
+/* ── Startplan ── */
+.plan-item{display:flex;gap:.8rem;align-items:flex-start;padding:.8rem 0;border-bottom:1px solid var(--border);}
+.plan-item:last-child{border-bottom:none;}
+.plan-num{width:24px;height:24px;border-radius:50%;background:var(--accent);color:#fff;font-size:11px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;}
+.plan-label{font-size:13px;color:var(--text);flex:1;}
+.plan-label small{display:block;color:var(--muted);font-size:11px;margin-top:2px;}
+
+/* ── Langzeit-Plan ── */
+.langzeit-frage{background:var(--warm);border-radius:10px;padding:.9rem 1.1rem;margin-bottom:.6rem;}
+.langzeit-frage .frage-text{font-size:13px;color:var(--text);margin-bottom:.5rem;}
+
+/* ── Fortschritt-Modul ── */
+.modul-complete-btn{width:100%;font-family:'Jost',sans-serif;font-size:13px;font-weight:400;letter-spacing:.08em;padding:11px 20px;border-radius:8px;border:1px solid var(--accent-mid);background:var(--accent-bg);color:var(--accent);cursor:pointer;transition:all .2s;margin-top:.5rem;}
+.modul-complete-btn:hover{background:var(--accent);color:#fff;border-color:var(--accent);}
+.modul-complete-btn.done{background:var(--accent);color:#fff;border-color:var(--accent);opacity:.8;cursor:default;}
+
+/* ── Welcome ── */
+.welcome-hero{text-align:center;padding:2rem 1rem 1.5rem;}
+.welcome-hero h2{font-size:1.9rem;line-height:1.2;margin-bottom:.7rem;}
+.welcome-hero p{font-size:13px;color:var(--soft);max-width:480px;margin:0 auto 1rem;line-height:1.75;}
+.kurs-info{display:flex;gap:.5rem;justify-content:center;flex-wrap:wrap;margin:.8rem 0;}
+.kurs-badge{background:var(--cream);border:1px solid var(--border);border-radius:20px;padding:5px 14px;font-size:11px;color:var(--soft);letter-spacing:.05em;}
+
+/* ── Buttons ── */
+.btn-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:.8rem;}
+.btn{font-family:'Jost',sans-serif;font-size:12px;font-weight:400;letter-spacing:.06em;padding:8px 18px;border-radius:8px;border:1px solid var(--border);background:transparent;color:var(--text);cursor:pointer;transition:all .2s;}
+.btn:hover{background:var(--cream);border-color:var(--accent-mid);color:var(--accent);}
+.btn.primary{background:var(--accent);color:#fff;border-color:var(--accent);}
+.btn.primary:hover{background:var(--accent-dark);}
+
+/* ── Locked-State ── */
+.locked-card{text-align:center;padding:2rem 1.5rem;color:var(--muted);}
+.locked-card .lock-big{font-size:2rem;margin-bottom:.7rem;}
+.locked-card p{font-size:13px;line-height:1.7;}
+
+/* ── Footer ── */
+.site-footer{background:var(--warm);border-top:1px solid var(--border);padding:.9rem 1.5rem;text-align:center;font-size:11px;color:var(--muted);line-height:1.7;}
+
+/* ── Speak-Buttons ── */
+.speak-btn{display:inline-flex;align-items:center;gap:3px;font-family:'Jost',sans-serif;font-size:10px;padding:2px 7px 2px 5px;border-radius:12px;border:1px solid var(--border);background:var(--bg);color:var(--muted);cursor:pointer;transition:all .2s;white-space:nowrap;vertical-align:middle;margin-left:6px;flex-shrink:0;}
+.speak-btn:hover{border-color:var(--accent-mid);color:var(--accent);background:var(--accent-bg);}
+.speak-btn.active{border-color:var(--accent);color:var(--accent);background:var(--accent-bg);animation:speak-blink .9s ease-in-out infinite;}
+@keyframes speak-blink{0%,100%{box-shadow:0 0 0 0 rgba(91,158,160,0);}50%{box-shadow:0 0 0 4px rgba(91,158,160,.2);}}
+.speaking-highlight{outline:2px solid var(--accent-mid);border-radius:8px;animation:hl-blink 1s ease-in-out infinite;}
+@keyframes hl-blink{0%,100%{outline-color:rgba(91,158,160,.3);}50%{outline-color:rgba(91,158,160,.8);}}
+
+/* ── Voice-Leiste ── */
+.voice-bar{display:flex;align-items:center;gap:8px;background:var(--warm);border-bottom:2px solid var(--accent-mid);padding:9px 1.5rem;flex-wrap:wrap;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.05);}
+.voice-bar-label{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);flex-shrink:0;}
+.voice-btn{display:inline-flex;align-items:center;gap:5px;font-family:'Jost',sans-serif;font-size:11px;font-weight:400;padding:5px 12px;border-radius:20px;border:1px solid var(--border);background:transparent;color:var(--soft);cursor:pointer;transition:all .2s;white-space:nowrap;}
+.voice-btn:hover{border-color:var(--accent-mid);color:var(--accent);background:var(--accent-bg);}
+.voice-btn.speaking{background:var(--accent);color:#fff;border-color:var(--accent);}
+#btn-stop-speech{opacity:.35;pointer-events:none;}
+#btn-stop-speech.ready{opacity:1;pointer-events:auto;}
+.voice-speed{font-family:'Jost',sans-serif;font-size:11px;color:var(--soft);display:flex;align-items:center;gap:5px;margin-left:auto;}
+.voice-speed select{font-family:'Jost',sans-serif;font-size:11px;padding:3px 5px;border:1px solid var(--border);border-radius:6px;background:var(--bg);color:var(--text);cursor:pointer;}
+#voice-status{font-size:10px;color:var(--muted);font-style:italic;flex-basis:100%;margin-top:1px;display:none;}
+#voice-status.visible{display:block;}
+
+@media(max-width:560px){
+  .kurs-info{gap:.3rem;}
+  .main{padding:1rem .75rem 3rem;}
+}
+@media print{
+  .voice-bar,.nav,.btn-row,.disclaimer,.progress-bar-wrap,.site-footer{display:none!important;}
+  .panel{display:block!important;}
+  .card{page-break-inside:avoid;border:1px solid #ddd;}
+  body{background:white;}
+}
+
+/* Update-Banner */
+#update-banner {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 40px);
+  max-width: 480px;
+  background: #fff;
+  border: 1.5px solid #e0d0b0;
+  border-radius: 16px;
+  padding: 16px 20px;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  box-shadow: 0 8px 32px rgba(139,105,20,0.15);
+  z-index: 9999;
+  animation: slideUp 0.4s ease;
+}
+@keyframes slideUp {
+  from { opacity:0; transform:translateX(-50%) translateY(20px); }
+  to   { opacity:1; transform:translateX(-50%) translateY(0); }
+}
+#update-banner .bi { flex-shrink:0; width:40px; height:40px; }
+#update-banner .bt { flex:1; }
+#update-banner .bt strong {
+  display:block; font-family:'Cormorant Garamond',serif;
+  font-size:1rem; color:#3a2e24; margin-bottom:3px;
+}
+#update-banner .bt span { font-size:0.82rem; color:#7a6a5a; line-height:1.5; }
+#update-banner .bc {
+  flex-shrink:0; background:#f5e9d4; border:none;
+  border-radius:50%; width:28px; height:28px;
+  font-size:1.1rem; color:#8B6914; cursor:pointer;
+  display:flex; align-items:center; justify-content:center;
+}
+</style>
+</head>
+<body>
+
+<div class="header" role="banner">
+  <div class="brand">Tanja Sattelberg · Mein Veränderungsweg</div>
+  <h1>Endlich Rauchfrei</h1>
+  <div class="tagline">Kurs 05b · Körper Vertiefung · 6 Wochen</div>
+</div>
+
+<div class="disclaimer">
+  <p><strong>Coaching- & Selbstreflexionsangebot – kein medizinisches Angebot.</strong> Dieser Kurs ersetzt keine ärztliche Beratung oder medizinische Behandlung. Bei gesundheitlichen Beschwerden wende dich an eine Ärztin oder einen Arzt.</p>
+</div>
+
+<div class="progress-bar-wrap" aria-label="Kursfortschritt">
+  <div class="progress-label">
+    <span>Dein Fortschritt</span>
+    <span id="progress-text">0 von 6 Modulen</span>
+  </div>
+  <div class="progress-track"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
+</div>
+
+<!-- VOICE-LEISTE -->
+<div class="voice-bar" role="toolbar" aria-label="Vorlesefunktion">
+  <span class="voice-bar-label" aria-hidden="true">🔊</span>
+  <button class="voice-btn" id="btn-read-page" onclick="readCurrentPage()" aria-label="Seite vorlesen" title="Vorlesen (V)">▶ Vorlesen</button>
+  <button class="voice-btn" id="btn-stop-speech" onclick="stopSpeech()" aria-label="Stoppen" title="Stoppen (Esc)">⏹ Stopp</button>
+  <button class="voice-btn" id="btn-mic-global" onclick="toggleGlobalMic()" aria-label="Diktieren">🎙 Diktieren</button>
+  <div class="voice-speed">
+    <label for="voice-speed">Tempo:</label>
+    <select id="voice-speed" onchange="updateSpeed()">
+      <option value="0.8">Langsam</option>
+      <option value="1.0" selected>Normal</option>
+      <option value="1.2">Schnell</option>
+    </select>
+  </div>
+  <span class="voice-bar-label" style="font-size:9px;opacity:.55;" aria-label="Tastaturkürzel">V · Esc</span>
+  <div id="voice-status" role="status" aria-live="polite"></div>
+</div>
+
+<nav class="nav" role="tablist" aria-label="Kursmodule" id="nav"></nav>
+
+<div class="main" id="hauptinhalt">
+
+<!-- WILLKOMMEN -->
+<div class="panel active" id="panel-welcome" role="tabpanel">
+  <div class="card">
+    <div class="welcome-hero">
+      <div class="modul-eyebrow">Kurs 05b · Körper Vertiefung</div>
+      <h2>Endlich Rauchfrei.</h2>
+      <p>Dieser Kurs beginnt nicht damit, dass du sofort aufhörst zu rauchen. Er beginnt damit, dass du verstehst, warum du rauchst.</p>
+      <div class="kurs-info">
+        <span class="kurs-badge">6 Wochen</span>
+        <span class="kurs-badge">6 Module</span>
+        <span class="kurs-badge">Körperbasierter Ansatz</span>
+        <span class="kurs-badge">Tanja Sattelberg</span>
+      </div>
+    </div>
+    <div class="kernfrage">
+      💬 Deine Kernfrage: <em>Was stillt die Zigarette bei mir wirklich – und was brauche ich stattdessen?</em>
+      <button class="speak-btn" onclick="speakEl(this,'Deine Kernfrage: Was stillt die Zigarette bei mir wirklich – und was brauche ich stattdessen?')"><span>🔊</span> Anhören</button>
+    </div>
+    <div class="intro-box">
+      Vielleicht geht es nicht darum, sofort aufzuhören. Sondern zu verstehen, warum du rauchst. Dieser Kurs begleitet dich 6 Wochen durch ein tieferes Verständnis deines Rauchverhaltens – mit körpernahen Übungen, Reflexionsfragen und konkreten Werkzeugen für den Alltag.
+      <button class="speak-btn" onclick="speakNearestText(this)"><span>🔊</span> Anhören</button>
+    </div>
+  </div>
+  <div class="btn-row">
+    <button class="btn primary" onclick="showPanel('m1')">Modul 1 beginnen →</button>
+    <button class="btn" onclick="window.print()">Drucken / PDF</button>
+  </div>
+</div>
+
+<!-- MODUL 1 -->
+<div class="panel" id="panel-m1" role="tabpanel">
+  <div class="card">
+    <div class="modul-eyebrow">Woche 1 · Modul 1</div>
+    <h2>Mein Rauch-Muster verstehen</h2>
+    <div class="modul-week">Wann rauche ich – und was geht dem voraus?</div>
+    <div class="intro-box">
+      Willkommen. Schön, dass du da bist. Bevor du aufhörst zu rauchen, lohnt es sich, erstmal zu verstehen, warum du rauchst. Nicht als Vorwurf – als ehrliche Bestandsaufnahme. Denn jede Zigarette hat einen Grund, einen Auslöser, eine Funktion. Diese erste Woche ist eine Forschungswoche – du schaust hin, ohne zu urteilen.
+      <button class="speak-btn" onclick="speakNearestText(this)"><span>🔊</span> Anhören</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="sec-title">Reflexionsfrage</div>
+    <div class="q-item">
+      <label>In welchen Momenten des Tages greifst du am häufigsten zur Zigarette – und was geht immer voraus?
+        <button class="speak-btn" onclick="speakElWithAnswer(this,'In welchen Momenten des Tages greifst du am häufigsten zur Zigarette – und was geht immer voraus?','ta-m1-r1')"><span>🔊</span> Frage</button>
+      </label>
+      <div class="textarea-wrap">
+        <textarea id="ta-m1-r1" placeholder="Meine Antwort …" oninput="save('m1-r1',this.value)"></textarea>
+        <button class="mic-btn" onclick="startMic('ta-m1-r1',this)" aria-label="Diktieren">🎙</button>
+      </div>
+      <button class="speak-btn" style="margin-top:5px;" onclick="speakNearestTextarea(this)"><span>🔊</span> Antwort vorlesen</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="sec-title">Übung: Rauch-Tagebuch · 1 Woche</div>
+    <p style="font-size:12px;color:var(--soft);margin-bottom:.8rem;">Notiere jede Zigarette – nicht als Selbstbestrafung, sondern als Forschung. Am Ende der Woche erkennst du dein Muster.</p>
+    <table class="uebung-table">
+      <tr><th>Zeit</th><th>Situation</th><th>Stimmung davor</th><th>Auslöser</th></tr>
+      <tr><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+      <tr><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+      <tr><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+      <tr><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+    </table>
+    <div class="q-item" style="margin-top:.8rem;">
+      <label>Mein Muster nach einer Woche:
+        <button class="speak-btn" onclick="speakNearestTextarea(this)"><span>🔊</span> Vorlesen</button>
+      </label>
+      <div class="textarea-wrap">
+        <textarea id="ta-m1-muster" placeholder="Was erkenne ich immer wieder …" oninput="save('m1-muster',this.value)"></textarea>
+        <button class="mic-btn" onclick="startMic('ta-m1-muster',this)" aria-label="Diktieren">🎙</button>
+      </div>
+      <button class="speak-btn" style="margin-top:5px;" onclick="speakNearestTextarea(this)"><span>🔊</span> Antwort vorlesen</button>
+    </div>
+  </div>
+
+  <div class="card card-accent">
+    <div class="sec-title">Affirmationen dieser Woche</div>
+    <div class="affirmation-box">
+      <div class="affirmation">Ich verstehe mich besser – das ist der erste Schritt.
+        <button class="speak-btn" onclick="speakEl(this,'Ich verstehe mich besser – das ist der erste Schritt.')"><span>🔊</span></button>
+      </div>
+      <div class="affirmation">Neugier ist stärker als Selbstkritik.
+        <button class="speak-btn" onclick="speakEl(this,'Neugier ist stärker als Selbstkritik.')"><span>🔊</span></button>
+      </div>
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <button class="modul-complete-btn" id="done-m1" onclick="completeModul(1)">✓ Modul 1 abschließen</button>
+  </div>
+</div>
+
+<!-- MODUL 2 -->
+<div class="panel" id="panel-m2" role="tabpanel">
+  <div class="card">
+    <div class="modul-eyebrow">Woche 2 · Modul 2</div>
+    <h2>Was die Zigarette leistet</h2>
+    <div class="modul-week">Pause, Beruhigung, Belohnung, Grenze – die Funktionen des Rauchens</div>
+    <div class="intro-box">
+      Die Zigarette ist selten nur eine Zigarette. Sie ist eine Pause. Eine Belohnung. Ein Ritual. Ein Moment, der nur dir gehört. Diese Funktionen sind berechtigt – du brauchst sie nur nicht mehr mit einer Zigarette zu erfüllen.
+      <button class="speak-btn" onclick="speakNearestText(this)"><span>🔊</span> Anhören</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="sec-title">Reflexionsfrage</div>
+    <div class="q-item">
+      <label>Welche Funktion hat die Zigarette bei dir am stärksten?
+        <button class="speak-btn" onclick="speakElWithAnswer(this,'Welche Funktion hat die Zigarette bei dir am stärksten?','ta-m2-r1')"><span>🔊</span> Frage</button>
+      </label>
+      <div class="textarea-wrap">
+        <textarea id="ta-m2-r1" placeholder="Meine Antwort …" oninput="save('m2-r1',this.value)"></textarea>
+        <button class="mic-btn" onclick="startMic('ta-m2-r1',this)" aria-label="Diktieren">🎙</button>
+      </div>
+      <button class="speak-btn" style="margin-top:5px;" onclick="speakNearestTextarea(this)"><span>🔊</span> Antwort vorlesen</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="sec-title">Übung: Persönliche Rauch-Funktionsliste</div>
+    <p style="font-size:12px;color:var(--soft);margin-bottom:.8rem;">Für jede Funktion – was könnte stattdessen helfen?</p>
+    <table class="uebung-table">
+      <tr><th>Funktion</th><th>Meine Alternative</th></tr>
+      <tr><td>Pause</td><td style="color:var(--text);"> </td></tr>
+      <tr><td>Beruhigung</td><td> </td></tr>
+      <tr><td>Belohnung</td><td> </td></tr>
+      <tr><td>Grenze setzen</td><td> </td></tr>
+      <tr><td>Gemeinschaft</td><td> </td></tr>
+    </table>
+    <div class="q-item" style="margin-top:.8rem;">
+      <label>Meine persönliche Funktionsliste (frei formuliert):
+        <button class="speak-btn" onclick="speakNearestTextarea(this)"><span>🔊</span> Vorlesen</button>
+      </label>
+      <div class="textarea-wrap">
+        <textarea id="ta-m2-liste" placeholder="Funktion → meine Alternative …" oninput="save('m2-liste',this.value)"></textarea>
+        <button class="mic-btn" onclick="startMic('ta-m2-liste',this)" aria-label="Diktieren">🎙</button>
+      </div>
+      <button class="speak-btn" style="margin-top:5px;" onclick="speakNearestTextarea(this)"><span>🔊</span> Antwort vorlesen</button>
+    </div>
+  </div>
+
+  <div class="card card-accent">
+    <div class="sec-title">Affirmationen dieser Woche</div>
+    <div class="affirmation-box">
+      <div class="affirmation">Ich suche Pause – die darf ich mir anders gönnen.
+        <button class="speak-btn" onclick="speakEl(this,'Ich suche Pause – die darf ich mir anders gönnen.')"><span>🔊</span></button>
+      </div>
+      <div class="affirmation">Mein Körper verdient Fürsorge.
+        <button class="speak-btn" onclick="speakEl(this,'Mein Körper verdient Fürsorge.')"><span>🔊</span></button>
+      </div>
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <button class="modul-complete-btn" id="done-m2" onclick="completeModul(2)">✓ Modul 2 abschließen</button>
+  </div>
+</div>
+
+<!-- MODUL 3 -->
+<div class="panel" id="panel-m3" role="tabpanel">
+  <div class="card">
+    <div class="modul-eyebrow">Woche 3 · Modul 3</div>
+    <h2>Nervensystem und Rauchen</h2>
+    <div class="modul-week">Warum Nikotin kurzfristig beruhigt – und was das Nervensystem wirklich braucht</div>
+    <div class="intro-box">
+      Nikotin wirkt auf das Nervensystem – kurzfristig beruhigend, dann wieder aktivierend. Aber das tiefe Ausatmen beim Rauchen funktioniert auch ohne Zigarette. Mit dem Atem allein. Es gibt andere Wege, das Nervensystem zu regulieren – nachhaltiger und ohne Abhängigkeit.
+      <button class="speak-btn" onclick="speakNearestText(this)"><span>🔊</span> Anhören</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="sec-title">Reflexionsfrage</div>
+    <div class="q-item">
+      <label>Wann fühlt sich dein Nervensystem am angespanntesten an – und was hilft dir sonst?
+        <button class="speak-btn" onclick="speakElWithAnswer(this,'Wann fühlt sich dein Nervensystem am angespanntesten an – und was hilft dir sonst?','ta-m3-r1')"><span>🔊</span> Frage</button>
+      </label>
+      <div class="textarea-wrap">
+        <textarea id="ta-m3-r1" placeholder="Meine Antwort …" oninput="save('m3-r1',this.value)"></textarea>
+        <button class="mic-btn" onclick="startMic('ta-m3-r1',this)" aria-label="Diktieren">🎙</button>
+      </div>
+      <button class="speak-btn" style="margin-top:5px;" onclick="speakNearestTextarea(this)"><span>🔊</span> Antwort vorlesen</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="sec-title">Übung: 3 Atemtechniken</div>
+    <p style="font-size:12px;color:var(--soft);margin-bottom:.8rem;">Übe jede Technik und wähle deine bevorzugte Notfall-Technik.</p>
+
+    <div class="atem-card">
+      <div class="atem-name">4-7-8-Atmung
+        <button class="speak-btn" onclick="speakEl(this,'Vier-Sieben-Acht-Atmung: Einatmen vier Sekunden, Halten sieben Sekunden, Ausatmen acht Sekunden. Zwei Durchgänge.')"><span>🔊</span></button>
+      </div>
+      <div class="atem-steps">
+        <span class="atem-step">Einatmen 4 Sek.</span>
+        <span class="atem-step">Halten 7 Sek.</span>
+        <span class="atem-step">Ausatmen 8 Sek.</span>
+      </div>
+      <label class="atem-select"><input type="radio" name="atem-fav" value="4-7-8" onchange="save('m3-atem',this.value)"> Das ist meine Technik</label>
+    </div>
+
+    <div class="atem-card">
+      <div class="atem-name">Physiologischer Seufzer
+        <button class="speak-btn" onclick="speakEl(this,'Physiologischer Seufzer: Kurz durch die Nase einatmen, nochmal kurz nachziehen, dann lang und vollständig ausatmen. Zwei Durchgänge.')"><span>🔊</span></button>
+      </div>
+      <div class="atem-steps">
+        <span class="atem-step">Kurz einatmen (Nase)</span>
+        <span class="atem-step">Nochmal nachziehen</span>
+        <span class="atem-step">Lang ausatmen</span>
+      </div>
+      <label class="atem-select"><input type="radio" name="atem-fav" value="seufzer" onchange="save('m3-atem',this.value)"> Das ist meine Technik</label>
+    </div>
+
+    <div class="atem-card">
+      <div class="atem-name">Box-Breathing
+        <button class="speak-btn" onclick="speakEl(this,'Box-Breathing: Einatmen vier Sekunden, Halten vier Sekunden, Ausatmen vier Sekunden, Halten vier Sekunden. Zwei Durchgänge.')"><span>🔊</span></button>
+      </div>
+      <div class="atem-steps">
+        <span class="atem-step">Einatmen 4 Sek.</span>
+        <span class="atem-step">Halten 4 Sek.</span>
+        <span class="atem-step">Ausatmen 4 Sek.</span>
+        <span class="atem-step">Halten 4 Sek.</span>
+      </div>
+      <label class="atem-select"><input type="radio" name="atem-fav" value="box" onchange="save('m3-atem',this.value)"> Das ist meine Technik</label>
+    </div>
+  </div>
+
+  <div class="card card-accent">
+    <div class="sec-title">Affirmationen dieser Woche</div>
+    <div class="affirmation-box">
+      <div class="affirmation">Mein Atem ist immer bei mir.
+        <button class="speak-btn" onclick="speakEl(this,'Mein Atem ist immer bei mir.')"><span>🔊</span></button>
+      </div>
+      <div class="affirmation">Ich lerne, mein Nervensystem zu regulieren – ohne Nikotin.
+        <button class="speak-btn" onclick="speakEl(this,'Ich lerne, mein Nervensystem zu regulieren – ohne Nikotin.')"><span>🔊</span></button>
+      </div>
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <button class="modul-complete-btn" id="done-m3" onclick="completeModul(3)">✓ Modul 3 abschließen</button>
+  </div>
+</div>
+
+<!-- MODUL 4 -->
+<div class="panel" id="panel-m4" role="tabpanel">
+  <div class="card">
+    <div class="modul-eyebrow">Woche 4 · Modul 4</div>
+    <h2>Alternativen entwickeln</h2>
+    <div class="modul-week">Für jede Rauch-Funktion eine echte Alternative</div>
+    <div class="intro-box">
+      Du hast verstanden, warum du rauchst. Du hast Atemtechniken geübt. Jetzt wird es konkret: Du entwickelst deinen persönlichen Alternativplan. Nicht als Liste von Verboten – sondern: Was tue ich stattdessen, in genau diesem Moment?
+      <button class="speak-btn" onclick="speakNearestText(this)"><span>🔊</span> Anhören</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="sec-title">Reflexionsfrage</div>
+    <div class="q-item">
+      <label>Welche Alternative hat sich in dieser Woche am natürlichsten angefühlt?
+        <button class="speak-btn" onclick="speakElWithAnswer(this,'Welche Alternative hat sich in dieser Woche am natürlichsten angefühlt?','ta-m4-r1')"><span>🔊</span> Frage</button>
+      </label>
+      <div class="textarea-wrap">
+        <textarea id="ta-m4-r1" placeholder="Meine Antwort …" oninput="save('m4-r1',this.value)"></textarea>
+        <button class="mic-btn" onclick="startMic('ta-m4-r1',this)" aria-label="Diktieren">🎙</button>
+      </div>
+      <button class="speak-btn" style="margin-top:5px;" onclick="speakNearestTextarea(this)"><span>🔊</span> Antwort vorlesen</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="sec-title">Mein Alternativplan</div>
+    <table class="uebung-table">
+      <tr><th>Auslöser</th><th>Was ich stattdessen tue</th><th>Wie lange</th></tr>
+      <tr><td>—</td><td>—</td><td>—</td></tr>
+      <tr><td>—</td><td>—</td><td>—</td></tr>
+      <tr><td>—</td><td>—</td><td>—</td></tr>
+    </table>
+    <div class="q-item" style="margin-top:.8rem;">
+      <label>Mein konkreter Alternativplan (frei formuliert):
+        <button class="speak-btn" onclick="speakNearestTextarea(this)"><span>🔊</span> Vorlesen</button>
+      </label>
+      <div class="textarea-wrap">
+        <textarea id="ta-m4-plan" placeholder="Auslöser → was ich tue → wie lange …" oninput="save('m4-plan',this.value)"></textarea>
+        <button class="mic-btn" onclick="startMic('ta-m4-plan',this)" aria-label="Diktieren">🎙</button>
+      </div>
+      <button class="speak-btn" style="margin-top:5px;" onclick="speakNearestTextarea(this)"><span>🔊</span> Antwort vorlesen</button>
+    </div>
+  </div>
+
+  <div class="card card-accent">
+    <div class="sec-title">Affirmationen dieser Woche</div>
+    <div class="affirmation-box">
+      <div class="affirmation">Ich habe Alternativen – ich muss nicht greifen.
+        <button class="speak-btn" onclick="speakEl(this,'Ich habe Alternativen – ich muss nicht greifen.')"><span>🔊</span></button>
+      </div>
+      <div class="affirmation">Jeder rauchfreie Moment ist ein Erfolg.
+        <button class="speak-btn" onclick="speakEl(this,'Jeder rauchfreie Moment ist ein Erfolg.')"><span>🔊</span></button>
+      </div>
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <button class="modul-complete-btn" id="done-m4" onclick="completeModul(4)">✓ Modul 4 abschließen</button>
+  </div>
+</div>
+
+<!-- MODUL 5 -->
+<div class="panel" id="panel-m5" role="tabpanel">
+  <div class="card">
+    <div class="modul-eyebrow">Woche 5 · Modul 5</div>
+    <h2>Der Übergang</h2>
+    <div class="modul-week">Den rauchfreien Tag vorbereiten – und Rückfälle als Information sehen</div>
+    <div class="intro-box">
+      Der rauchfreie Tag ist kein Moment der Willenskraft. Er ist das Ergebnis von vier Wochen Vorbereitung. Du bist bereit. Auch wenn es sich nicht so anfühlt. Und falls es nicht sofort klappt: Ein Rückfall ist keine Niederlage. Er ist Information.
+      <button class="speak-btn" onclick="speakNearestText(this)"><span>🔊</span> Anhören</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="sec-title">Reflexionsfrage</div>
+    <div class="q-item">
+      <label>Was könnte dich beim ersten rauchfreien Tag am ehesten herausfordern – und was ist dein Plan?
+        <button class="speak-btn" onclick="speakElWithAnswer(this,'Was könnte dich beim ersten rauchfreien Tag am ehesten herausfordern – und was ist dein Plan?','ta-m5-r1')"><span>🔊</span> Frage</button>
+      </label>
+      <div class="textarea-wrap">
+        <textarea id="ta-m5-r1" placeholder="Mein Plan …" oninput="save('m5-r1',this.value)"></textarea>
+        <button class="mic-btn" onclick="startMic('ta-m5-r1',this)" aria-label="Diktieren">🎙</button>
+      </div>
+      <button class="speak-btn" style="margin-top:5px;" onclick="speakNearestTextarea(this)"><span>🔊</span> Antwort vorlesen</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="sec-title">Rauchfrei-Startplan · 5 Schritte</div>
+    <div class="plan-item">
+      <div class="plan-num">1</div>
+      <div class="plan-label">
+        <strong>Mein Starttag</strong>
+        <small>Lege einen konkreten Termin fest.</small>
+        <div class="textarea-wrap" style="margin-top:5px;">
+          <textarea id="ta-m5-tag" placeholder="Datum: …" style="min-height:44px;" oninput="save('m5-tag',this.value)"></textarea>
+          <button class="mic-btn" onclick="startMic('ta-m5-tag',this)">🎙</button>
+        </div>
+        <button class="speak-btn" style="margin-top:4px;" onclick="speakNearestTextarea(this)"><span>🔊</span> Vorlesen</button>
+      </div>
+    </div>
+    <div class="plan-item">
+      <div class="plan-num">2</div>
+      <div class="plan-label">
+        <strong>Was ich vorher wegraume</strong>
+        <small>Zigaretten, Feuerzeuge, Aschenbecher.</small>
+        <div class="textarea-wrap" style="margin-top:5px;">
+          <textarea id="ta-m5-weg" placeholder="Ich räume weg: …" style="min-height:44px;" oninput="save('m5-weg',this.value)"></textarea>
+          <button class="mic-btn" onclick="startMic('ta-m5-weg',this)">🎙</button>
+        </div>
+        <button class="speak-btn" style="margin-top:4px;" onclick="speakNearestTextarea(this)"><span>🔊</span> Vorlesen</button>
+      </div>
+    </div>
+    <div class="plan-item">
+      <div class="plan-num">3</div>
+      <div class="plan-label">
+        <strong>Wer davon weiß</strong>
+        <small>Wen bitte ich um Unterstützung?</small>
+        <div class="textarea-wrap" style="margin-top:5px;">
+          <textarea id="ta-m5-wer" placeholder="Name: …" style="min-height:44px;" oninput="save('m5-wer',this.value)"></textarea>
+          <button class="mic-btn" onclick="startMic('ta-m5-wer',this)">🎙</button>
+        </div>
+        <button class="speak-btn" style="margin-top:4px;" onclick="speakNearestTextarea(this)"><span>🔊</span> Vorlesen</button>
+      </div>
+    </div>
+    <div class="plan-item">
+      <div class="plan-num">4</div>
+      <div class="plan-label">
+        <strong>Mein Plan für die ersten kritischen Momente</strong>
+        <div class="textarea-wrap" style="margin-top:5px;">
+          <textarea id="ta-m5-momente" placeholder="In Moment 1 tue ich: …" oninput="save('m5-momente',this.value)"></textarea>
+          <button class="mic-btn" onclick="startMic('ta-m5-momente',this)">🎙</button>
+        </div>
+        <button class="speak-btn" style="margin-top:4px;" onclick="speakNearestTextarea(this)"><span>🔊</span> Vorlesen</button>
+      </div>
+    </div>
+    <div class="plan-item">
+      <div class="plan-num">5</div>
+      <div class="plan-label">
+        <strong>Was ich tue, wenn ein Rückfall passiert</strong>
+        <small>Ohne Selbstkritik – als Information.</small>
+        <div class="textarea-wrap" style="margin-top:5px;">
+          <textarea id="ta-m5-rueckfall" placeholder="Bei einem Rückfall: …" oninput="save('m5-rueckfall',this.value)"></textarea>
+          <button class="mic-btn" onclick="startMic('ta-m5-rueckfall',this)">🎙</button>
+        </div>
+        <button class="speak-btn" style="margin-top:4px;" onclick="speakNearestTextarea(this)"><span>🔊</span> Vorlesen</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="card card-accent">
+    <div class="sec-title">Affirmationen dieser Woche</div>
+    <div class="affirmation-box">
+      <div class="affirmation">Ich bin vorbereitet – und das macht den Unterschied.
+        <button class="speak-btn" onclick="speakEl(this,'Ich bin vorbereitet – und das macht den Unterschied.')"><span>🔊</span></button>
+      </div>
+      <div class="affirmation">Ein Rückfall ist kein Ende – er ist Information.
+        <button class="speak-btn" onclick="speakEl(this,'Ein Rückfall ist kein Ende – er ist Information.')"><span>🔊</span></button>
+      </div>
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <button class="modul-complete-btn" id="done-m5" onclick="completeModul(5)">✓ Modul 5 abschließen</button>
+  </div>
+</div>
+
+<!-- MODUL 6 -->
+<div class="panel" id="panel-m6" role="tabpanel">
+  <div class="card">
+    <div class="modul-eyebrow">Woche 6 · Modul 6</div>
+    <h2>Rauchfrei im Alltag verankern</h2>
+    <div class="modul-week">Integration und Rückfälle als normalen Teil des Prozesses sehen</div>
+    <div class="intro-box">
+      Du bist in der letzten Woche angekommen. Rauchfrei zu werden ist ein Prozess, kein Moment. Die meisten Menschen brauchen mehrere Versuche. Das ist keine Schwäche – das ist, wie Veränderung funktioniert. Sechs Wochen. Du hast ein Muster verstanden, das vielleicht seit Jahren in dir steckt.
+      <button class="speak-btn" onclick="speakNearestText(this)"><span>🔊</span> Anhören</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="sec-title">Reflexionsfrage</div>
+    <div class="q-item">
+      <label>Was hat dich in diesen sechs Wochen am meisten überrascht – über dein Rauchverhalten oder über dich selbst?
+        <button class="speak-btn" onclick="speakElWithAnswer(this,'Was hat dich in diesen sechs Wochen am meisten überrascht – über dein Rauchverhalten oder über dich selbst?','ta-m6-r1')"><span>🔊</span> Frage</button>
+      </label>
+      <div class="textarea-wrap">
+        <textarea id="ta-m6-r1" placeholder="Meine Erkenntnisse …" oninput="save('m6-r1',this.value)"></textarea>
+        <button class="mic-btn" onclick="startMic('ta-m6-r1',this)" aria-label="Diktieren">🎙</button>
+      </div>
+      <button class="speak-btn" style="margin-top:5px;" onclick="speakNearestTextarea(this)"><span>🔊</span> Antwort vorlesen</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="sec-title">Mein Langzeit-Plan · 90 Tage</div>
+    <div class="langzeit-frage">
+      <div class="frage-text">Was habe ich gelernt – über mein Rauchen und über mich?</div>
+      <div class="textarea-wrap">
+        <textarea id="ta-m6-gelernt" placeholder="Meine wichtigste Erkenntnis …" oninput="save('m6-gelernt',this.value)"></textarea>
+        <button class="mic-btn" onclick="startMic('ta-m6-gelernt',this)">🎙</button>
+      </div>
+      <button class="speak-btn" style="margin-top:4px;" onclick="speakNearestTextarea(this)"><span>🔊</span> Vorlesen</button>
+    </div>
+    <div class="langzeit-frage">
+      <div class="frage-text">Meine größten Fortschritte:</div>
+      <div class="textarea-wrap">
+        <textarea id="ta-m6-fortschritte" placeholder="Auch kleine zählen …" oninput="save('m6-fortschritte',this.value)"></textarea>
+        <button class="mic-btn" onclick="startMic('ta-m6-fortschritte',this)">🎙</button>
+      </div>
+      <button class="speak-btn" style="margin-top:4px;" onclick="speakNearestTextarea(this)"><span>🔊</span> Vorlesen</button>
+    </div>
+    <div class="langzeit-frage">
+      <div class="frage-text">Kritische Situationen und mein Plan:</div>
+      <div class="textarea-wrap">
+        <textarea id="ta-m6-kritisch" placeholder="Wo ist noch Arbeit nötig? Was ist mein Plan?" oninput="save('m6-kritisch',this.value)"></textarea>
+        <button class="mic-btn" onclick="startMic('ta-m6-kritisch',this)">🎙</button>
+      </div>
+      <button class="speak-btn" style="margin-top:4px;" onclick="speakNearestTextarea(this)"><span>🔊</span> Vorlesen</button>
+    </div>
+    <div class="langzeit-frage">
+      <div class="frage-text">Wer begleitet mich auf diesem Weg?</div>
+      <div class="textarea-wrap">
+        <textarea id="ta-m6-begleitung" placeholder="Name(n) …" style="min-height:48px;" oninput="save('m6-begleitung',this.value)"></textarea>
+        <button class="mic-btn" onclick="startMic('ta-m6-begleitung',this)">🎙</button>
+      </div>
+      <button class="speak-btn" style="margin-top:4px;" onclick="speakNearestTextarea(this)"><span>🔊</span> Vorlesen</button>
+    </div>
+    <div class="langzeit-frage">
+      <div class="frage-text">Was feiere ich heute – egal wie weit ich schon bin?</div>
+      <div class="textarea-wrap">
+        <textarea id="ta-m6-feier" placeholder="Ich erkenne an: …" style="min-height:48px;" oninput="save('m6-feier',this.value)"></textarea>
+        <button class="mic-btn" onclick="startMic('ta-m6-feier',this)">🎙</button>
+      </div>
+      <button class="speak-btn" style="margin-top:4px;" onclick="speakNearestTextarea(this)"><span>🔊</span> Vorlesen</button>
+    </div>
+  </div>
+
+  <div class="card card-accent">
+    <div class="sec-title">Affirmationen zum Abschluss</div>
+    <div class="affirmation-box">
+      <div class="affirmation">Jeder Tag ist ein neuer Anfang.
+        <button class="speak-btn" onclick="speakEl(this,'Jeder Tag ist ein neuer Anfang.')"><span>🔊</span></button>
+      </div>
+      <div class="affirmation">Ich gehe diesen Weg mit mir – nicht gegen mich.
+        <button class="speak-btn" onclick="speakEl(this,'Ich gehe diesen Weg mit mir – nicht gegen mich.')"><span>🔊</span></button>
+      </div>
+      <div class="affirmation">Mein Körper dankt mir jeden rauchfreien Moment.
+        <button class="speak-btn" onclick="speakEl(this,'Mein Körper dankt mir jeden rauchfreien Moment.')"><span>🔊</span></button>
+      </div>
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <button class="modul-complete-btn" id="done-m6" onclick="completeModul(6)">✓ Kurs abschließen 🎉</button>
+  </div>
+</div>
+
+</div><!-- /main -->
+
+<div class="site-footer">
+  <div>© 2025 Tanja Sattelberg · Systemische Beraterin & Coach · <a href="https://veraenderungsweg.de">veraenderungsweg.de</a></div>
+  <div style="margin-top:3px;">Kein medizinisches Angebot. Persönliche Nutzung erlaubt. Weitergabe oder kommerzielle Nutzung nicht gestattet.</div>
+</div>
+
+<script>
+// ── State ─────────────────────────────────────────────────
+const KEY = 'rf05b_';
+const PANELS = ['welcome','m1','m2','m3','m4','m5','m6'];
+const MODULS = ['m1','m2','m3','m4','m5','m6'];
+let completed = [];
+let activePanel = 'welcome';
+
+function save(k, v){ try{localStorage.setItem(KEY+k, v);}catch(e){} }
+function load(k){ try{return localStorage.getItem(KEY+k)||'';}catch(e){return '';} }
+
+// ── Navigation ────────────────────────────────────────────
+function buildNav(){
+  const nav = document.getElementById('nav');
+  nav.innerHTML = '';
+  const labels = ['Willkommen','Modul 1','Modul 2','Modul 3','Modul 4','Modul 5','Modul 6'];
+  PANELS.forEach((p, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'nav-btn' + (p === activePanel ? ' active' : '');
+    const isLocked = i > 0 && !completed.includes(MODULS[i-2]) && p !== 'welcome' && i > 1;
+    if(isLocked){
+      btn.classList.add('locked');
+      btn.innerHTML = labels[i] + '<span class="lock-icon">🔒</span>';
+      btn.title = 'Schließe das vorherige Modul ab';
+    } else {
+      btn.textContent = labels[i];
+      btn.onclick = () => showPanel(p);
+    }
+    btn.setAttribute('role','tab');
+    btn.setAttribute('aria-selected', p === activePanel ? 'true' : 'false');
+    nav.appendChild(btn);
+  });
+}
+
+function showPanel(id){
+  if(typeof Voice !== 'undefined') Voice.stop();
+  activePanel = id;
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  const panel = document.getElementById('panel-'+id);
+  if(panel) panel.classList.add('active');
+  buildNav();
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+function completeModul(n){
+  const key = 'm'+n;
+  if(!completed.includes(key)) completed.push(key);
+  try{localStorage.setItem(KEY+'completed', JSON.stringify(completed));}catch(e){}
+  const btn = document.getElementById('done-m'+n);
+  if(btn){ btn.textContent = '✓ Abgeschlossen'; btn.classList.add('done'); btn.disabled = true; }
+  updateProgress();
+  buildNav();
+  // Automatisch zum nächsten Modul
+  setTimeout(() => {
+    if(n < 6) showPanel('m'+(n+1));
+  }, 600);
+}
+
+function updateProgress(){
+  const pct = Math.round((completed.length / 6) * 100);
+  document.getElementById('progress-fill').style.width = pct + '%';
+  document.getElementById('progress-text').textContent = completed.length + ' von 6 Modulen';
+}
+
+// ── Daten laden ───────────────────────────────────────────
+function loadAll(){
+  try{
+    const c = localStorage.getItem(KEY+'completed');
+    if(c) completed = JSON.parse(c);
+  }catch(e){}
+  // Textarea-Werte
+  const fields = ['m1-r1','m1-muster','m2-r1','m2-liste','m3-r1','m4-r1','m4-plan',
+    'm5-r1','m5-tag','m5-weg','m5-wer','m5-momente','m5-rueckfall',
+    'm6-r1','m6-gelernt','m6-fortschritte','m6-kritisch','m6-begleitung','m6-feier'];
+  fields.forEach(f => {
+    const el = document.getElementById('ta-'+f);
+    if(el) el.value = load(f);
+  });
+  // Atemtechnik
+  const atem = load('m3-atem');
+  if(atem){
+    document.querySelectorAll('input[name=atem-fav]').forEach(r => {
+      if(r.value === atem) r.checked = true;
+    });
+  }
+  // Abgeschlossene Buttons
+  completed.forEach(key => {
+    const n = key.replace('m','');
+    const btn = document.getElementById('done-m'+n);
+    if(btn){ btn.textContent = '✓ Abgeschlossen'; btn.classList.add('done'); btn.disabled = true; }
+  });
+  updateProgress();
+  buildNav();
+}
+
+// ══════════════════════════════════════════════════════════
+// VOICE ENGINE
+// ══════════════════════════════════════════════════════════
+const Voice = {
+  synth: window.speechSynthesis,
+  recognition: null,
+  speed: 1.0,
+  isSpeaking: false,
+  isRecording: false,
+  activeMicBtn: null,
+  activeFieldId: null,
+  _stopFlag: false,
+
+  getVoice(){
+    const voices = this.synth.getVoices();
+    const pref = ['Anna','Petra','Marlene','Google Deutsch','de-DE','de-AT'];
+    for(const p of pref){ const v=voices.find(v=>v.lang.startsWith('de')&&v.name.includes(p)); if(v) return v; }
+    return voices.find(v=>v.lang.startsWith('de'))||null;
+  },
+
+  speak(text, onEnd){
+    if(!this.synth||!text.trim()){ if(onEnd&&!this._stopFlag) onEnd(); return; }
+    this.synth.cancel(); this._stopFlag=false;
+    const utt=new SpeechSynthesisUtterance(text);
+    utt.lang='de-DE'; utt.rate=this.speed;
+    const voice=this.getVoice(); if(voice) utt.voice=voice;
+    utt.onstart=()=>{ this.isSpeaking=true; const s=document.getElementById('btn-stop-speech'); if(s) s.classList.add('ready'); Voice.setStatus('Wird vorgelesen …'); };
+    utt.onend=()=>{ if(this._stopFlag) return; this.isSpeaking=false; const s=document.getElementById('btn-stop-speech'); if(s) s.classList.remove('ready'); Voice.setStatus(''); if(onEnd) onEnd(); };
+    utt.onerror=()=>{ this.isSpeaking=false; Voice.setStatus(''); };
+    this.synth.speak(utt);
+  },
+
+  stop(){
+    this._stopFlag=true; this.isSpeaking=false;
+    this.synth.cancel();
+    setTimeout(()=>this.synth.cancel(),50);
+    setTimeout(()=>{ this.synth.cancel(); this._stopFlag=false; },150);
+    const s=document.getElementById('btn-stop-speech'); if(s) s.classList.remove('ready');
+    const r=document.getElementById('btn-read-page'); if(r) r.classList.remove('speaking');
+    document.querySelectorAll('.speak-btn.active').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('.speaking-highlight').forEach(el=>el.classList.remove('speaking-highlight'));
+    Voice.setStatus('');
+  },
+
+  startMic(fieldId, micBtn){
+    if(this.isRecording&&this.activeFieldId===fieldId){ this.stopMic(); return; }
+    if(this.isRecording) this.stopMic();
+    const ta=document.getElementById(fieldId); if(!ta) return;
+    const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+    if(!SR){ Voice.setStatus('Spracheingabe nicht verfügbar.'); return; }
+    this.stop();
+    this.recognition=new SR(); this.recognition.lang='de-DE'; this.recognition.interimResults=true; this.recognition.continuous=true;
+    this.activeFieldId=fieldId; this.activeMicBtn=micBtn;
+    let base=ta.value;
+    this.recognition.onstart=()=>{ this.isRecording=true; micBtn&&micBtn.classList.add('recording'); document.getElementById('btn-mic-global').classList.add('speaking'); Voice.setStatus('Zuhören … Sprich jetzt.'); };
+    this.recognition.onresult=(e)=>{ let f='',interim=''; for(let i=e.resultIndex;i<e.results.length;i++){ const t=e.results[i][0].transcript; if(e.results[i].isFinal) f+=t+' '; else interim=t; } base+=f; ta.value=base+interim; ta.scrollTop=ta.scrollHeight; save(fieldId.replace('ta-',''),ta.value); };
+    this.recognition.onerror=()=>{ Voice.setStatus('Mikrofon-Fehler.'); this.stopMic(); };
+    this.recognition.onend=()=>{ if(this.isRecording&&this.activeFieldId===fieldId){ try{this.recognition.start();}catch(e){} } };
+    try{ this.recognition.start(); }catch(e){ Voice.setStatus('Mikrofon konnte nicht gestartet werden.'); }
+  },
+
+  stopMic(){
+    this.isRecording=false;
+    if(this.recognition){ try{this.recognition.stop();}catch(e){} this.recognition=null; }
+    if(this.activeMicBtn) this.activeMicBtn.classList.remove('recording');
+    const m=document.getElementById('btn-mic-global'); if(m) m.classList.remove('speaking');
+    this.activeMicBtn=null; this.activeFieldId=null; Voice.setStatus('');
+  },
+
+  setStatus(msg){ const el=document.getElementById('voice-status'); if(!el) return; el.textContent=msg; el.classList.toggle('visible',!!msg); }
+};
+
+if(window.speechSynthesis){ speechSynthesis.getVoices(); speechSynthesis.onvoiceschanged=()=>speechSynthesis.getVoices(); }
+
+// ── Zahlen ausschreiben ───────────────────────────────────
+const ZAHLEN=['null','ein','zwei','drei','vier','fünf','sechs','sieben','acht','neun','zehn','elf','zwölf','dreizehn'];
+function zahlWort(n){ return ZAHLEN[n]!==undefined?ZAHLEN[n]:String(n); }
+function norm(text){
+  return text
+    .replace(/(\d+)\s*von\s*(\d+)/gi,(_,a,b)=>zahlWort(+a)+' von '+zahlWort(+b))
+    .replace(/(\d+)\s*\/\s*(\d+)/g,(_,a,b)=>zahlWort(+a)+' von '+zahlWort(+b))
+    .replace(/\b(\d+)\b/g,(_,n)=>zahlWort(+n))
+    .replace(/[✦→«»🔊]/g,'').replace(/\s{2,}/g,' ').trim();
+}
+
+// ── Globale Handler ───────────────────────────────────────
+function stopSpeech(){ Voice.stop(); }
+function updateSpeed(){ Voice.speed=parseFloat(document.getElementById('voice-speed').value); }
+function startMic(id,btn){ Voice.startMic(id,btn); }
+function toggleGlobalMic(){
+  if(Voice.isRecording){ Voice.stopMic(); return; }
+  const panel=document.querySelector('.panel.active'); if(!panel) return;
+  const ta=panel.querySelector('textarea'); if(!ta){ Voice.setStatus('Kein Textfeld gefunden.'); return; }
+  if(!ta.id) ta.id='ta-dyn-'+Date.now();
+  const btn=ta.closest('.textarea-wrap')?.querySelector('.mic-btn');
+  Voice.startMic(ta.id,btn);
+}
+
+function speakEl(btn,text){
+  if(btn.classList.contains('active')){ Voice.stop(); return; }
+  Voice.stop(); btn.classList.add('active');
+  const parent=btn.closest('.affirmation,.intro-box,.kernfrage,.atem-card,.atem-name');
+  if(parent) parent.classList.add('speaking-highlight');
+  Voice.speak(norm(text),()=>{ btn.classList.remove('active'); if(parent) parent.classList.remove('speaking-highlight'); });
+}
+
+function speakNearestText(btn){
+  const box=btn.closest('.intro-box,.kernfrage,.card');
+  let text='';
+  if(box){
+    // Textknoten sammeln, Buttons ignorieren
+    box.childNodes.forEach(n=>{ if(n.nodeType===3) text+=n.textContent; else if(n.tagName&&n.tagName!=='BUTTON') text+=' '+n.textContent; });
+  }
+  text=norm(text.trim());
+  if(!text){ Voice.setStatus('Kein Text gefunden.'); return; }
+  if(btn.classList.contains('active')){ Voice.stop(); return; }
+  Voice.stop(); btn.classList.add('active');
+  if(box) box.classList.add('speaking-highlight');
+  Voice.speak(text,()=>{ btn.classList.remove('active'); if(box) box.classList.remove('speaking-highlight'); });
+}
+
+function speakNearestTextarea(btn){
+  const ta=btn.closest('.q-item,.langzeit-frage,.plan-label')?.querySelector('textarea');
+  const val=ta?ta.value.trim():'';
+  if(!val){ Voice.setStatus('Noch keine Antwort vorhanden.'); setTimeout(()=>Voice.setStatus(''),2500); return; }
+  if(btn.classList.contains('active')){ Voice.stop(); return; }
+  Voice.stop(); btn.classList.add('active');
+  const wrap=ta.closest('.textarea-wrap'); if(wrap) wrap.classList.add('speaking-highlight');
+  Voice.speak(norm(val),()=>{ btn.classList.remove('active'); if(wrap) wrap.classList.remove('speaking-highlight'); });
+}
+
+function speakElWithAnswer(btn,frageText,taId){
+  if(btn.classList.contains('active')){ Voice.stop(); return; }
+  Voice.stop(); btn.classList.add('active');
+  const ta=document.getElementById(taId)||btn.closest('.q-item')?.querySelector('textarea');
+  const antwort=ta?ta.value.trim():'';
+  const parts=[norm(frageText)]; if(antwort) parts.push('Deine Antwort: '+norm(antwort));
+  let i=0; const label=btn.closest('label'); if(label) label.classList.add('speaking-highlight');
+  function next(){ if(Voice._stopFlag||i>=parts.length){ btn.classList.remove('active'); if(label) label.classList.remove('speaking-highlight'); return; } Voice.speak(parts[i++],next); }
+  next();
+}
+
+function readCurrentPage(){
+  if(Voice.isSpeaking){ Voice.stop(); return; }
+  const panel=document.querySelector('.panel.active'); if(!panel) return;
+  const parts=[];
+  const h2=panel.querySelector('h2'); if(h2) parts.push(h2.textContent.trim());
+  const intro=panel.querySelector('.intro-box'); if(intro) parts.push(intro.childNodes[0]?.textContent?.trim()||'');
+  panel.querySelectorAll('.q-item').forEach(item=>{
+    const lbl=item.querySelector('label'); const ta=item.querySelector('textarea');
+    if(lbl) parts.push(lbl.childNodes[0]?.textContent?.trim()||'');
+    if(ta&&ta.value.trim()) parts.push('Deine Antwort: '+ta.value.trim());
+  });
+  panel.querySelectorAll('.affirmation').forEach(a=>parts.push('Affirmation: '+(a.childNodes[0]?.textContent?.trim()||'')));
+  if(!parts.length){ Voice.setStatus('Kein Inhalt.'); return; }
+  const rb=document.getElementById('btn-read-page'); if(rb) rb.classList.add('speaking');
+  let i=0;
+  function speakNext(){ if(Voice._stopFlag||i>=parts.length){ Voice.stop(); if(rb) rb.classList.remove('speaking'); return; } const t=norm(parts[i++]); if(t) Voice.speak(t,speakNext); else speakNext(); }
+  speakNext();
+}
+
+// ── Tastaturkürzel ────────────────────────────────────────
+document.addEventListener('keydown',e=>{
+  if(e.target.tagName==='TEXTAREA'||e.target.tagName==='INPUT'||e.target.tagName==='SELECT') return;
+  if(e.key==='v'||e.key==='V'){ e.preventDefault(); readCurrentPage(); }
+  if(e.key==='Escape'){ Voice.stop(); Voice.stopMic(); }
+});
+
+// ── Init ──────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', loadAll);
+</script>
+
+<div id="update-banner" style="display:none">
+  <svg class="bi" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+    <rect width="80" height="80" rx="18" fill="#f5e9d4"/>
+    <circle cx="40" cy="38" r="22" fill="none" stroke="#C4973A"
+      stroke-width="3.5" stroke-dasharray="118 20"
+      stroke-dashoffset="-5" stroke-linecap="round"/>
+    <path d="M32 35 L40 27 L48 35" fill="none" stroke="#C4973A"
+      stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <line x1="40" y1="27" x2="40" y2="48"
+      stroke="#C4973A" stroke-width="2.5" stroke-linecap="round"/>
+    <circle cx="40" cy="68" r="3" fill="#C4973A"/>
+  </svg>
+  <div class="bt">
+    <strong>Neues App-Icon verfügbar ✨</strong>
+    <span>Für das neue Symbol: App einmal vom Homescreen löschen und neu hinzufügen. Deine Daten bleiben erhalten.</span>
+  </div>
+  <button class="bc" onclick="closeBanner()">×</button>
+</div>
+
+<script>
+  if (!localStorage.getItem('iconBannerSeen')) {
+    document.getElementById('update-banner').style.display = 'flex';
+  }
+  function closeBanner() {
+    document.getElementById('update-banner').style.display = 'none';
+    localStorage.setItem('iconBannerSeen', '1');
+  }
+</script>
+
+</body>
+</html>
