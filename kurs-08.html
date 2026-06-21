@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kurs 08 · Mehr Leichtigkeit · Mein Veränderungsweg</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root { --gold: #B8935A; --cream: #F5EFE0; --dark-brown: #3D2519; --mid-brown: #7A4A2E; --light-gold: #E8D5B0; --white: #FDFAF4; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Jost', sans-serif; background: var(--cream); color: var(--dark-brown); min-height: 100vh; }
+  header { background: var(--dark-brown); color: var(--cream); padding: 2rem 1.5rem 1.5rem; text-align: center; }
+  header .brand { font-weight: 300; font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; }
+  header h1 { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(1.8rem, 5vw, 2.8rem); line-height: 1.2; }
+  header h1 em { font-style: italic; color: var(--light-gold); }
+  header .subtitle { font-weight: 300; font-size: 0.85rem; color: var(--light-gold); margin-top: 0.5rem; letter-spacing: 0.05em; }
+  .progress-bar-wrap { background: rgba(255,255,255,0.1); border-radius: 2px; height: 3px; margin-top: 1rem; overflow: hidden; }
+  .progress-bar { height: 100%; background: var(--gold); transition: width 0.5s ease; }
+  nav { background: var(--dark-brown); border-top: 1px solid rgba(184,147,90,0.3); padding: 0 1rem; display: flex; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  nav::-webkit-scrollbar { display: none; }
+  .nav-btn { background: none; border: none; color: var(--light-gold); font-family: 'Jost', sans-serif; font-weight: 300; font-size: 0.75rem; letter-spacing: 0.08em; padding: 0.9rem 1rem; cursor: pointer; white-space: nowrap; border-bottom: 2px solid transparent; transition: all 0.2s; opacity: 0.6; }
+  .nav-btn.active { color: var(--gold); border-bottom-color: var(--gold); opacity: 1; }
+  .nav-btn.locked { opacity: 0.3; cursor: default; }
+  .nav-btn:not(.locked):hover { opacity: 0.9; }
+  main { max-width: 680px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+  .modul { display: none; }
+  .modul.active { display: block; }
+  .welcome-card { background: var(--dark-brown); color: var(--cream); border-radius: 4px; padding: 2rem; margin-bottom: 2rem; }
+  .welcome-card h2 { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 1.6rem; margin-bottom: 1rem; color: var(--light-gold); }
+  .welcome-card p { font-weight: 300; line-height: 1.8; font-size: 0.95rem; margin-bottom: 0.75rem; }
+  .kernfrage { border-left: 2px solid var(--gold); padding: 0.75rem 1rem; margin: 1.25rem 0; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.15rem; color: var(--light-gold); line-height: 1.5; }
+  .modul-header { margin-bottom: 1.75rem; }
+  .modul-label { font-weight: 300; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.4rem; }
+  .modul-header h2 { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(1.5rem, 4vw, 2rem); line-height: 1.2; margin-bottom: 0.3rem; }
+  .modul-header .thema { font-weight: 300; font-size: 0.82rem; color: var(--mid-brown); font-style: italic; }
+  .divider { width: 40px; height: 1px; background: var(--gold); margin: 1.25rem 0; }
+  .text-block { font-weight: 300; line-height: 1.85; font-size: 0.95rem; margin-bottom: 1rem; }
+  .text-block p { margin-bottom: 0.75rem; }
+  .reflexion-block { background: var(--white); border-left: 3px solid var(--gold); border-radius: 0 4px 4px 0; padding: 1.25rem 1.5rem; margin: 1.5rem 0; }
+  .reflexion-block .block-label { font-weight: 500; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.6rem; }
+  .reflexion-block .question { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.1rem; line-height: 1.5; margin-bottom: 0.75rem; }
+  textarea { width: 100%; min-height: 100px; background: var(--cream); border: 1px solid var(--light-gold); border-radius: 3px; padding: 0.75rem; font-family: 'Jost', sans-serif; font-weight: 300; font-size: 0.9rem; color: var(--dark-brown); resize: vertical; outline: none; transition: border-color 0.2s; }
+  textarea:focus { border-color: var(--gold); }
+  .uebung-block { background: var(--white); border-radius: 4px; padding: 1.5rem; margin: 1.5rem 0; border: 1px solid var(--light-gold); }
+  .uebung-block .block-label { font-weight: 500; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--mid-brown); margin-bottom: 0.4rem; }
+  .uebung-block h3 { font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: 1.15rem; margin-bottom: 0.4rem; }
+  .uebung-block .zeit { font-size: 0.75rem; color: var(--gold); font-weight: 300; margin-bottom: 1rem; }
+  .uebung-block p { font-weight: 300; font-size: 0.9rem; line-height: 1.8; margin-bottom: 0.6rem; }
+  .tabelle-wrap { overflow-x: auto; margin: 1rem 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+  th { background: var(--dark-brown); color: var(--cream); font-weight: 300; font-size: 0.75rem; letter-spacing: 0.08em; padding: 0.6rem 0.75rem; text-align: left; }
+  td { border: 1px solid var(--light-gold); padding: 0.5rem 0.75rem; background: var(--white); }
+  td input { width: 100%; border: none; background: transparent; font-family: 'Jost', sans-serif; font-weight: 300; font-size: 0.85rem; color: var(--dark-brown); outline: none; }
+  .affirmationen { background: var(--light-gold); border-radius: 4px; padding: 1.25rem 1.5rem; margin: 1.5rem 0; }
+  .affirmationen .block-label { font-weight: 500; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--mid-brown); margin-bottom: 0.75rem; }
+  .affirmationen ul { list-style: none; padding: 0; }
+  .affirmationen li { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1rem; line-height: 1.6; padding: 0.3rem 0; border-bottom: 1px solid rgba(184,147,90,0.3); }
+  .affirmationen li:last-child { border-bottom: none; }
+  .abschluss-card { background: var(--dark-brown); color: var(--cream); border-radius: 4px; padding: 2rem; margin: 1.5rem 0; text-align: center; }
+  .abschluss-card h3 { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 1.5rem; color: var(--light-gold); margin-bottom: 1rem; }
+  .abschluss-card p { font-weight: 300; font-size: 0.9rem; line-height: 1.8; color: var(--cream); opacity: 0.9; }
+  .btn-primary { display: inline-block; background: var(--gold); color: var(--dark-brown); font-family: 'Jost', sans-serif; font-weight: 500; font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.85rem 2rem; border: none; border-radius: 3px; cursor: pointer; transition: all 0.2s; margin-top: 0.5rem; }
+  .btn-primary:hover { background: var(--mid-brown); color: var(--cream); }
+  .btn-secondary { display: inline-block; background: transparent; color: var(--gold); font-family: 'Jost', sans-serif; font-weight: 400; font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.75rem 1.5rem; border: 1px solid var(--gold); border-radius: 3px; cursor: pointer; transition: all 0.2s; margin-top: 0.5rem; }
+  .btn-secondary:hover { background: var(--gold); color: var(--dark-brown); }
+  .btn-row { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.5rem; align-items: center; }
+  .toast { position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%) translateY(100px); background: var(--dark-brown); color: var(--cream); font-family: 'Jost', sans-serif; font-size: 0.82rem; font-weight: 300; padding: 0.75rem 1.5rem; border-radius: 3px; border-left: 3px solid var(--gold); transition: transform 0.3s ease; z-index: 100; white-space: nowrap; }
+  .toast.show { transform: translateX(-50%) translateY(0); }
+  footer { text-align: center; padding: 2rem 1.5rem; font-weight: 300; font-size: 0.72rem; color: var(--mid-brown); line-height: 1.7; border-top: 1px solid var(--light-gold); max-width: 680px; margin: 0 auto; }
+  @media (max-width: 480px) { main { padding: 1.5rem 1rem 3rem; } .welcome-card { padding: 1.5rem; } }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">Mein Veränderungsweg · Kurs 08</div>
+  <h1>Mehr <em>Leichtigkeit</em></h1>
+  <div class="subtitle">4 Module · Lebensfreude · Freude nicht verdienen – sondern täglich wählen</div>
+  <div class="progress-bar-wrap">
+    <div class="progress-bar" id="progressBar" style="width: 0%"></div>
+  </div>
+</header>
+
+<nav>
+  <button class="nav-btn active" onclick="showModul(0)" id="nav0">Willkommen</button>
+  <button class="nav-btn" onclick="showModul(1)" id="nav1">Modul 1</button>
+  <button class="nav-btn locked" id="nav2">Modul 2</button>
+  <button class="nav-btn locked" id="nav3">Modul 3</button>
+  <button class="nav-btn locked" id="nav4">Modul 4</button>
+</nav>
+
+<main>
+
+  <!-- WILLKOMMEN -->
+  <div class="modul active" id="modul0">
+    <div class="welcome-card">
+      <h2>Willkommen.</h2>
+      <p>Dieser Kurs begleitet dich vier Wochen durch den Bereich Lebensfreude. Freude beginnt oft in kleinen Momenten, die bewusst wahrgenommen werden.</p>
+      <div class="kernfrage">Erlaube ich mir Freude – oder muss ich sie mir erst verdienen?</div>
+      <p>Das ist der letzte Kurs auf deinem Veränderungsweg. Du bist weit gekommen.</p>
+      <p>Alles, was du hier schreibst, bleibt auf deinem Gerät.</p>
+    </div>
+    <div class="btn-row">
+      <button class="btn-primary" onclick="showModul(1)">Modul 1 beginnen</button>
+    </div>
+  </div>
+
+  <!-- MODUL 1 -->
+  <div class="modul" id="modul1">
+    <div class="modul-header">
+      <div class="modul-label">Modul 1 von 4</div>
+      <h2>Was Freude mit mir gemacht hat</h2>
+      <div class="thema">Meine Freude-Biografie</div>
+    </div>
+    <div class="divider"></div>
+    <div class="text-block">
+      <p>Wann warst du zuletzt wirklich leicht? Nicht entspannt im Sinne von erschöpft-aber-fertig. Sondern wirklich leicht – so, dass du lächeln musstest, ohne Grund.</p>
+      <p>Für viele Frauen liegt dieser Moment weit zurück. Nicht weil das Leben keine Freude hat – sondern weil die Freude irgendwann hinter Pflichten und Erschöpfung verschwunden ist.</p>
+    </div>
+    <div class="reflexion-block">
+      <div class="block-label">Reflexionsfrage</div>
+      <div class="question">Wann in deinem Leben hast du dich zuletzt wirklich frei und leicht gefühlt – und was war das für ein Moment?</div>
+      <textarea id="r1a" placeholder="Lass den ersten Gedanken kommen..." oninput="speichern()"></textarea>
+    </div>
+    <div class="uebung-block">
+      <div class="block-label">Übung</div>
+      <h3>Freude-Biografie</h3>
+      <div class="zeit">20 Minuten · einmalig</div>
+      <p><strong>Kindheit – Was hat mir damals echte Freude bereitet?</strong></p>
+      <textarea id="r1b" placeholder="..." rows="3" oninput="speichern()"></textarea>
+      <p style="margin-top:0.75rem;"><strong>Junge Erwachsene – Was hat mir damals Freude gemacht?</strong></p>
+      <textarea id="r1c" placeholder="..." rows="3" oninput="speichern()"></textarea>
+      <p style="margin-top:0.75rem;"><strong>Die letzten Jahre – Was bringt mir noch echte Freude?</strong></p>
+      <textarea id="r1d" placeholder="..." rows="3" oninput="speichern()"></textarea>
+      <p style="margin-top:0.75rem;"><strong>Was ist verschwunden – und was möchte ich zurückbringen?</strong></p>
+      <textarea id="r1e" placeholder="..." rows="3" oninput="speichern()"></textarea>
+    </div>
+    <div class="affirmationen">
+      <div class="block-label">Affirmationen</div>
+      <ul>
+        <li>Ich verdiene Freude – einfach so.</li>
+        <li>Freude ist kein Luxus – sie ist Grundnahrungsmittel.</li>
+      </ul>
+    </div>
+    <div class="btn-row">
+      <button class="btn-primary" onclick="modulAbschliessen(1)">Modul abschließen</button>
+      <button class="btn-secondary" onclick="speichernAlle()">Speichern</button>
+    </div>
+  </div>
+
+  <!-- MODUL 2 -->
+  <div class="modul" id="modul2">
+    <div class="modul-header">
+      <div class="modul-label">Modul 2 von 4</div>
+      <h2>Freude ohne Bedingungen</h2>
+      <div class="thema">Der Unterschied zwischen Belohnungsfreude und freier Freude</div>
+    </div>
+    <div class="divider"></div>
+    <div class="text-block">
+      <p>Viele erleben Freude nur als Belohnung: Erst wenn alles erledigt ist. Erst wenn ich es mir verdient habe. Aber Freude, die an Bedingungen geknüpft ist, kommt selten an. Freie Freude braucht keinen Anlass.</p>
+    </div>
+    <div class="reflexion-block">
+      <div class="block-label">Reflexionsfrage</div>
+      <div class="question">Wann hast du zuletzt Freude erlebt, ohne sie dir verdient zu haben?</div>
+      <textarea id="r2a" placeholder="Lass den ersten Gedanken kommen..." oninput="speichern()"></textarea>
+    </div>
+    <div class="uebung-block">
+      <div class="block-label">Übung</div>
+      <h3>Meine Freude-Liste</h3>
+      <div class="zeit">15 Minuten · einmalig</div>
+      <p>Schreibe 30 Dinge, die dir Freude machen – kein Zensieren, keine Rechtfertigung nötig. Klein oder groß, banal oder bedeutsam:</p>
+      <textarea id="r2b" placeholder="1. ...&#10;2. ...&#10;3. ...&#10;..." rows="12" oninput="speichern()"></textarea>
+      <p style="margin-top:0.75rem;"><strong>Was davon tue ich noch diese Woche?</strong></p>
+      <textarea id="r2c" placeholder="..." rows="2" oninput="speichern()"></textarea>
+    </div>
+    <div class="affirmationen">
+      <div class="block-label">Affirmationen</div>
+      <ul>
+        <li>Freude braucht keinen Anlass.</li>
+        <li>Leichtigkeit ist keine Belohnung – sie ist eine Grundlage.</li>
+      </ul>
+    </div>
+    <div class="btn-row">
+      <button class="btn-primary" onclick="modulAbschliessen(2)">Modul abschließen</button>
+      <button class="btn-secondary" onclick="speichernAlle()">Speichern</button>
+    </div>
+  </div>
+
+  <!-- MODUL 3 -->
+  <div class="modul" id="modul3">
+    <div class="modul-header">
+      <div class="modul-label">Modul 3 von 4</div>
+      <h2>Leichtigkeit im Alltag einladen</h2>
+      <div class="thema">Die Rollen-Landkarte</div>
+    </div>
+    <div class="divider"></div>
+    <div class="text-block">
+      <p>Du spielst viele Rollen. In manchen bist du ganz du selbst. In anderen verlierst du dich. Die Rollen-Landkarte hilft dir zu sehen, wo deine Energie hinfließt.</p>
+    </div>
+    <div class="reflexion-block">
+      <div class="block-label">Reflexionsfrage</div>
+      <div class="question">In welcher Rolle bist du dir selbst am nächsten – und in welcher verlierst du am meisten Energie?</div>
+      <textarea id="r3a" placeholder="Lass den ersten Gedanken kommen..." oninput="speichern()"></textarea>
+    </div>
+    <div class="uebung-block">
+      <div class="block-label">Übung</div>
+      <h3>Rollen-Landkarte</h3>
+      <div class="zeit">20 Minuten · einmalig</div>
+      <div class="tabelle-wrap">
+        <table>
+          <thead><tr><th>Meine Rolle</th><th>Gibt ✅ / Kostet 🔴 Energie</th><th>Was ich verändern möchte</th></tr></thead>
+          <tbody>
+            <tr><td><input id="rol1a" oninput="speichern()"></td><td><input id="rol1b" oninput="speichern()"></td><td><input id="rol1c" oninput="speichern()"></td></tr>
+            <tr><td><input id="rol2a" oninput="speichern()"></td><td><input id="rol2b" oninput="speichern()"></td><td><input id="rol2c" oninput="speichern()"></td></tr>
+            <tr><td><input id="rol3a" oninput="speichern()"></td><td><input id="rol3b" oninput="speichern()"></td><td><input id="rol3c" oninput="speichern()"></td></tr>
+            <tr><td><input id="rol4a" oninput="speichern()"></td><td><input id="rol4b" oninput="speichern()"></td><td><input id="rol4c" oninput="speichern()"></td></tr>
+            <tr><td><input id="rol5a" oninput="speichern()"></td><td><input id="rol5b" oninput="speichern()"></td><td><input id="rol5c" oninput="speichern()"></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="affirmationen">
+      <div class="block-label">Affirmationen</div>
+      <ul>
+        <li>Ich bin mehr als meine Rollen.</li>
+        <li>Ich darf die Person sein, die ich außerhalb meiner Rollen bin.</li>
+      </ul>
+    </div>
+    <div class="btn-row">
+      <button class="btn-primary" onclick="modulAbschliessen(3)">Modul abschließen</button>
+      <button class="btn-secondary" onclick="speichernAlle()">Speichern</button>
+    </div>
+  </div>
+
+  <!-- MODUL 4 -->
+  <div class="modul" id="modul4">
+    <div class="modul-header">
+      <div class="modul-label">Modul 4 von 4</div>
+      <h2>Freude als Grundlage</h2>
+      <div class="thema">Mein persönliches Freude-Manifest</div>
+    </div>
+    <div class="divider"></div>
+    <div class="text-block">
+      <p>Leichtigkeit ist keine Belohnung für ein gut geführtes Leben. Sie ist ein Fundament. Ohne sie trägt vieles nicht mehr.</p>
+      <p>In diesem letzten Modul schreibst du dein persönliches Freude-Manifest.</p>
+    </div>
+    <div class="reflexion-block">
+      <div class="block-label">Reflexionsfrage</div>
+      <div class="question">Was nimmst du aus diesen vier Wochen mit – über Freude, Leichtigkeit und was du dir erlauben darfst?</div>
+      <textarea id="r4a" placeholder="Lass den ersten Gedanken kommen..." oninput="speichern()"></textarea>
+    </div>
+    <div class="uebung-block">
+      <div class="block-label">Übung</div>
+      <h3>Mein Freude-Manifest</h3>
+      <div class="zeit">20 Minuten · einmalig</div>
+      <p><strong>Was bringt mir echte Freude?</strong></p>
+      <textarea id="r4b" placeholder="..." rows="3" oninput="speichern()"></textarea>
+      <p style="margin-top:0.75rem;"><strong>Was erlaube ich mir ab jetzt?</strong></p>
+      <textarea id="r4c" placeholder="..." rows="3" oninput="speichern()"></textarea>
+      <p style="margin-top:0.75rem;"><strong>Was höre ich auf, mir zu verweigern?</strong></p>
+      <textarea id="r4d" placeholder="..." rows="3" oninput="speichern()"></textarea>
+      <p style="margin-top:0.75rem;"><strong>Was ist mein tägliches Freude-Ritual?</strong></p>
+      <textarea id="r4e" placeholder="..." rows="3" oninput="speichern()"></textarea>
+    </div>
+    <div class="affirmationen">
+      <div class="block-label">Affirmationen</div>
+      <ul>
+        <li>Ich erlaube mir, das Leben wirklich zu fühlen.</li>
+        <li>Leichtigkeit ist kein Luxus – sie ist Notwendigkeit.</li>
+        <li>Ich wähle Freude – täglich, bewusst, ohne Bedingungen.</li>
+      </ul>
+    </div>
+
+    <div class="abschluss-card">
+      <h3>Du hast deinen Veränderungsweg gegangen. ✨</h3>
+      <p>Acht Kurse. Acht Lebensbereiche. Unzählige kleine Momente der Aufmerksamkeit für dich selbst. Das ist keine Kleinigkeit.</p>
+      <p style="margin-top:1rem;">Trage weiter, was dir gut getan hat. Lass los, was nicht mehr passt. Und komm immer wieder zu dir zurück.</p>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn-primary" onclick="modulAbschliessen(4)">Kurs abschließen ✓</button>
+      <button class="btn-secondary" onclick="speichernAlle()">Speichern</button>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  Selbstreflexions- und Coaching-Angebot. Kein Ersatz für Psychotherapie oder medizinische Beratung.<br>
+  © 2025 Tanja Sattelberg · <a href="https://veraenderungsweg.de" style="color: var(--gold);">veraenderungsweg.de</a>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+  const STORAGE_KEY = 'kurs-08-mehr-leichtigkeit';
+  let state = { freigeschaltet: [0, 1], aktuell: 0 };
+  const FELDER = ['r1a','r1b','r1c','r1d','r1e','r2a','r2b','r2c','r3a','r4a','r4b','r4c','r4d','r4e',
+    'rol1a','rol1b','rol1c','rol2a','rol2b','rol2c','rol3a','rol3b','rol3c',
+    'rol4a','rol4b','rol4c','rol5a','rol5b','rol5c'];
+
+  function laden() {
+    const g = localStorage.getItem(STORAGE_KEY);
+    if (g) {
+      const d = JSON.parse(g);
+      state = d.state || state;
+      Object.keys(d.felder || {}).forEach(id => { const el = document.getElementById(id); if (el) el.value = d.felder[id]; });
+    }
+    navAktualisieren();
+    showModul(state.aktuell);
+  }
+
+  function alleFelder() {
+    const r = {};
+    FELDER.forEach(id => { const el = document.getElementById(id); if (el) r[id] = el.value; });
+    return r;
+  }
+
+  function speichern() { localStorage.setItem(STORAGE_KEY, JSON.stringify({ state, felder: alleFelder() })); }
+  function speichernAlle() { speichern(); toast('Gespeichert ✓'); }
+
+  function showModul(nr) {
+    if (!state.freigeschaltet.includes(nr)) return;
+    document.querySelectorAll('.modul').forEach(m => m.classList.remove('active'));
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('modul' + nr).classList.add('active');
+    document.getElementById('nav' + nr).classList.add('active');
+    state.aktuell = nr;
+    document.getElementById('progressBar').style.width = Math.max(0, (nr / 4) * 100) + '%';
+    speichern();
+    window.scrollTo(0, 0);
+  }
+
+  function modulAbschliessen(nr) {
+    const n = nr + 1;
+    if (n <= 4 && !state.freigeschaltet.includes(n)) state.freigeschaltet.push(n);
+    speichernAlle();
+    navAktualisieren();
+    if (n <= 4) setTimeout(() => { toast('Modul ' + nr + ' abgeschlossen ✓'); showModul(n); }, 300);
+    else toast('Herzlichen Glückwunsch – du hast deinen Veränderungsweg abgeschlossen! 🌿');
+  }
+
+  function navAktualisieren() {
+    for (let i = 0; i <= 4; i++) {
+      const btn = document.getElementById('nav' + i);
+      if (!btn) continue;
+      if (state.freigeschaltet.includes(i)) { btn.classList.remove('locked'); btn.onclick = () => showModul(i); }
+      else { btn.classList.add('locked'); btn.onclick = null; }
+    }
+  }
+
+  function toast(msg) {
+    const el = document.getElementById('toast');
+    el.textContent = msg;
+    el.classList.add('show');
+    setTimeout(() => el.classList.remove('show'), 4000);
+  }
+
+  laden();
+</script>
+</body>
+</html>
