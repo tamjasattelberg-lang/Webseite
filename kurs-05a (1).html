@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kurs 05a · Mehr Heimat · Mein Veränderungsweg</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root { --gold: #B8935A; --cream: #F5EFE0; --dark-brown: #3D2519; --mid-brown: #7A4A2E; --light-gold: #E8D5B0; --white: #FDFAF4; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Jost', sans-serif; background: var(--cream); color: var(--dark-brown); min-height: 100vh; }
+  header { background: var(--dark-brown); color: var(--cream); padding: 2rem 1.5rem 1.5rem; text-align: center; }
+  header .brand { font-weight: 300; font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; }
+  header h1 { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(1.8rem, 5vw, 2.8rem); line-height: 1.2; }
+  header h1 em { font-style: italic; color: var(--light-gold); }
+  header .subtitle { font-weight: 300; font-size: 0.85rem; color: var(--light-gold); margin-top: 0.5rem; letter-spacing: 0.05em; }
+  .progress-bar-wrap { background: rgba(255,255,255,0.1); border-radius: 2px; height: 3px; margin-top: 1rem; overflow: hidden; }
+  .progress-bar { height: 100%; background: var(--gold); transition: width 0.5s ease; }
+  nav { background: var(--dark-brown); border-top: 1px solid rgba(184,147,90,0.3); padding: 0 1rem; display: flex; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  nav::-webkit-scrollbar { display: none; }
+  .nav-btn { background: none; border: none; color: var(--light-gold); font-family: 'Jost', sans-serif; font-weight: 300; font-size: 0.75rem; letter-spacing: 0.08em; padding: 0.9rem 1rem; cursor: pointer; white-space: nowrap; border-bottom: 2px solid transparent; transition: all 0.2s; opacity: 0.6; }
+  .nav-btn.active { color: var(--gold); border-bottom-color: var(--gold); opacity: 1; }
+  .nav-btn.locked { opacity: 0.3; cursor: default; }
+  .nav-btn:not(.locked):hover { opacity: 0.9; }
+  main { max-width: 680px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+  .modul { display: none; }
+  .modul.active { display: block; }
+  .welcome-card { background: var(--dark-brown); color: var(--cream); border-radius: 4px; padding: 2rem; margin-bottom: 2rem; }
+  .welcome-card h2 { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 1.6rem; margin-bottom: 1rem; color: var(--light-gold); }
+  .welcome-card p { font-weight: 300; line-height: 1.8; font-size: 0.95rem; margin-bottom: 0.75rem; }
+  .kernfrage { border-left: 2px solid var(--gold); padding: 0.75rem 1rem; margin: 1.25rem 0; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.15rem; color: var(--light-gold); line-height: 1.5; }
+  .modul-header { margin-bottom: 1.75rem; }
+  .modul-label { font-weight: 300; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.4rem; }
+  .modul-header h2 { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(1.5rem, 4vw, 2rem); line-height: 1.2; margin-bottom: 0.3rem; }
+  .modul-header .thema { font-weight: 300; font-size: 0.82rem; color: var(--mid-brown); font-style: italic; }
+  .divider { width: 40px; height: 1px; background: var(--gold); margin: 1.25rem 0; }
+  .text-block { font-weight: 300; line-height: 1.85; font-size: 0.95rem; margin-bottom: 1rem; }
+  .text-block p { margin-bottom: 0.75rem; }
+  .reflexion-block { background: var(--white); border-left: 3px solid var(--gold); border-radius: 0 4px 4px 0; padding: 1.25rem 1.5rem; margin: 1.5rem 0; }
+  .reflexion-block .block-label { font-weight: 500; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.6rem; }
+  .reflexion-block .question { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.1rem; line-height: 1.5; margin-bottom: 0.75rem; }
+  textarea { width: 100%; min-height: 100px; background: var(--cream); border: 1px solid var(--light-gold); border-radius: 3px; padding: 0.75rem; font-family: 'Jost', sans-serif; font-weight: 300; font-size: 0.9rem; color: var(--dark-brown); resize: vertical; outline: none; transition: border-color 0.2s; }
+  textarea:focus { border-color: var(--gold); }
+  .uebung-block { background: var(--white); border-radius: 4px; padding: 1.5rem; margin: 1.5rem 0; border: 1px solid var(--light-gold); }
+  .uebung-block .block-label { font-weight: 500; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--mid-brown); margin-bottom: 0.4rem; }
+  .uebung-block h3 { font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: 1.15rem; margin-bottom: 0.4rem; }
+  .uebung-block .zeit { font-size: 0.75rem; color: var(--gold); font-weight: 300; margin-bottom: 1rem; }
+  .uebung-block p { font-weight: 300; font-size: 0.9rem; line-height: 1.8; margin-bottom: 0.6rem; }
+  .uebung-block ol { padding-left: 1.25rem; margin: 0.5rem 0 0.75rem; }
+  .uebung-block li { font-weight: 300; font-size: 0.9rem; line-height: 1.75; margin-bottom: 0.3rem; }
+  .audio-block { background: var(--dark-brown); border-radius: 4px; padding: 1.5rem; margin: 1.5rem 0; color: var(--cream); }
+  .audio-block .block-label { font-weight: 300; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem; }
+  .audio-block h3 { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 1.15rem; color: var(--light-gold); margin-bottom: 0.5rem; }
+  .audio-block p { font-weight: 300; font-size: 0.85rem; line-height: 1.7; color: var(--light-gold); margin-bottom: 1rem; opacity: 0.85; }
+  .audio-block audio { width: 100%; accent-color: var(--gold); }
+  .tabelle-wrap { overflow-x: auto; margin: 1rem 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+  th { background: var(--dark-brown); color: var(--cream); font-weight: 300; font-size: 0.75rem; letter-spacing: 0.08em; padding: 0.6rem 0.75rem; text-align: left; }
+  td { border: 1px solid var(--light-gold); padding: 0.5rem 0.75rem; background: var(--white); }
+  td input { width: 100%; border: none; background: transparent; font-family: 'Jost', sans-serif; font-weight: 300; font-size: 0.85rem; color: var(--dark-brown); outline: none; }
+  .affirmationen { background: var(--light-gold); border-radius: 4px; padding: 1.25rem 1.5rem; margin: 1.5rem 0; }
+  .affirmationen .block-label { font-weight: 500; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--mid-brown); margin-bottom: 0.75rem; }
+  .affirmationen ul { list-style: none; padding: 0; }
+  .affirmationen li { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1rem; line-height: 1.6; padding: 0.3rem 0; border-bottom: 1px solid rgba(184,147,90,0.3); }
+  .affirmationen li:last-child { border-bottom: none; }
+  .abschluss-hint { background: var(--white); border-radius: 4px; padding: 1.25rem 1.5rem; margin: 1.5rem 0; border: 1px solid var(--light-gold); font-weight: 300; font-size: 0.88rem; color: var(--mid-brown); line-height: 1.7; }
+  .abschluss-hint strong { color: var(--dark-brown); font-weight: 500; }
+  .btn-primary { display: inline-block; background: var(--gold); color: var(--dark-brown); font-family: 'Jost', sans-serif; font-weight: 500; font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.85rem 2rem; border: none; border-radius: 3px; cursor: pointer; transition: all 0.2s; margin-top: 0.5rem; }
+  .btn-primary:hover { background: var(--mid-brown); color: var(--cream); }
+  .btn-secondary { display: inline-block; background: transparent; color: var(--gold); font-family: 'Jost', sans-serif; font-weight: 400; font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.75rem 1.5rem; border: 1px solid var(--gold); border-radius: 3px; cursor: pointer; transition: all 0.2s; margin-top: 0.5rem; }
+  .btn-secondary:hover { background: var(--gold); color: var(--dark-brown); }
+  .btn-row { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.5rem; align-items: center; }
+  .toast { position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%) translateY(100px); background: var(--dark-brown); color: var(--cream); font-family: 'Jost', sans-serif; font-size: 0.82rem; font-weight: 300; padding: 0.75rem 1.5rem; border-radius: 3px; border-left: 3px solid var(--gold); transition: transform 0.3s ease; z-index: 100; white-space: nowrap; }
+  .toast.show { transform: translateX(-50%) translateY(0); }
+  footer { text-align: center; padding: 2rem 1.5rem; font-weight: 300; font-size: 0.72rem; color: var(--mid-brown); line-height: 1.7; border-top: 1px solid var(--light-gold); max-width: 680px; margin: 0 auto; }
+  @media (max-width: 480px) { main { padding: 1.5rem 1rem 3rem; } .welcome-card { padding: 1.5rem; } }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">Mein Veränderungsweg · Kurs 05a</div>
+  <h1>Mehr <em>Heimat</em></h1>
+  <div class="subtitle">4 Module · Körper · Den eigenen Körper wieder bewusst wahrnehmen</div>
+  <div class="progress-bar-wrap">
+    <div class="progress-bar" id="progressBar" style="width: 0%"></div>
+  </div>
+</header>
+
+<nav>
+  <button class="nav-btn active" onclick="showModul(0)" id="nav0">Willkommen</button>
+  <button class="nav-btn" onclick="showModul(1)" id="nav1">Modul 1</button>
+  <button class="nav-btn locked" id="nav2">Modul 2</button>
+  <button class="nav-btn locked" id="nav3">Modul 3</button>
+  <button class="nav-btn locked" id="nav4">Modul 4</button>
+</nav>
+
+<main>
+
+  <!-- WILLKOMMEN -->
+  <div class="modul active" id="modul0">
+    <div class="welcome-card">
+      <h2>Willkommen.</h2>
+      <p>Dieser Kurs begleitet dich vier Wochen durch den Bereich Körper. Dein Körper reagiert oft früher als dein Verstand – er ist dein erster Orientierungssinn.</p>
+      <div class="kernfrage">Was sagt mir mein Körper – und höre ich ihm zu?</div>
+      <p>Alles, was du hier schreibst, bleibt auf deinem Gerät.</p>
+    </div>
+    <div class="btn-row">
+      <button class="btn-primary" onclick="showModul(1)">Modul 1 beginnen</button>
+    </div>
+  </div>
+
+  <!-- MODUL 1 -->
+  <div class="modul" id="modul1">
+    <div class="modul-header">
+      <div class="modul-label">Modul 1 von 4</div>
+      <h2>Mein Körper als Informationssystem</h2>
+      <div class="thema">Körpersignale wahrnehmen und verstehen</div>
+    </div>
+    <div class="divider"></div>
+
+    <div class="text-block">
+      <p>Dein Körper reagiert oft früher als dein Verstand. Er kennt deine Grenzen, deine Bedürfnisse, deine Erschöpfung – oft Stunden oder Tage, bevor du es bewusst wahrnimmst.</p>
+      <p>Aber viele haben gelernt, den Körper zu ignorieren. Den Hunger zu übersehen. Die Müdigkeit wegzuschieben. Den Schmerz zu betäuben. In diesem Kurs lernst du, wieder zuzuhören.</p>
+    </div>
+
+    <div class="reflexion-block">
+      <div class="block-label">Reflexionsfrage</div>
+      <div class="question">Was versucht dein Körper dir gerade zu sagen – und wann hast du es zuletzt wirklich gehört?</div>
+      <textarea id="r1a" placeholder="Lass den ersten Gedanken kommen..." oninput="speichern()"></textarea>
+    </div>
+
+    <div class="audio-block">
+      <div class="block-label">Geführte Übung · Audio</div>
+      <h3>Körper-Scan · ca. 8 Minuten</h3>
+      <p>Setz oder leg dich bequem hin. Lass dich durch deinen Körper führen – von den Füßen bis zum Kopf.</p>
+      <audio controls>
+        <source src="koerperscan-modul1.mp4" type="video/mp4">
+      </audio>
+    </div>
+
+    <div class="uebung-block">
+      <div class="block-label">Übung</div>
+      <h3>Körper-Scan Tagebuch</h3>
+      <div class="zeit">8 Minuten · täglich · eine Woche lang</div>
+      <p>Nutze die Audioübung täglich und notiere deine Beobachtungen.</p>
+      <div class="tabelle-wrap">
+        <table>
+          <thead><tr><th>Tag</th><th>Gemacht?</th><th>Was ich gespürt habe</th><th>Mein Zustand danach</th></tr></thead>
+          <tbody>
+            <tr><td>Montag</td><td><input id="k1a" oninput="speichern()"></td><td><input id="k1b" oninput="speichern()"></td><td><input id="k1c" oninput="speichern()"></td></tr>
+            <tr><td>Dienstag</td><td><input id="k2a" oninput="speichern()"></td><td><input id="k2b" oninput="speichern()"></td><td><input id="k2c" oninput="speichern()"></td></tr>
+            <tr><td>Mittwoch</td><td><input id="k3a" oninput="speichern()"></td><td><input id="k3b" oninput="speichern()"></td><td><input id="k3c" oninput="speichern()"></td></tr>
+            <tr><td>Donnerstag</td><td><input id="k4a" oninput="speichern()"></td><td><input id="k4b" oninput="speichern()"></td><td><input id="k4c" oninput="speichern()"></td></tr>
+            <tr><td>Freitag</td><td><input id="k5a" oninput="speichern()"></td><td><input id="k5b" oninput="speichern()"></td><td><input id="k5c" oninput="speichern()"></td></tr>
+            <tr><td>Samstag</td><td><input id="k6a" oninput="speichern()"></td><td><input id="k6b" oninput="speichern()"></td><td><input id="k6c" oninput="speichern()"></td></tr>
+            <tr><td>Sonntag</td><td><input id="k7a" oninput="speichern()"></td><td><input id="k7b" oninput="speichern()"></td><td><input id="k7c" oninput="speichern()"></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="affirmationen">
+      <div class="block-label">Affirmationen</div>
+      <ul>
+        <li>Mein Körper ist kein Werkzeug – er ist meine Heimat.</li>
+        <li>Ich nehme die Signale meines Körpers ernst.</li>
+      </ul>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn-primary" onclick="modulAbschliessen(1)">Modul abschließen</button>
+      <button class="btn-secondary" onclick="speichernAlle()">Speichern</button>
+    </div>
+  </div>
+
+  <!-- MODUL 2 -->
+  <div class="modul" id="modul2">
+    <div class="modul-header">
+      <div class="modul-label">Modul 2 von 4</div>
+      <h2>Nervensystem und Alltag</h2>
+      <div class="thema">Wann bin ich im Stress-, wann im Erholungs-Modus?</div>
+    </div>
+    <div class="divider"></div>
+
+    <div class="text-block">
+      <p>Dein Nervensystem hat drei Grundzustände: Sicherheit und Verbindung, Kampf-oder-Flucht, und Erstarrung. Alle drei sind normal. Alle drei haben eine Funktion. Aber viele verbringen zu viel Zeit in Aktivierung – und haben verlernt, wie sich echte Entspannung anfühlt.</p>
+    </div>
+
+    <div class="reflexion-block">
+      <div class="block-label">Reflexionsfrage</div>
+      <div class="question">In welchem Nervensystem-Zustand verbringst du gerade die meiste Zeit? Woran merkst du es?</div>
+      <textarea id="r2a" placeholder="Lass den ersten Gedanken kommen..." oninput="speichern()"></textarea>
+    </div>
+
+    <div class="uebung-block">
+      <div class="block-label">Übung</div>
+      <h3>Meine persönliche Polyvagale Leiter</h3>
+      <div class="zeit">20 Minuten · einmalig</div>
+      <p>Beschreibe deine drei Zustände — so konkret wie möglich für dich persönlich:</p>
+      <p><strong>Oben – Sicherheit:</strong> Wie fühlt sich das bei mir an? Was hilft mir dahin?</p>
+      <textarea id="r2b" placeholder="Wenn ich mich sicher fühle, dann..." rows="3" oninput="speichern()"></textarea>
+      <p style="margin-top:0.75rem;"><strong>Mitte – Aktivierung:</strong> Was bringt mich in Stress? Wie zeigt er sich in meinem Körper?</p>
+      <textarea id="r2c" placeholder="Wenn ich gestresst bin, dann..." rows="3" oninput="speichern()"></textarea>
+      <p style="margin-top:0.75rem;"><strong>Unten – Erstarrung:</strong> Wann ziehe ich mich zurück? Wie fühlt sich das an?</p>
+      <textarea id="r2d" placeholder="Wenn ich mich zurückziehe, dann..." rows="3" oninput="speichern()"></textarea>
+    </div>
+
+    <div class="affirmationen">
+      <div class="block-label">Affirmationen</div>
+      <ul>
+        <li>Entspannung ist eine Fähigkeit, die ich lernen und üben darf.</li>
+        <li>Mein Nervensystem kann sich regulieren – mit meiner Hilfe.</li>
+      </ul>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn-primary" onclick="modulAbschliessen(2)">Modul abschließen</button>
+      <button class="btn-secondary" onclick="speichernAlle()">Speichern</button>
+    </div>
+  </div>
+
+  <!-- MODUL 3 -->
+  <div class="modul" id="modul3">
+    <div class="modul-header">
+      <div class="modul-label">Modul 3 von 4</div>
+      <h2>Den Körper einladen</h2>
+      <div class="thema">Täglich kleine Momente der Körperwahrnehmung entwickeln</div>
+    </div>
+    <div class="divider"></div>
+
+    <div class="text-block">
+      <p>Es braucht keine Stunde Yoga. Es braucht kleine, regelmäßige Momente der Aufmerksamkeit – täglich, kurz, ohne Leistungsanspruch.</p>
+    </div>
+
+    <div class="reflexion-block">
+      <div class="block-label">Reflexionsfrage</div>
+      <div class="question">Welcher kleine körperliche Moment macht dich am ehesten präsent – und wie oft gönnst du ihn dir?</div>
+      <textarea id="r3a" placeholder="Lass den ersten Gedanken kommen..." oninput="speichern()"></textarea>
+    </div>
+
+    <div class="audio-block">
+      <div class="block-label">Geführte Übung · Audio</div>
+      <h3>Orientierungsübung · ca. 3 Minuten</h3>
+      <p>Stell dich hin, spür deine Füße auf dem Boden und lass dich durch diese kurze Übung führen.</p>
+      <audio controls>
+        <source src="orientierungsuebung-modul3.mp4" type="video/mp4">
+      </audio>
+    </div>
+
+    <div class="uebung-block">
+      <div class="block-label">Übung</div>
+      <h3>Orientierungsübung</h3>
+      <div class="zeit">3 Minuten · täglich</div>
+      <ol>
+        <li>Stell dich hin. Spüre deine Füße auf dem Boden.</li>
+        <li>Schau dich langsam im Raum um – ohne zu bewerten, nur zu sehen.</li>
+        <li>Benenne 5 Dinge, die du siehst.</li>
+        <li>Benenne 3 Geräusche, die du hörst.</li>
+        <li>Benenne, was du spürst – Wärme, Kälte, Druck.</li>
+        <li>Wie ist dein Atem gerade?</li>
+      </ol>
+      <p style="margin-top:0.75rem; font-style:italic; color: var(--mid-brown);">Das ist Orientierung. Dein Nervensystem weiß jetzt: Ich bin sicher. Ich bin hier.</p>
+    </div>
+
+    <div class="affirmationen">
+      <div class="block-label">Affirmationen</div>
+      <ul>
+        <li>Ich bin zu Hause in meinem Körper.</li>
+        <li>Kleine Momente der Aufmerksamkeit verändern alles.</li>
+      </ul>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn-primary" onclick="modulAbschliessen(3)">Modul abschließen</button>
+      <button class="btn-secondary" onclick="speichernAlle()">Speichern</button>
+    </div>
+  </div>
+
+  <!-- MODUL 4 -->
+  <div class="modul" id="modul4">
+    <div class="modul-header">
+      <div class="modul-label">Modul 4 von 4</div>
+      <h2>Heimat im eigenen Körper</h2>
+      <div class="thema">Mein persönliches Körper-Ritual</div>
+    </div>
+    <div class="divider"></div>
+
+    <div class="text-block">
+      <p>Heimat bedeutet nicht, dass alles perfekt ist. Es bedeutet, dass du dich kennst – deine Signale, deine Rhythmen, deine Grenzen.</p>
+    </div>
+
+    <div class="reflexion-block">
+      <div class="block-label">Reflexionsfrage</div>
+      <div class="question">Was hat sich in deiner Wahrnehmung des eigenen Körpers in diesen vier Wochen verändert?</div>
+      <textarea id="r4a" placeholder="Lass den ersten Gedanken kommen..." oninput="speichern()"></textarea>
+    </div>
+
+    <div class="uebung-block">
+      <div class="block-label">Übung</div>
+      <h3>Mein persönliches Körper-Ritual</h3>
+      <div class="zeit">20 Minuten · einmalig</div>
+      <p>Was hat mir in diesen vier Wochen am besten getan?</p>
+      <textarea id="r4b" placeholder="..." rows="3" oninput="speichern()"></textarea>
+      <p style="margin-top:0.75rem;">Welche Übung möchte ich weiterführen?</p>
+      <textarea id="r4c" placeholder="..." rows="2" oninput="speichern()"></textarea>
+      <p style="margin-top:0.75rem;">Zu welchem Zeitpunkt passt sie – und wie lange?</p>
+      <textarea id="r4d" placeholder="..." rows="2" oninput="speichern()"></textarea>
+    </div>
+
+    <div class="affirmationen">
+      <div class="block-label">Affirmationen</div>
+      <ul>
+        <li>Mein Körper und ich – wir sind ein Team.</li>
+        <li>Ich gehe fürsorglich mit dem Ort um, in dem mein Leben stattfindet.</li>
+        <li>Heimat beginnt innen.</li>
+      </ul>
+    </div>
+
+    <div class="abschluss-hint">
+      🌿 <strong>Dein nächster Schritt:</strong> Wenn du merkst, dass der Bereich Entwicklung gerade Aufmerksamkeit verdient – der nächste Kurs heißt <strong>„Mehr Mut"</strong>.
+    </div>
+
+    <div class="btn-row">
+      <button class="btn-primary" onclick="modulAbschliessen(4)">Kurs abschließen ✓</button>
+      <button class="btn-secondary" onclick="speichernAlle()">Speichern</button>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  Kein medizinisches Angebot. Selbstreflexions- und Coaching-Angebot.<br>
+  Kein Ersatz für Psychotherapie oder medizinische Beratung.<br>
+  © 2025 Tanja Sattelberg · <a href="https://veraenderungsweg.de" style="color: var(--gold);">veraenderungsweg.de</a>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+  const STORAGE_KEY = 'kurs-05a-mehr-heimat';
+  let state = { freigeschaltet: [0, 1], aktuell: 0 };
+  const FELDER = ['r1a','r2a','r2b','r2c','r2d','r3a','r4a','r4b','r4c','r4d',
+    'k1a','k1b','k1c','k2a','k2b','k2c','k3a','k3b','k3c',
+    'k4a','k4b','k4c','k5a','k5b','k5c','k6a','k6b','k6c','k7a','k7b','k7c'];
+
+  function laden() {
+    const g = localStorage.getItem(STORAGE_KEY);
+    if (g) {
+      const d = JSON.parse(g);
+      state = d.state || state;
+      Object.keys(d.felder || {}).forEach(id => { const el = document.getElementById(id); if (el) el.value = d.felder[id]; });
+    }
+    navAktualisieren();
+    showModul(state.aktuell);
+  }
+
+  function alleFelder() {
+    const r = {};
+    FELDER.forEach(id => { const el = document.getElementById(id); if (el) r[id] = el.value; });
+    return r;
+  }
+
+  function speichern() { localStorage.setItem(STORAGE_KEY, JSON.stringify({ state, felder: alleFelder() })); }
+  function speichernAlle() { speichern(); toast('Gespeichert ✓'); }
+
+  function showModul(nr) {
+    if (!state.freigeschaltet.includes(nr)) return;
+    document.querySelectorAll('.modul').forEach(m => m.classList.remove('active'));
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('modul' + nr).classList.add('active');
+    document.getElementById('nav' + nr).classList.add('active');
+    state.aktuell = nr;
+    document.getElementById('progressBar').style.width = Math.max(0, (nr / 4) * 100) + '%';
+    speichern();
+    window.scrollTo(0, 0);
+  }
+
+  function modulAbschliessen(nr) {
+    const n = nr + 1;
+    if (n <= 4 && !state.freigeschaltet.includes(n)) state.freigeschaltet.push(n);
+    speichernAlle();
+    navAktualisieren();
+    if (n <= 4) setTimeout(() => { toast('Modul ' + nr + ' abgeschlossen ✓'); showModul(n); }, 300);
+    else toast('Kurs abgeschlossen – herzlichen Glückwunsch! ✓');
+  }
+
+  function navAktualisieren() {
+    for (let i = 0; i <= 4; i++) {
+      const btn = document.getElementById('nav' + i);
+      if (!btn) continue;
+      if (state.freigeschaltet.includes(i)) { btn.classList.remove('locked'); btn.onclick = () => showModul(i); }
+      else { btn.classList.add('locked'); btn.onclick = null; }
+    }
+  }
+
+  function toast(msg) {
+    const el = document.getElementById('toast');
+    el.textContent = msg;
+    el.classList.add('show');
+    setTimeout(() => el.classList.remove('show'), 3000);
+  }
+
+  laden();
+</script>
+</body>
+</html>
