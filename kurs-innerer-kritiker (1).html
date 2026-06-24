@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mein innerer Kritiker – Mein Veränderungsweg</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap');
+
+  :root {
+    --gold: #B8935A;
+    --cream: #F5EFE0;
+    --dark-brown: #3D2519;
+    --mid-brown: #7A4A2E;
+    --light-gold: #E8D5B0;
+    --white: #FDFAF4;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Jost', sans-serif;
+    background: var(--cream);
+    color: var(--dark-brown);
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  header {
+    background: var(--dark-brown);
+    color: var(--cream);
+    padding: 2rem 1.5rem 1.5rem;
+    text-align: center;
+  }
+
+  header .brand {
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.75rem;
+  }
+
+  header h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(1.8rem, 5vw, 2.8rem);
+    line-height: 1.2;
+    color: var(--cream);
+  }
+
+  header h1 em {
+    font-style: italic;
+    color: var(--light-gold);
+  }
+
+  header .subtitle {
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    font-size: 0.85rem;
+    color: var(--light-gold);
+    margin-top: 0.5rem;
+    letter-spacing: 0.05em;
+  }
+
+  /* NAVIGATION */
+  nav {
+    background: var(--dark-brown);
+    border-top: 1px solid rgba(184,147,90,0.3);
+    padding: 0 1rem;
+    display: flex;
+    overflow-x: auto;
+    gap: 0;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  nav::-webkit-scrollbar { display: none; }
+
+  .nav-btn {
+    background: none;
+    border: none;
+    color: var(--light-gold);
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    padding: 0.9rem 1rem;
+    cursor: pointer;
+    white-space: nowrap;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+    opacity: 0.6;
+  }
+
+  .nav-btn.active {
+    color: var(--gold);
+    border-bottom-color: var(--gold);
+    opacity: 1;
+  }
+
+  .nav-btn.locked {
+    opacity: 0.3;
+    cursor: default;
+  }
+
+  .nav-btn:not(.locked):hover {
+    opacity: 0.9;
+  }
+
+  /* MAIN */
+  main {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 4rem;
+  }
+
+  /* WILLKOMMEN */
+  .welcome-card {
+    background: var(--dark-brown);
+    color: var(--cream);
+    border-radius: 4px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .welcome-card h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+    color: var(--light-gold);
+  }
+
+  .welcome-card p {
+    font-weight: 300;
+    line-height: 1.8;
+    font-size: 0.95rem;
+    color: var(--cream);
+    margin-bottom: 0.75rem;
+  }
+
+  .kernfrage {
+    border-left: 2px solid var(--gold);
+    padding: 0.75rem 1rem;
+    margin: 1.25rem 0;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.15rem;
+    color: var(--light-gold);
+    line-height: 1.5;
+  }
+
+  /* MODULE CARDS */
+  .modul {
+    display: none;
+  }
+
+  .modul.active {
+    display: block;
+  }
+
+  .modul-header {
+    margin-bottom: 1.75rem;
+  }
+
+  .modul-label {
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.4rem;
+  }
+
+  .modul-header h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    color: var(--dark-brown);
+    line-height: 1.2;
+    margin-bottom: 0.3rem;
+  }
+
+  .modul-header .thema {
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    font-size: 0.82rem;
+    color: var(--mid-brown);
+    font-style: italic;
+  }
+
+  .divider {
+    width: 40px;
+    height: 1px;
+    background: var(--gold);
+    margin: 1.25rem 0;
+  }
+
+  .text-block {
+    font-weight: 300;
+    line-height: 1.85;
+    font-size: 0.95rem;
+    color: var(--dark-brown);
+    margin-bottom: 1rem;
+  }
+
+  .text-block p {
+    margin-bottom: 0.75rem;
+  }
+
+  /* REFLEXION */
+  .reflexion-block {
+    background: var(--white);
+    border-left: 3px solid var(--gold);
+    border-radius: 0 4px 4px 0;
+    padding: 1.25rem 1.5rem;
+    margin: 1.5rem 0;
+  }
+
+  .reflexion-block .block-label {
+    font-family: 'Jost', sans-serif;
+    font-weight: 500;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.6rem;
+  }
+
+  .reflexion-block .question {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--dark-brown);
+    line-height: 1.5;
+    margin-bottom: 0.75rem;
+  }
+
+  textarea {
+    width: 100%;
+    min-height: 100px;
+    background: var(--cream);
+    border: 1px solid var(--light-gold);
+    border-radius: 3px;
+    padding: 0.75rem;
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    font-size: 0.9rem;
+    color: var(--dark-brown);
+    resize: vertical;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  textarea:focus {
+    border-color: var(--gold);
+  }
+
+  /* ÜBUNG */
+  .uebung-block {
+    background: var(--white);
+    border-radius: 4px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    border: 1px solid var(--light-gold);
+  }
+
+  .uebung-block .block-label {
+    font-family: 'Jost', sans-serif;
+    font-weight: 500;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--mid-brown);
+    margin-bottom: 0.4rem;
+  }
+
+  .uebung-block h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    font-size: 1.15rem;
+    color: var(--dark-brown);
+    margin-bottom: 0.75rem;
+  }
+
+  .uebung-block .zeit {
+    font-size: 0.75rem;
+    color: var(--gold);
+    font-weight: 300;
+    margin-bottom: 1rem;
+  }
+
+  .uebung-block p {
+    font-weight: 300;
+    font-size: 0.9rem;
+    line-height: 1.8;
+    color: var(--dark-brown);
+    margin-bottom: 0.6rem;
+  }
+
+  .uebung-block ul, .uebung-block ol {
+    padding-left: 1.25rem;
+    margin: 0.5rem 0 0.75rem;
+  }
+
+  .uebung-block li {
+    font-weight: 300;
+    font-size: 0.9rem;
+    line-height: 1.75;
+    color: var(--dark-brown);
+    margin-bottom: 0.3rem;
+  }
+
+  /* AUDIO */
+  .audio-block {
+    background: var(--dark-brown);
+    border-radius: 4px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    color: var(--cream);
+  }
+
+  .audio-block .block-label {
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+  }
+
+  .audio-block h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: 1.15rem;
+    color: var(--light-gold);
+    margin-bottom: 0.5rem;
+  }
+
+  .audio-block p {
+    font-weight: 300;
+    font-size: 0.85rem;
+    line-height: 1.7;
+    color: var(--light-gold);
+    margin-bottom: 1rem;
+    opacity: 0.85;
+  }
+
+  .audio-block audio {
+    width: 100%;
+    margin-top: 0.5rem;
+    accent-color: var(--gold);
+  }
+
+  /* AFFIRMATIONEN */
+  .affirmationen {
+    background: var(--light-gold);
+    border-radius: 4px;
+    padding: 1.25rem 1.5rem;
+    margin: 1.5rem 0;
+  }
+
+  .affirmationen .block-label {
+    font-family: 'Jost', sans-serif;
+    font-weight: 500;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--mid-brown);
+    margin-bottom: 0.75rem;
+  }
+
+  .affirmationen ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .affirmationen li {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1rem;
+    color: var(--dark-brown);
+    line-height: 1.6;
+    padding: 0.3rem 0;
+    border-bottom: 1px solid rgba(184,147,90,0.3);
+  }
+
+  .affirmationen li:last-child {
+    border-bottom: none;
+  }
+
+  /* BUTTONS */
+  .btn-primary {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--dark-brown);
+    font-family: 'Jost', sans-serif;
+    font-weight: 500;
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.85rem 2rem;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-top: 0.5rem;
+  }
+
+  .btn-primary:hover {
+    background: var(--mid-brown);
+    color: var(--cream);
+  }
+
+  .btn-secondary {
+    display: inline-block;
+    background: transparent;
+    color: var(--gold);
+    font-family: 'Jost', sans-serif;
+    font-weight: 400;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.75rem 1.5rem;
+    border: 1px solid var(--gold);
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-top: 0.5rem;
+  }
+
+  .btn-secondary:hover {
+    background: var(--gold);
+    color: var(--dark-brown);
+  }
+
+  .btn-row {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 1.5rem;
+    align-items: center;
+  }
+
+  /* ABSCHLUSS */
+  .abschluss-hint {
+    background: var(--white);
+    border-radius: 4px;
+    padding: 1.25rem 1.5rem;
+    margin: 1.5rem 0;
+    border: 1px solid var(--light-gold);
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    font-size: 0.88rem;
+    color: var(--mid-brown);
+    line-height: 1.7;
+  }
+
+  .abschluss-hint strong {
+    color: var(--dark-brown);
+    font-weight: 500;
+  }
+
+  /* FORTSCHRITT */
+  .progress-bar-wrap {
+    background: rgba(255,255,255,0.1);
+    border-radius: 2px;
+    height: 3px;
+    margin-top: 1rem;
+    overflow: hidden;
+  }
+
+  .progress-bar {
+    height: 100%;
+    background: var(--gold);
+    transition: width 0.5s ease;
+  }
+
+  /* RECHTLICHER HINWEIS */
+  footer {
+    text-align: center;
+    padding: 2rem 1.5rem;
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    font-size: 0.72rem;
+    color: var(--mid-brown);
+    line-height: 1.7;
+    border-top: 1px solid var(--light-gold);
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  /* TOAST */
+  .toast {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background: var(--dark-brown);
+    color: var(--cream);
+    font-family: 'Jost', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 300;
+    padding: 0.75rem 1.5rem;
+    border-radius: 3px;
+    border-left: 3px solid var(--gold);
+    transition: transform 0.3s ease;
+    z-index: 100;
+    white-space: nowrap;
+  }
+
+  .toast.show {
+    transform: translateX(-50%) translateY(0);
+  }
+
+  @media (max-width: 480px) {
+    main { padding: 1.5rem 1rem 3rem; }
+    .welcome-card { padding: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">Mein Veränderungsweg · Vertiefungskurs</div>
+  <h1>Mein <em>innerer Kritiker</em></h1>
+  <div class="subtitle">6 Module · Selbstreflexion & innere Stärke</div>
+  <div class="progress-bar-wrap">
+    <div class="progress-bar" id="progressBar" style="width: 0%"></div>
+  </div>
+</header>
+
+<nav id="nav">
+  <button class="nav-btn active" onclick="showModul(0)" id="nav0">Willkommen</button>
+  <button class="nav-btn" onclick="showModul(1)" id="nav1">Modul 1</button>
+  <button class="nav-btn locked" id="nav2">Modul 2</button>
+  <button class="nav-btn locked" id="nav3">Modul 3</button>
+  <button class="nav-btn locked" id="nav4">Modul 4</button>
+  <button class="nav-btn locked" id="nav5">Modul 5</button>
+  <button class="nav-btn locked" id="nav6">Modul 6</button>
+</nav>
+
+<main>
+
+  <!-- WILLKOMMEN -->
+  <div class="modul active" id="modul0">
+    <div class="welcome-card">
+      <h2>Willkommen.</h2>
+      <p>Es gibt eine Stimme in dir, die du sehr gut kennst. Sie meldet sich, wenn du einen Fehler machst. Wenn du zögerst. Wenn du dich vergleichst. Sie klingt wie Wahrheit – aber sie ist keine.</p>
+      <p>Dieser Kurs lädt dich ein, dieser Stimme anders zu begegnen. Nicht mit Kampf. Nicht mit Schweigen. Sondern mit Neugier und – Schritt für Schritt – mit Mitgefühl.</p>
+      <div class="kernfrage">Wie wäre es, wenn die lauteste Stimme in dir nicht dein Feind wäre – sondern jemand, der Hilfe braucht?</div>
+      <p>Du arbeitest in deinem eigenen Tempo. Alles, was du hier schreibst, bleibt auf deinem Gerät.</p>
+    </div>
+    <div class="btn-row">
+      <button class="btn-primary" onclick="showModul(1)">Modul 1 beginnen</button>
+    </div>
+  </div>
+
+  <!-- MODUL 1 -->
+  <div class="modul" id="modul1">
+    <div class="modul-header">
+      <div class="modul-label">Modul 1 von 6</div>
+      <h2>Die Stimme, die immer dabei ist</h2>
+      <div class="thema">Den inneren Kritiker wahrnehmen und benennen</div>
+    </div>
+    <div class="divider"></div>
+
+    <div class="text-block">
+      <p>Du kennst sie. Die Stimme, die sagt: <em>Das schaffst du nicht. Andere machen das besser. Wer bist du, dass du das versuchst?</em></p>
+      <p>Der erste Schritt ist nicht, sie zum Schweigen zu bringen. Der erste Schritt ist, sie überhaupt zu bemerken. Solange sie unsichtbar bleibt, hat sie die meiste Macht.</p>
+      <p>In dieser Woche schaust du hin – ohne zu urteilen. Du sammelst. Du beobachtest. Du lernst die Sprache deines inneren Kritikers kennen.</p>
+    </div>
+
+    <div class="reflexion-block">
+      <div class="block-label">Reflexionsfrage</div>
+      <div class="question">Wie klingt dein innerer Kritiker – und in welchen Momenten wird er besonders laut?</div>
+      <textarea id="r1" placeholder="Lass den ersten Gedanken kommen..." oninput="speichern('r1')"></textarea>
+    </div>
+
+    <div class="uebung-block">
+      <div class="block-label">Übung</div>
+      <h3>Kritiker-Tagebuch · 3 Situationen</h3>
+      <div class="zeit">15–20 Minuten · einmalig</div>
+      <p>Denke an drei konkrete Situationen der letzten Woche, in denen dein innerer Kritiker laut war. Für jede Situation:</p>
+      <ol>
+        <li>Was ist passiert? (kurz beschreiben)</li>
+        <li>Was hat die Stimme gesagt? (so genau wie möglich)</li>
+        <li>Wie hast du dich dabei gefühlt?</li>
+        <li>Wie laut war sie – auf einer Skala von 1 bis 10?</li>
+      </ol>
+      <p>Schreib schnell und unzensiert. Nicht nachdenken – aufschreiben.</p>
+      <textarea id="r1b" placeholder="Situation 1: ..." rows="8" oninput="speichern('r1b')"></textarea>
+    </div>
+
+    <div class="affirmationen">
+      <div class="block-label">Affirmationen</div>
+      <ul>
+        <li>Ich beobachte meine Gedanken – ich bin nicht meine Gedanken.</li>
+        <li>Wahrnehmen ist der erste Schritt zur Veränderung.</li>
+        <li>Ich begegne mir selbst mit Neugier statt mit Urteil.</li>
+      </ul>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn-primary" onclick="modulAbschliessen(1)">Modul abschließen</button>
+      <button class="btn-secondary" onclick="speichernAlle()">Speichern</button>
+    </div>
+  </div>
+
+  <!-- MODUL 2 -->
+  <div class="modul" id="modul2">
+    <div class="modul-header">
+      <div class="modul-label">Modul 2 von 6</div>
+      <h2>Woher kommt diese Stimme?</h2>
+      <div class="thema">Frühe Prägungen und ihre Wirkung heute</div>
+    </div>
+    <div class="divider"></div>
+
+    <div class="text-block">
+      <p>Die Stimme, die dich kritisiert, ist selten wirklich deine eigene. Sie ist entstanden – aus Sätzen, die du gehört hast. Aus Blicken, die du gespürt hast. Aus Momenten, in denen du gelernt hast, dass Anerkennung an Bedingungen geknüpft ist.</p>
+      <p>Als Kind haben wir keine andere Wahl, als diese Sätze zu glauben. Wir übernehmen sie – weil wir es müssen. Weil Zugehörigkeit und Liebe davon abzuhängen schienen.</p>
+      <p>Heute bist du erwachsen. Aber die Stimme weiß das manchmal noch nicht. Das zu erkennen, verändert nichts sofort – aber es löst etwas. Es war nicht deine Wahrheit. Es war jemand anderen Satz.</p>
+    </div>
+
+    <div class="reflexion-block">
+      <div class="block-label">Reflexionsfrage</div>
+      <div class="question">Wessen Stimme hörst du, wenn dein innerer Kritiker spricht – und wann hast du diesen Satz zum ersten Mal gehört?</div>
+      <textarea id="r2" placeholder="Lass den ersten Gedanken kommen..." oninput="speichern('r2')"></textarea>
+    </div>
+
+    <div class="uebung-block">
+      <div class="block-label">Übung</div>
+      <h3>Herkunfts-Analyse · 20 Minuten</h3>
+      <div class="zeit">20–25 Minuten · einmalig</div>
+      <p>Nimm den stärksten Satz deines inneren Kritikers aus Modul 1. Und dann:</p>
+      <ol>
+        <li>Wer hat diesen Satz gesagt – oder so gelebt, als wäre er wahr?</li>
+        <li>In welcher Situation hast du ihn zum ersten Mal erlebt?</li>
+        <li>Was war die Absicht dahinter – was sollte er bewirken?</li>
+        <li>Was hat er in dir ausgelöst – damals?</li>
+        <li>Gilt er heute noch für dich – wirklich?</li>
+        <li>Wie lautet ein Satz, der dir heute besser dient?</li>
+      </ol>
+      <textarea id="r2b" placeholder="Mein stärkster Kritiker-Satz: ..." rows="8" oninput="speichern('r2b')"></textarea>
+    </div>
+
+    <div class="affirmationen">
+      <div class="block-label">Affirmationen</div>
+      <ul>
+        <li>Ich darf die Stimmen meiner Vergangenheit freundlich zurücklassen.</li>
+        <li>Ich bin nicht die Urteile, die andere über mich hatten.</li>
+        <li>Ich entscheide heute, welche Sätze in mir wohnen dürfen.</li>
+      </ul>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn-primary" onclick="modulAbschliessen(2)">Modul abschließen</button>
+      <button class="btn-secondary" onclick="speichernAlle()">Speichern</button>
+    </div>
+  </div>
+
+  <!-- MODUL 3 -->
+  <div class="modul" id="modul3">
+    <div class="modul-header">
+      <div class="modul-label">Modul 3 von 6</div>
+      <h2>Was will sie wirklich?</h2>
+      <div class="thema">Die Schutzfunktion des inneren Kritikers verstehen</div>
+    </div>
+    <div class="divider"></div>
+
+    <div class="text-block">
+      <p>Dein innerer Kritiker ist kein Feind. Er war einmal eine Schutzstrategie. Er hat versucht, dich vor Ablehnung zu bewahren, vor Fehlern, vor Schmerz. Er meint es – auf seine verzerrte Art – gut mit dir.</p>
+      <p>Das klingt vielleicht paradox. Aber: Der Kritiker greift an, um zu schützen. Er treibt an, damit du nicht versagst. Er vergleicht, damit du nicht zu kurz kommst. Er hat nur verlernt, wie Fürsorge wirklich klingt.</p>
+      <p>Wenn du verstehst, wovor er dich schützen will, verliert er einen Teil seiner Macht – weil du nicht mehr kämpfen musst. Du kannst antworten.</p>
+    </div>
+
+    <div class="reflexion-block">
+      <div class="block-label">Reflexionsfrage</div>
+      <div class="question">Wovor will dein innerer Kritiker dich eigentlich schützen – wenn du ganz ehrlich hinschaust?</div>
+      <textarea id="r3" placeholder="Lass den ersten Gedanken kommen..." oninput="speichern('r3')"></textarea>
+    </div>
+
+    <div class="uebung-block">
+      <div class="block-label">Übung</div>
+      <h3>Die Absicht entschlüsseln · 15 Minuten</h3>
+      <div class="zeit">15 Minuten · einmalig</div>
+      <p>Nimm einen typischen Satz deines Kritikers. Und stelle dir dann folgende Fragen – schreib die Antworten direkt auf:</p>
+      <ol>
+        <li><strong>Der Satz lautet:</strong> ...</li>
+        <li><strong>Wovor soll mich dieser Satz schützen?</strong> (Ablehnung? Versagen? Einsamkeit? Scham?)</li>
+        <li><strong>Was befürchtet der Kritiker, wenn ich diesen Satz ignoriere?</strong></li>
+        <li><strong>Was bräuchte er, um sich sicher zu fühlen?</strong></li>
+        <li><strong>Was würde ich einem Kind sagen, das diese Angst hat?</strong></li>
+      </ol>
+      <textarea id="r3b" placeholder="Der Satz lautet: ..." rows="8" oninput="speichern('r3b')"></textarea>
+    </div>
+
+    <div class="affirmationen">
+      <div class="block-label">Affirmationen</div>
+      <ul>
+        <li>Ich verstehe, woher mein Kritiker kommt – das macht ihn kleiner.</li>
+        <li>Hinter jedem Angriff steckt eine Angst, die Fürsorge verdient.</li>
+        <li>Ich kann antworten – ich muss nicht kämpfen.</li>
+      </ul>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn-primary" onclick="modulAbschliessen(3)">Modul abschließen</button>
+      <button class="btn-secondary" onclick="speichernAlle()">Speichern</button>
+    </div>
+  </div>
+
+  <!-- MODUL 4 -->
+  <div class="modul" id="modul4">
+    <div class="modul-header">
+      <div class="modul-label">Modul 4 von 6</div>
+      <h2>Die andere Stimme einladen</h2>
+      <div class="thema">Selbstmitgefühl als Gegenpol</div>
+    </div>
+    <div class="divider"></div>
+
+    <div class="text-block">
+      <p>Selbstmitgefühl ist kein Selbstmitleid. Es ist auch keine Selbstgefälligkeit. Es ist die Fähigkeit, sich selbst so zu begegnen, wie du einer guten Freundin begegnen würdest – mit Wärme, Ehrlichkeit und ohne Urteil.</p>
+      <p>Die Forschung zeigt: Menschen, die sich selbst mit Mitgefühl begegnen, sind nicht schwächer. Sie sind belastbarer, ehrlicher mit sich und mutiger in Veränderungsprozessen.</p>
+      <p>In diesem Modul übst du, die andere Stimme einzuladen. Nicht die kritische – sondern die fürsorgende. Die ist auch in dir. Sie ist nur oft leiser.</p>
+    </div>
+
+    <div class="reflexion-block">
+      <div class="block-label">Reflexionsfrage</div>
+      <div class="question">Wie würde deine beste Freundin mit dir sprechen – in einem Moment, in dem du dich klein und unzulänglich fühlst?</div>
+      <textarea id="r4" placeholder="Lass den ersten Gedanken kommen..." oninput="speichern('r4')"></textarea>
+    </div>
+
+    <div class="audio-block">
+      <div class="block-label">Geführte Übung · Audio</div>
+      <h3>Selbstmitgefühls-Pause · ca. 5 Minuten</h3>
+      <p>Setz oder leg dich bequem hin. Diese Übung begleitet dich durch einen Moment echter Selbstfürsorge. Lass dich führen.</p>
+      <audio controls>
+        <source src="audio/innerer-kritiker-selbstmitgefuehl.mp3" type="audio/mpeg">
+        <p style="font-size:0.8rem; color: var(--gold);">Audio wird nach der Aufnahme hier eingebettet.</p>
+      </audio>
+    </div>
+
+    <div class="uebung-block">
+      <div class="block-label">Schriftübung</div>
+      <h3>Der Brief der guten Freundin · 20 Minuten</h3>
+      <div class="zeit">20 Minuten · einmalig</div>
+      <p>Stell dir vor, deine beste Freundin kennt deinen inneren Kritiker – alles, was er sagt, wie laut er ist, was er auslöst. Sie liebt dich trotzdem. Nicht obwohl – sondern einfach so.</p>
+      <p>Schreib einen Brief von ihr an dich. Was würde sie dir sagen? Was würde sie sehen, was du gerade nicht siehst?</p>
+      <textarea id="r4b" placeholder="Liebe Tanja, ..." rows="8" oninput="speichern('r4b')"></textarea>
+    </div>
+
+    <div class="affirmationen">
+      <div class="block-label">Affirmationen</div>
+      <ul>
+        <li>Ich verdiene dieselbe Freundlichkeit, die ich anderen gebe.</li>
+        <li>Selbstmitgefühl ist Stärke – keine Schwäche.</li>
+        <li>Die fürsorgende Stimme in mir darf lauter werden.</li>
+      </ul>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn-primary" onclick="modulAbschliessen(4)">Modul abschließen</button>
+      <button class="btn-secondary" onclick="speichernAlle()">Speichern</button>
+    </div>
+  </div>
+
+  <!-- MODUL 5 -->
+  <div class="modul" id="modul5">
+    <div class="modul-header">
+      <div class="modul-label">Modul 5 von 6</div>
+      <h2>Den Dialog verändern</h2>
+      <div class="thema">Vom Urteil zur Fürsorge – neue Antworten entwickeln</div>
+    </div>
+    <div class="divider"></div>
+
+    <div class="text-block">
+      <p>Du kennst jetzt die Stimme. Du weißt, woher sie kommt. Du hast verstanden, was sie will. Und du hast erlebt, wie sich die andere Stimme anfühlt.</p>
+      <p>Jetzt kommt der nächste Schritt: Du antwortest. Nicht mit Kampf. Nicht mit Kapitulation. Sondern mit einer neuen Sprache – klar, freundlich und wahr.</p>
+      <p>Das braucht Übung. Aber es verändert etwas – von innen nach außen.</p>
+    </div>
+
+    <div class="reflexion-block">
+      <div class="block-label">Reflexionsfrage</div>
+      <div class="question">Wenn dein innerer Kritiker ein Urteil fällt – was wäre eine Antwort, die weder kämpft noch aufgibt, sondern fürsorglich bleibt?</div>
+      <textarea id="r5" placeholder="Lass den ersten Gedanken kommen..." oninput="speichern('r5')"></textarea>
+    </div>
+
+    <div class="uebung-block">
+      <div class="block-label">Übung</div>
+      <h3>Sätze umschreiben · 20 Minuten</h3>
+      <div class="zeit">20 Minuten · einmalig</div>
+      <p>Nimm drei Sätze deines inneren Kritikers aus Modul 1. Und schreibe sie um – nicht ins Gegenteil, sondern in Fürsorge. Beispiel:</p>
+      <p><em>Kritiker: „Du machst immer alles falsch."</em><br>
+      <em>Fürsorglich: „Du bist gerade erschöpft und hast einen Fehler gemacht. Das passiert. Was brauchst du jetzt?"</em></p>
+      <p>Die Regel: Der neue Satz muss ehrlich sein. Kein leeres Lob. Echte Fürsorge.</p>
+      <ol>
+        <li>Kritiker sagt: ...</li>
+        <li>Kritiker sagt: ...</li>
+        <li>Kritiker sagt: ...</li>
+      </ol>
+      <textarea id="r5b" placeholder="Satz 1 – Kritiker: ... → Fürsorglich: ..." rows="8" oninput="speichern('r5b')"></textarea>
+    </div>
+
+    <div class="affirmationen">
+      <div class="block-label">Affirmationen</div>
+      <ul>
+        <li>Ich lerne, mir selbst zu antworten – statt zu schweigen oder zu kämpfen.</li>
+        <li>Neue Sprache braucht Übung. Ich gebe mir diese Zeit.</li>
+        <li>Fürsorge für mich selbst ist keine Selbstüberschätzung – sie ist Würde.</li>
+      </ul>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn-primary" onclick="modulAbschliessen(5)">Modul abschließen</button>
+      <button class="btn-secondary" onclick="speichernAlle()">Speichern</button>
+    </div>
+  </div>
+
+  <!-- MODUL 6 -->
+  <div class="modul" id="modul6">
+    <div class="modul-header">
+      <div class="modul-label">Modul 6 von 6</div>
+      <h2>Meine neue innere Haltung</h2>
+      <div class="thema">Integration – wie klingt die Stimme in einem Jahr?</div>
+    </div>
+    <div class="divider"></div>
+
+    <div class="text-block">
+      <p>Du bist in der letzten Woche angekommen. Sechs Wochen mit deinem inneren Kritiker – nicht gegen ihn, sondern mit ihm.</p>
+      <p>Eine neue innere Haltung entsteht nicht durch einen Entschluss. Sie entsteht durch viele kleine Momente, in denen du dich anders entscheidest. In denen du bemerkst, antwortest, atmet – und weitermachst.</p>
+      <p>Du wirst deinen inneren Kritiker nicht loswerden. Aber du kannst lernen, dass er nicht das letzte Wort hat.</p>
+    </div>
+
+    <div class="reflexion-block">
+      <div class="block-label">Reflexionsfrage</div>
+      <div class="question">Was hat sich in diesen sechs Wochen verändert – auch wenn es klein ist?</div>
+      <textarea id="r6" placeholder="Lass den ersten Gedanken kommen..." oninput="speichern('r6')"></textarea>
+    </div>
+
+    <div class="uebung-block">
+      <div class="block-label">Abschlussübung</div>
+      <h3>Brief an mein zukünftiges Ich · 25 Minuten</h3>
+      <div class="zeit">25 Minuten · einmalig</div>
+      <p>Schreib einen Brief an dich selbst – in einem Jahr. Du weißt nicht genau, wo du dann stehst. Aber du kannst dir vorstellen, wie du klingen möchtest. Wie du mit dir umgehst. Was du dir selbst sagst, wenn es schwierig wird.</p>
+      <p>Fragen, die helfen können:</p>
+      <ol>
+        <li>Was hast du in diesem Jahr über deinen inneren Kritiker gelernt?</li>
+        <li>Wie sprichst du in einem Jahr mit dir selbst?</li>
+        <li>Was möchtest du nicht mehr vergessen – aus diesem Kurs?</li>
+        <li>Was wünschst du dir – von dir für dich?</li>
+      </ol>
+      <textarea id="r6b" placeholder="Liebe Tanja, in einem Jahr ..." rows="10" oninput="speichern('r6b')"></textarea>
+    </div>
+
+    <div class="affirmationen">
+      <div class="block-label">Affirmationen</div>
+      <ul>
+        <li>Mein innerer Kritiker hat nicht das letzte Wort.</li>
+        <li>Ich habe gelernt, mir selbst zuzuhören – mit Neugier und Mitgefühl.</li>
+        <li>Ich bin auf meinem Veränderungsweg – und das reicht.</li>
+      </ul>
+    </div>
+
+    <div class="abschluss-hint">
+      🌿 <strong>Du hast diesen Kurs abgeschlossen.</strong> Wenn du tiefer in das Thema Glaubenssätze einsteigen möchtest, wartet der Kurs <strong>„Was ich mir glaube"</strong> auf dich – eine Vertiefung in die inneren Überzeugungen, die dein Leben formen.
+    </div>
+
+    <div class="btn-row">
+      <button class="btn-primary" onclick="modulAbschliessen(6)">Kurs abschließen ✓</button>
+      <button class="btn-secondary" onclick="speichernAlle()">Speichern</button>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  Selbstreflexionsangebot ohne Einzelbegleitung. Kein Ersatz für Psychotherapie oder medizinische Beratung.<br>
+  Bei psychischen Erkrankungen wende dich bitte an eine Fachperson.<br>
+  © 2025 Tanja Sattelberg · <a href="https://veraenderungsweg.de" style="color: var(--gold);">veraenderungsweg.de</a>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+  // ZUSTAND
+  const STORAGE_KEY = 'innerer-kritiker-kurs';
+  let state = {
+    freigeschaltet: [0, 1],
+    aktuell: 0
+  };
+
+  // LADEN
+  function laden() {
+    const gespeichert = localStorage.getItem(STORAGE_KEY);
+    if (gespeichert) {
+      const data = JSON.parse(gespeichert);
+      state = data.state || state;
+      // Textfelder wiederherstellen
+      const felder = data.felder || {};
+      Object.keys(felder).forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.value = felder[id];
+      });
+    }
+    navAktualisieren();
+    showModul(state.aktuell);
+  }
+
+  // SPEICHERN
+  function speichern(id) {
+    const alle = alleFelder();
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({ state, felder: alle }));
+  }
+
+  function speichernAlle() {
+    const alle = alleFelder();
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({ state, felder: alle }));
+    toast('Gespeichert ✓');
+  }
+
+  function alleFelder() {
+    const ids = ['r1','r1b','r2','r2b','r3','r3b','r4','r4b','r5','r5b','r6','r6b'];
+    const result = {};
+    ids.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) result[id] = el.value;
+    });
+    return result;
+  }
+
+  // MODUL ANZEIGEN
+  function showModul(nr) {
+    if (!state.freigeschaltet.includes(nr)) return;
+    document.querySelectorAll('.modul').forEach(m => m.classList.remove('active'));
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('modul' + nr).classList.add('active');
+    document.getElementById('nav' + nr).classList.add('active');
+    state.aktuell = nr;
+    progressAktualisieren();
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({ state, felder: alleFelder() }));
+    window.scrollTo(0, 0);
+  }
+
+  // MODUL ABSCHLIESSEN
+  function modulAbschliessen(nr) {
+    const naechste = nr + 1;
+    if (naechste <= 6 && !state.freigeschaltet.includes(naechste)) {
+      state.freigeschaltet.push(naechste);
+    }
+    speichernAlle();
+    navAktualisieren();
+    if (naechste <= 6) {
+      setTimeout(() => {
+        toast('Modul ' + nr + ' abgeschlossen – Modul ' + naechste + ' ist jetzt freigeschaltet ✓');
+        showModul(naechste);
+      }, 300);
+    } else {
+      toast('Kurs abgeschlossen – herzlichen Glückwunsch! ✓');
+    }
+  }
+
+  // NAV AKTUALISIEREN
+  function navAktualisieren() {
+    for (let i = 0; i <= 6; i++) {
+      const btn = document.getElementById('nav' + i);
+      if (!btn) continue;
+      if (state.freigeschaltet.includes(i)) {
+        btn.classList.remove('locked');
+        btn.onclick = () => showModul(i);
+      } else {
+        btn.classList.add('locked');
+        btn.onclick = null;
+      }
+    }
+  }
+
+  // PROGRESS
+  function progressAktualisieren() {
+    const prozent = Math.max(0, (state.aktuell / 6) * 100);
+    document.getElementById('progressBar').style.width = prozent + '%';
+  }
+
+  // TOAST
+  function toast(msg) {
+    const el = document.getElementById('toast');
+    el.textContent = msg;
+    el.classList.add('show');
+    setTimeout(() => el.classList.remove('show'), 3000);
+  }
+
+  // START
+  laden();
+</script>
+
+</body>
+</html>
