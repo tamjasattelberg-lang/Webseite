@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Was ich mir glaube · Mein Veränderungsweg</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root { --gold: #B8935A; --cream: #F5EFE0; --dark-brown: #3D2519; --mid-brown: #7A4A2E; --light-gold: #E8D5B0; --white: #FDFAF4; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Jost', sans-serif; background: var(--cream); color: var(--dark-brown); min-height: 100vh; }
+  header { background: var(--dark-brown); color: var(--cream); padding: 2rem 1.5rem 1.5rem; text-align: center; }
+  header .brand { font-weight: 300; font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; }
+  header h1 { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(1.8rem, 5vw, 2.8rem); line-height: 1.2; }
+  header h1 em { font-style: italic; color: var(--light-gold); }
+  header .subtitle { font-weight: 300; font-size: 0.85rem; color: var(--light-gold); margin-top: 0.5rem; letter-spacing: 0.05em; }
+  .progress-bar-wrap { background: rgba(255,255,255,0.1); border-radius: 2px; height: 3px; margin-top: 1rem; overflow: hidden; }
+  .progress-bar { height: 100%; background: var(--gold); transition: width 0.5s ease; }
+  nav { background: var(--dark-brown); border-top: 1px solid rgba(184,147,90,0.3); padding: 0 1rem; display: flex; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  nav::-webkit-scrollbar { display: none; }
+  .nav-btn { background: none; border: none; color: var(--light-gold); font-family: 'Jost', sans-serif; font-weight: 300; font-size: 0.75rem; letter-spacing: 0.08em; padding: 0.9rem 1rem; cursor: pointer; white-space: nowrap; border-bottom: 2px solid transparent; transition: all 0.2s; opacity: 0.6; }
+  .nav-btn.active { color: var(--gold); border-bottom-color: var(--gold); opacity: 1; }
+  .nav-btn.locked { opacity: 0.3; cursor: default; }
+  .nav-btn:not(.locked):hover { opacity: 0.9; }
+  main { max-width: 680px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+  .modul { display: none; }
+  .modul.active { display: block; }
+  .welcome-card { background: var(--dark-brown); color: var(--cream); border-radius: 4px; padding: 2rem; margin-bottom: 2rem; }
+  .welcome-card h2 { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 1.6rem; margin-bottom: 1rem; color: var(--light-gold); }
+  .welcome-card p { font-weight: 300; line-height: 1.8; font-size: 0.95rem; margin-bottom: 0.75rem; }
+  .kernfrage { border-left: 2px solid var(--gold); padding: 0.75rem 1rem; margin: 1.25rem 0; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.15rem; color: var(--light-gold); line-height: 1.5; }
+  .modul-header { margin-bottom: 1.75rem; }
+  .modul-label { font-weight: 300; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.4rem; }
+  .modul-header h2 { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(1.5rem, 4vw, 2rem); line-height: 1.2; margin-bottom: 0.3rem; }
+  .modul-header .thema { font-weight: 300; font-size: 0.82rem; color: var(--mid-brown); font-style: italic; }
+  .divider { width: 40px; height: 1px; background: var(--gold); margin: 1.25rem 0; }
+  .text-block { font-weight: 300; line-height: 1.85; font-size: 0.95rem; margin-bottom: 1rem; }
+  .text-block p { margin-bottom: 0.75rem; }
+  /* AUDIO */
+  .audio-block { background: var(--dark-brown); border-radius: 4px; padding: 1.5rem; margin: 1.5rem 0; color: var(--cream); }
+  .audio-block .block-label { font-weight: 300; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem; }
+  .audio-block h3 { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 1.2rem; color: var(--light-gold); margin-bottom: 0.4rem; }
+  .audio-block .audio-dauer { font-size: 0.78rem; color: var(--light-gold); opacity: 0.7; margin-bottom: 1rem; }
+  .audio-block p { font-weight: 300; font-size: 0.85rem; line-height: 1.7; color: var(--light-gold); margin-bottom: 1rem; opacity: 0.85; }
+  .audio-block audio { width: 100%; accent-color: var(--gold); }
+  /* REFLEXION */
+  .reflexion-block { background: var(--white); border-left: 3px solid var(--gold); border-radius: 0 4px 4px 0; padding: 1.25rem 1.5rem; margin: 1.5rem 0; }
+  .reflexion-block .block-label { font-weight: 500; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.6rem; }
+  .reflexion-block .question { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.1rem; line-height: 1.5; margin-bottom: 0.75rem; }
+  textarea { width: 100%; min-height: 100px; background: var(--cream); border: 1px solid var(--light-gold); border-radius: 3px; padding: 0.75rem; font-family: 'Jost', sans-serif; font-weight: 300; font-size: 0.9rem; color: var(--dark-brown); resize: vertical; outline: none; transition: border-color 0.2s; }
+  textarea:focus { border-color: var(--gold); }
+  /* ÜBUNG */
+  .uebung-block { background: var(--white); border-radius: 4px; padding: 1.5rem; margin: 1.5rem 0; border: 1px solid var(--light-gold); }
+  .uebung-block .block-label { font-weight: 500; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--mid-brown); margin-bottom: 0.4rem; }
+  .uebung-block h3 { font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: 1.15rem; margin-bottom: 0.4rem; }
+  .uebung-block .zeit { font-size: 0.75rem; color: var(--gold); font-weight: 300; margin-bottom: 1rem; }
+  .uebung-block p { font-weight: 300; font-size: 0.9rem; line-height: 1.8; margin-bottom: 0.6rem; }
+  .uebung-block ol { padding-left: 1.25rem; margin: 0.5rem 0 0.75rem; }
+  .uebung-block li { font-weight: 300; font-size: 0.9rem; line-height: 1.75; margin-bottom: 0.3rem; }
+  /* AFFIRMATIONEN */
+  .affirmationen { background: var(--light-gold); border-radius: 4px; padding: 1.25rem 1.5rem; margin: 1.5rem 0; }
+  .affirmationen .block-label { font-weight: 500; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--mid-brown); margin-bottom: 0.75rem; }
+  .affirmationen ul { list-style: none; padding: 0; }
+  .affirmationen li { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1rem; line-height: 1.6; padding: 0.3rem 0; border-bottom: 1px solid rgba(184,147,90,0.3); }
+  .affirmationen li:last-child { border-bottom: none; }
+  /* ABSCHLUSS */
+  .abschluss-card { background: var(--dark-brown); color: var(--cream); border-radius: 4px; padding: 2rem; margin: 1.5rem 0; text-align: center; }
+  .abschluss-card h3 { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 1.5rem; color: var(--light-gold); margin-bottom: 1rem; }
+  .abschluss-card p { font-weight: 300; font-size: 0.9rem; line-height: 1.8; opacity: 0.9; margin-bottom: 0.75rem; }
+  /* BUTTONS */
+  .btn-primary { display: inline-block; background: var(--gold); color: var(--dark-brown); font-family: 'Jost', sans-serif; font-weight: 500; font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.85rem 2rem; border: none; border-radius: 3px; cursor: pointer; transition: all 0.2s; margin-top: 0.5rem; }
+  .btn-primary:hover { background: var(--mid-brown); color: var(--cream); }
+  .btn-secondary { display: inline-block; background: transparent; color: var(--gold); font-family: 'Jost', sans-serif; font-weight: 400; font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.75rem 1.5rem; border: 1px solid var(--gold); border-radius: 3px; cursor: pointer; transition: all 0.2s; margin-top: 0.5rem; }
+  .btn-secondary:hover { background: var(--gold); color: var(--dark-brown); }
+  .btn-row { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.5rem; align-items: center; }
+  .toast { position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%) translateY(100px); background: var(--dark-brown); color: var(--cream); font-family: 'Jost', sans-serif; font-size: 0.82rem; font-weight: 300; padding: 0.75rem 1.5rem; border-radius: 3px; border-left: 3px solid var(--gold); transition: transform 0.3s ease; z-index: 100; white-space: nowrap; }
+  .toast.show { transform: translateX(-50%) translateY(0); }
+  footer { text-align: center; padding: 2rem 1.5rem; font-weight: 300; font-size: 0.72rem; color: var(--mid-brown); line-height: 1.7; border-top: 1px solid var(--light-gold); max-width: 680px; margin: 0 auto; }
+  @media (max-width: 480px) { main { padding: 1.5rem 1rem 3rem; } .welcome-card { padding: 1.5rem; } }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand">Mein Veränderungsweg · Vertiefungskurs</div>
+  <h1>Was ich mir <em>glaube</em></h1>
+  <div class="subtitle">6 Module · Glaubenssätze & innere Überzeugungen · Audio-geführt</div>
+  <div class="progress-bar-wrap">
+    <div class="progress-bar" id="progressBar" style="width: 0%"></div>
+  </div>
+</header>
+
+<nav>
+  <button class="nav-btn active" onclick="showModul(0)" id="nav0">Willkommen</button>
+  <button class="nav-btn" onclick="showModul(1)" id="nav1">Modul 1</button>
+  <button class="nav-btn locked" id="nav2">Modul 2</button>
+  <button class="nav-btn locked" id="nav3">Modul 3</button>
+  <button class="nav-btn locked" id="nav4">Modul 4</button>
+  <button class="nav-btn locked" id="nav5">Modul 5</button>
+  <button class="nav-btn locked" id="nav6">Modul 6</button>
+</nav>
+
+<main>
+
+  <!-- WILLKOMMEN -->
+  <div class="modul active" id="modul0">
+    <div class="welcome-card">
+      <h2>Willkommen.</h2>
+      <p>Dieser Kurs ist anders als die anderen. Hier führt nicht Text — hier führt Stimme. Meine Stimme. Jedes Modul beginnt mit einer geführten Audio-Einheit. Du hörst zu, lässt es landen — und schreibst dann auf, was sich zeigt.</p>
+      <p>Du brauchst keine Vorkenntnisse. Nur eine ruhige Ecke, Kopfhörer wenn möglich — und die Bereitschaft hinzuschauen.</p>
+      <div class="kernfrage">Was glaubst du über dich — und ist das wirklich deine Wahrheit?</div>
+      <p>Alles, was du hier schreibst, bleibt auf deinem Gerät.</p>
+    </div>
+    <div class="btn-row">
+      <button class="btn-primary" onclick="showModul(1)">Modul 1 beginnen</button>
+    </div>
+  </div>
+
+  <!-- MODUL 1 -->
+  <div class="modul" id="modul1">
+    <div class="modul-header">
+      <div class="modul-label">Modul 1 von 6</div>
+      <h2>Was ist ein Glaubenssatz?</h2>
+      <div class="thema">Verstehen, bevor wir verändern</div>
+    </div>
+    <div class="divider"></div>
+
+    <div class="text-block">
+      <p>Dieses Modul gehört dem Verstehen. Nicht dem Verändern, nicht dem Arbeiten — dem Verstehen. Bevor wir etwas loslassen können, wollen wir erst wissen: Was ist das eigentlich, was uns so lange begleitet hat?</p>
+      <p>Hör dir die Audio-Einheit an, bevor du weiterliest.</p>
+    </div>
+
+    <div class="audio-block">
+      <div class="block-label">Geführte Einheit · Audio</div>
+      <h3>Was ist ein Glaubenssatz – und warum hat er sich so gut gehalten?</h3>
+      <div class="audio-dauer">ca. 8–10 Minuten · Kopfhörer empfohlen</div>
+      <p>Setz dich bequem hin. Lass den Alltag einen Moment pausieren. Dann drück auf Play.</p>
+      <audio controls>
+        <source src="audio/glaubenssaetze-modul-01.mp4" type="video/mp4">
+      </audio>
+    </div>
+
+    <div class="reflexion-block">
+      <div class="block-label">Reflexion nach der Audio-Einheit</div>
+      <div class="question">Welcher Satz ist aufgetaucht — während du gehört hast? Schreib ihn genau so auf, wie er war.</div>
+      <textarea id="r1a" placeholder="Mein Glaubenssatz lautet: ..." oninput="speichern()"></textarea>
+    </div>
+
+    <div class="uebung-block">
+      <div class="block-label">Schriftübung</div>
+      <h3>Herkunft & erste Begegnung</h3>
+      <div class="zeit">10–15 Minuten · einmalig</div>
+      <p>Woher kennst du diesen Satz? Wann begegnet er dir besonders?</p>
+      <textarea id="r1b" placeholder="Ich kenne diesen Satz aus...&#10;Er taucht auf, wenn...&#10;Woher er kommt, vermute ich..." rows="6" oninput="speichern()"></textarea>
+    </div>
+
+    <div class="affirmationen">
+      <div class="block-label">Satz für diese Woche</div>
+      <ul>
+        <li>Ich schaue hin – ohne zu urteilen.</li>
+        <li>Mein Glaubenssatz ist kein Fehler. Er ist eine Geschichte.</li>
+      </ul>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn-primary" onclick="modulAbschliessen(1)">Modul abschließen</button>
+      <button class="btn-secondary" onclick="speichernAlle()">Speichern</button>
+    </div>
+  </div>
+
+  <!-- MODUL 2 -->
+  <div class="modul" id="modul2">
+    <div class="modul-header">
+      <div class="modul-label">Modul 2 von 6</div>
+      <h2>Glaubenssätze aufspüren</h2>
+      <div class="thema">Die leisen und die lauten — auch im Körper</div>
+    </div>
+    <div class="divider"></div>
+
+    <div class="text-block">
+      <p>Glaubenssätze zeigen sich nicht immer als Gedanken. Manche flüstern nur. Andere zeigen sich als Körpergefühl — eine Enge in der Brust, ein Ziehen, das Bedürfnis, kleiner zu werden.</p>
+    </div>
+
+    <div class="audio-block">
+      <div class="block-label">Geführte Einheit · Audio</div>
+      <h3>Glaubenssätze aufspüren – die leisen und die lauten</h3>
+      <div class="audio-dauer">ca. 9–11 Minuten · Kopfhörer empfohlen</div>
+      <p>Nimm dir einen ruhigen Moment. Diese Einheit enthält eine kurze Körperübung — bleib dabei, wenn es sich zeigt.</p>
+      <audio controls>
+        <source src="audio/glaubenssaetze-modul-02.mp4" type="video/mp4">
+      </audio>
+    </div>
+
+    <div class="reflexion-block">
+      <div class="block-label">Reflexion nach der Audio-Einheit</div>
+      <div class="question">Was hat sich in deinem Körper gezeigt — während du gehört hast? Und welcher Satz ist aufgetaucht?</div>
+      <textarea id="r2a" placeholder="Im Körper habe ich gespürt...&#10;Der Satz, der kam, war..." oninput="speichern()"></textarea>
+    </div>
+
+    <div class="uebung-block">
+      <div class="block-label">Schriftübung</div>
+      <h3>Satzergänzung</h3>
+      <div class="zeit">10 Minuten · spontan und unzensiert</div>
+      <p>Vervollständige die Sätze schnell — ohne nachzudenken. Das Erste, was kommt, ist oft das Ehrlichste:</p>
+      <textarea id="r2b" placeholder="Ich darf nicht ...&#10;Ich muss immer ...&#10;Ich bin nicht ... genug.&#10;Andere können ..., aber ich ...&#10;Das Leben ist ..." rows="7" oninput="speichern()"></textarea>
+      <p style="margin-top:0.75rem;">Was fällt dir auf, wenn du die Sätze liest?</p>
+      <textarea id="r2c" placeholder="..." rows="3" oninput="speichern()"></textarea>
+    </div>
+
+    <div class="affirmationen">
+      <div class="block-label">Satz für diese Woche</div>
+      <ul>
+        <li>Mein Körper kennt meine Wahrheit.</li>
+        <li>Das, was sich zeigt, darf gesehen werden.</li>
+      </ul>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn-primary" onclick="modulAbschliessen(2)">Modul abschließen</button>
+      <button class="btn-secondary" onclick="speichernAlle()">Speichern</button>
+    </div>
+  </div>
+
+  <!-- MODUL 3 -->
+  <div class="modul" id="modul3">
+    <div class="modul-header">
+      <div class="modul-label">Modul 3 von 6</div>
+      <h2>Die Geschichte dahinter</h2>
+      <div class="thema">Jeder Glaubenssatz war einmal eine kluge Antwort</div>
+    </div>
+    <div class="divider"></div>
+
+    <div class="text-block">
+      <p>Jeder Glaubenssatz hat eine Geschichte. Er ist nicht aus dem Nichts entstanden. Er ist eine Antwort — eine Anpassungsleistung, ein Überlebensmechanismus. Was wir hier tun, ist nicht anklagen. Es ist verstehen.</p>
+    </div>
+
+    <div class="audio-block">
+      <div class="block-label">Geführte Einheit · Audio</div>
+      <h3>Die Geschichte dahinter</h3>
+      <div class="audio-dauer">ca. 10–12 Minuten · Kopfhörer empfohlen</div>
+      <p>Diese Einheit geht etwas tiefer. Nimm dir danach einen Moment, bevor du weitermachst.</p>
+      <audio controls>
+        <source src="audio/glaubenssaetze-modul-03.mp4" type="video/mp4">
+      </audio>
+    </div>
+
+    <div class="reflexion-block">
+      <div class="block-label">Reflexion nach der Audio-Einheit</div>
+      <div class="question">Wann könnte dein Glaubenssatz entstanden sein — und was hat er dir damals gegeben?</div>
+      <textarea id="r3a" placeholder="Vielleicht ist er entstanden, als...&#10;Damals hat er mir geholfen, weil..." oninput="speichern()"></textarea>
+    </div>
+
+    <div class="uebung-block">
+      <div class="block-label">Schriftübung</div>
+      <h3>Brief an den Glaubenssatz</h3>
+      <div class="zeit">15–20 Minuten · einmalig</div>
+      <p>Schreib einen Brief an deinen alten Glaubenssatz. Nicht um ihn zu beschimpfen — sondern um mit ihm zu sprechen. Was hat er dir gegeben? Was hat er dich gekostet?</p>
+      <textarea id="r3b" placeholder="Lieber Glaubenssatz, ..." rows="8" oninput="speichern()"></textarea>
+    </div>
+
+    <div class="affirmationen">
+      <div class="block-label">Satz für diese Woche</div>
+      <ul>
+        <li>Verstehen ist der Anfang von Freiheit.</li>
+        <li>Dieser Satz war einmal mein Schutz. Heute darf ich ihn anschauen.</li>
+      </ul>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn-primary" onclick="modulAbschliessen(3)">Modul abschließen</button>
+      <button class="btn-secondary" onclick="speichernAlle()">Speichern</button>
+    </div>
+  </div>
+
+  <!-- MODUL 4 -->
+  <div class="modul" id="modul4">
+    <div class="modul-header">
+      <div class="modul-label">Modul 4 von 6</div>
+      <h2>Hinterfragen ohne Druck</h2>
+      <div class="thema">Ist das wirklich wahr? Die Kraft der Ausnahme</div>
+    </div>
+    <div class="divider"></div>
+
+    <div class="text-block">
+      <p>Du bist jetzt in der Mitte des Kurses. Was du bisher getan hast — hinschauen, aufschreiben, fühlen, erinnern — das fordert Mut. Und du bringst ihn mit.</p>
+    </div>
+
+    <div class="audio-block">
+      <div class="block-label">Geführte Einheit · Audio</div>
+      <h3>Hinterfragen ohne Druck</h3>
+      <div class="audio-dauer">ca. 9–11 Minuten · Kopfhörer empfohlen</div>
+      <p>Diese Einheit lädt dich ein, deinen Glaubenssatz in ein ruhiges Gespräch zu bringen — nicht in einen Kampf.</p>
+      <audio controls>
+        <source src="audio/glaubenssaetze-modul-04.mp4" type="video/mp4">
+      </audio>
+    </div>
+
+    <div class="reflexion-block">
+      <div class="block-label">Reflexion nach der Audio-Einheit</div>
+      <div class="question">Ist dein Glaubenssatz wirklich immer wahr? Wann nicht?</div>
+      <textarea id="r4a" placeholder="Mein Glaubenssatz stimmt nicht, wenn...&#10;Eine Ausnahme, die ich kenne, ist..." oninput="speichern()"></textarea>
+    </div>
+
+    <div class="uebung-block">
+      <div class="block-label">Schriftübung</div>
+      <h3>Gegenbeweis-Protokoll</h3>
+      <div class="zeit">15 Minuten · einmalig</div>
+      <p>Sammle konkrete Momente aus deinem Leben, in denen dein Glaubenssatz nicht gestimmt hat:</p>
+      <textarea id="r4b" placeholder="Moment 1: ...&#10;Moment 2: ...&#10;Moment 3: ..." rows="5" oninput="speichern()"></textarea>
+      <p style="margin-top:0.75rem;"><strong>Und dann: Wer wärst du ohne diesen Satz?</strong></p>
+      <textarea id="r4c" placeholder="Ohne diesen Satz würde ich..." rows="4" oninput="speichern()"></textarea>
+    </div>
+
+    <div class="affirmationen">
+      <div class="block-label">Satz für diese Woche</div>
+      <ul>
+        <li>Ich bin mehr als das, was ich über mich gedacht habe.</li>
+        <li>In der Ausnahme steckt meine Möglichkeit.</li>
+      </ul>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn-primary" onclick="modulAbschliessen(4)">Modul abschließen</button>
+      <button class="btn-secondary" onclick="speichernAlle()">Speichern</button>
+    </div>
+  </div>
+
+  <!-- MODUL 5 -->
+  <div class="modul" id="modul5">
+    <div class="modul-header">
+      <div class="modul-label">Modul 5 von 6</div>
+      <h2>Neue Überzeugungen entwickeln</h2>
+      <div class="thema">Keine Affirmationen — sondern Brückensätze</div>
+    </div>
+    <div class="divider"></div>
+
+    <div class="text-block">
+      <p>Wir werden in diesem Modul keine Affirmationen erstellen. Wir bauen Brücken — ehrliche Sätze, die ein kleines bisschen offener sind als der alte Glaubenssatz. Sätze, die sich wahr anfühlen.</p>
+    </div>
+
+    <div class="audio-block">
+      <div class="block-label">Geführte Einheit · Audio</div>
+      <h3>Neue Überzeugungen entwickeln – die wirklich passen</h3>
+      <div class="audio-dauer">ca. 10–12 Minuten · Kopfhörer empfohlen</div>
+      <p>Diese Einheit enthält eine kurze Anker-Übung. Richte dich auf, wenn du kannst.</p>
+      <audio controls>
+        <source src="audio/glaubenssaetze-modul-05.mp4" type="video/mp4">
+      </audio>
+    </div>
+
+    <div class="reflexion-block">
+      <div class="block-label">Reflexion nach der Audio-Einheit</div>
+      <div class="question">Wie hat sich dein Brückensatz angefühlt — im Körper, im Atem?</div>
+      <textarea id="r5a" placeholder="Als ich ihn gesprochen habe, habe ich gespürt..." oninput="speichern()"></textarea>
+    </div>
+
+    <div class="uebung-block">
+      <div class="block-label">Schriftübung</div>
+      <h3>Mein Brückensatz</h3>
+      <div class="zeit">10 Minuten · täglich üben</div>
+      <p><strong>Mein alter Glaubenssatz:</strong></p>
+      <textarea id="r5b" placeholder="..." rows="2" oninput="speichern()"></textarea>
+      <p style="margin-top:0.75rem;"><strong>Mein Brückensatz — ehrlich, einen kleinen Schritt weiter:</strong></p>
+      <textarea id="r5c" placeholder="..." rows="2" oninput="speichern()"></textarea>
+      <p style="margin-top:0.75rem; font-size:0.85rem; color: var(--mid-brown); font-style:italic;">Sprich deinen Brückensatz täglich — morgens oder abends. Zwei Minuten. Mit aufgerichtetem Körper und einem tiefen Atemzug.</p>
+    </div>
+
+    <div class="affirmationen">
+      <div class="block-label">Satz für diese Woche</div>
+      <ul>
+        <li>Ich brauche keinen großen Sprung — nur einen echten Schritt.</li>
+        <li>Geduld ist die tiefste Form von Selbstfürsorge.</li>
+      </ul>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn-primary" onclick="modulAbschliessen(5)">Modul abschließen</button>
+      <button class="btn-secondary" onclick="speichernAlle()">Speichern</button>
+    </div>
+  </div>
+
+  <!-- MODUL 6 -->
+  <div class="modul" id="modul6">
+    <div class="modul-header">
+      <div class="modul-label">Modul 6 von 6</div>
+      <h2>Integrieren & dranbleiben</h2>
+      <div class="thema">Ohne Perfektionismus — aber mit Haltung</div>
+    </div>
+    <div class="divider"></div>
+
+    <div class="text-block">
+      <p>Du bist am letzten Modul angekommen. Das ist nicht selbstverständlich. Viele beginnen etwas — und lassen es wieder fallen. Du hast sechs Module durchgehalten.</p>
+    </div>
+
+    <div class="audio-block">
+      <div class="block-label">Geführte Einheit · Audio</div>
+      <h3>Integrieren & dranbleiben – ohne Perfektionismus</h3>
+      <div class="audio-dauer">ca. 10–13 Minuten · Kopfhörer empfohlen</div>
+      <p>Das letzte Kapitel. Nimm dir danach Zeit — für dich.</p>
+      <audio controls>
+        <source src="audio/glaubenssaetze-modul-06.mp4" type="video/mp4">
+      </audio>
+    </div>
+
+    <div class="reflexion-block">
+      <div class="block-label">Reflexion nach der Audio-Einheit</div>
+      <div class="question">Was nimmst du dir für die nächsten Wochen mit — nicht als Aufgabe, sondern als Haltung?</div>
+      <textarea id="r6a" placeholder="Meine Haltung für die nächsten Wochen ist..." oninput="speichern()"></textarea>
+    </div>
+
+    <div class="uebung-block">
+      <div class="block-label">Abschlussübung</div>
+      <h3>Rückblick & Weiterweg</h3>
+      <div class="zeit">20 Minuten · einmalig</div>
+      <p><strong>Was hat sich in diesen sechs Wochen verändert — auch wenn es klein ist?</strong></p>
+      <textarea id="r6b" placeholder="..." rows="3" oninput="speichern()"></textarea>
+      <p style="margin-top:0.75rem;"><strong>Mein Brückensatz, den ich weitertrage:</strong></p>
+      <textarea id="r6c" placeholder="..." rows="2" oninput="speichern()"></textarea>
+      <p style="margin-top:0.75rem;"><strong>Was tue ich, wenn der alte Satz wiederkommt?</strong></p>
+      <textarea id="r6d" placeholder="..." rows="3" oninput="speichern()"></textarea>
+      <p style="margin-top:0.75rem;"><strong>Was feiere ich heute?</strong></p>
+      <textarea id="r6e" placeholder="..." rows="2" oninput="speichern()"></textarea>
+    </div>
+
+    <div class="abschluss-card">
+      <h3>Du bist nicht das, was du über dich gedacht hast. ✨</h3>
+      <p>Du bist mehr. Und du hast gerade begonnen, das zu entdecken.</p>
+      <p>Danke, dass du dabei warst. Danke, dass du dir diese Zeit gegönnt hast.</p>
+      <p style="margin-top:1rem; font-style:italic; color: var(--light-gold);">Herzlich, Tanja.</p>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn-primary" onclick="modulAbschliessen(6)">Kurs abschließen ✓</button>
+      <button class="btn-secondary" onclick="speichernAlle()">Speichern</button>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  Selbstreflexions- und Coaching-Angebot. Kein Ersatz für Psychotherapie oder medizinische Beratung.<br>
+  © 2025 Tanja Sattelberg · <a href="https://veraenderungsweg.de" style="color: var(--gold);">veraenderungsweg.de</a>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+  const STORAGE_KEY = 'kurs-glaubenssaetze-vertiefung';
+  let state = { freigeschaltet: [0, 1], aktuell: 0 };
+  const FELDER = ['r1a','r1b','r2a','r2b','r2c','r3a','r3b','r4a','r4b','r4c','r5a','r5b','r5c','r6a','r6b','r6c','r6d','r6e'];
+
+  function laden() {
+    const g = localStorage.getItem(STORAGE_KEY);
+    if (g) {
+      const d = JSON.parse(g);
+      state = d.state || state;
+      Object.keys(d.felder || {}).forEach(id => { const el = document.getElementById(id); if (el) el.value = d.felder[id]; });
+    }
+    navAktualisieren();
+    showModul(state.aktuell);
+  }
+
+  function alleFelder() {
+    const r = {};
+    FELDER.forEach(id => { const el = document.getElementById(id); if (el) r[id] = el.value; });
+    return r;
+  }
+
+  function speichern() { localStorage.setItem(STORAGE_KEY, JSON.stringify({ state, felder: alleFelder() })); }
+  function speichernAlle() { speichern(); toast('Gespeichert ✓'); }
+
+  function showModul(nr) {
+    if (!state.freigeschaltet.includes(nr)) return;
+    document.querySelectorAll('.modul').forEach(m => m.classList.remove('active'));
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('modul' + nr).classList.add('active');
+    document.getElementById('nav' + nr).classList.add('active');
+    state.aktuell = nr;
+    document.getElementById('progressBar').style.width = Math.max(0, (nr / 6) * 100) + '%';
+    speichern();
+    window.scrollTo(0, 0);
+  }
+
+  function modulAbschliessen(nr) {
+    const n = nr + 1;
+    if (n <= 6 && !state.freigeschaltet.includes(n)) state.freigeschaltet.push(n);
+    speichernAlle();
+    navAktualisieren();
+    if (n <= 6) setTimeout(() => { toast('Modul ' + nr + ' abgeschlossen ✓'); showModul(n); }, 300);
+    else toast('Herzlichen Glückwunsch – Kurs abgeschlossen! 🌿');
+  }
+
+  function navAktualisieren() {
+    for (let i = 0; i <= 6; i++) {
+      const btn = document.getElementById('nav' + i);
+      if (!btn) continue;
+      if (state.freigeschaltet.includes(i)) { btn.classList.remove('locked'); btn.onclick = () => showModul(i); }
+      else { btn.classList.add('locked'); btn.onclick = null; }
+    }
+  }
+
+  function toast(msg) {
+    const el = document.getElementById('toast');
+    el.textContent = msg;
+    el.classList.add('show');
+    setTimeout(() => el.classList.remove('show'), 3000);
+  }
+
+  laden();
+</script>
+</body>
+</html>
