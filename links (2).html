@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>✨ Kostenloser Lebensrad-Check</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #B8935A;
+    --cream: #F5EFE0;
+    --dark-brown: #3D2519;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--cream);
+    font-family: 'Jost', sans-serif;
+    color: var(--dark-brown);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 48px 20px 60px;
+  }
+
+  .logo-circle {
+    width: 64px;
+    height: 64px;
+    border: 1.5px solid var(--gold);
+    border-radius: 50%;
+    margin-bottom: 20px;
+  }
+
+  h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    font-size: 28px;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+    text-align: center;
+  }
+
+  .tagline {
+    font-size: 14px;
+    font-weight: 300;
+    color: #6b5545;
+    text-align: center;
+    max-width: 320px;
+    margin-bottom: 40px;
+    line-height: 1.5;
+  }
+
+  .links {
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  a.card {
+    display: block;
+    text-decoration: none;
+    color: var(--dark-brown);
+    background: #fff;
+    border: 1px solid rgba(184, 147, 90, 0.35);
+    border-radius: 14px;
+    padding: 20px 22px;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+  }
+
+  a.card:active { transform: scale(0.98); }
+
+  a.card.primary {
+    background: var(--dark-brown);
+    color: var(--cream);
+    border-color: var(--dark-brown);
+  }
+
+  .card-eyebrow {
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 6px;
+  }
+
+  a.card.primary .card-eyebrow { color: var(--gold); }
+
+  .card-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 21px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  .card-desc {
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 1.4;
+    opacity: 0.85;
+  }
+
+  footer {
+    margin-top: 48px;
+    font-size: 12px;
+    font-weight: 300;
+    color: #9c8a78;
+    text-align: center;
+  }
+
+  footer a {
+    color: #9c8a78;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="logo-circle"></div>
+  <h1>Mein Veränderungsweg</h1>
+  <p class="tagline">Für Frauen, die aufgehört haben zu funktionieren<br>und anfangen wollen, sich wieder zu spüren.</p>
+
+  <div class="links">
+
+    <a class="card primary" href="https://tamjasattelberg.systeme.io/4f7b2045">
+      <div class="card-eyebrow">Kostenlos</div>
+      <div class="card-title">Dein Lebensrad-Check</div>
+      <div class="card-desc">Finde in wenigen Minuten heraus, wo du in deinem Leben gerade wirklich stehst – in 8 Lebensbereichen.</div>
+    </a>
+
+    <a class="card" href="https://tamjasattelberg.systeme.io/44f74584">
+      <div class="card-eyebrow">Kurs · 47 €</div>
+      <div class="card-title">Mehr bei mir</div>
+      <div class="card-desc">4 Wochen, um wieder zu spüren, was in dir wirklich los ist. Sofortiger Zugang.</div>
+    </a>
+
+    <a class="card" href="https://veraenderungsweg.de/angebot">
+      <div class="card-eyebrow">1:1 Coaching</div>
+      <div class="card-title">Dein persönliches Angebot</div>
+      <div class="card-desc">Erzähl mir kurz, was dich beschäftigt – ich melde mich persönlich bei dir.</div>
+    </a>
+
+  </div>
+
+  <footer>Mehr über mich &amp; alle Kurse: <a href="https://veraenderungsweg.de">veraenderungsweg.de</a></footer>
+
+</body>
+</html>
